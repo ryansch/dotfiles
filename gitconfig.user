@@ -1,0 +1,42 @@
+[credential]
+  helper = osxkeychain
+[help]
+  format = web
+[web]
+  browser = open
+[alias]
+  st = status -sb
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  l = log --name-status --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  staged = diff --cached
+  unstaged = diff
+  both = diff HEAD
+  pick = cherry-pick
+  short-recent = for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+  long-recent = for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(HEAD)%(color:yellow)%(refname:short) %(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+  b = !git checkout $(git -c color.ui=always long-recent | fzf --ansi --no-sort -n1 | sed -E 's/(\\*)?([^ ]+).*/\\2/') # interactive branch switcher via fzf
+  #lg = !"git lg1"
+  lg1 = !"git lg1-specific --all"
+  lg2 = !"git lg2-specific --all"
+  lg3 = !"git lg3-specific --all"
+
+  lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+  lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+  lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
+  list-stale = branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:lstrip=2)%(end)"
+  prune-all = !git fetch -p && git branch -d $(git list-stale)
+[format]
+  pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "https://github.com/"
+  pushInsteadOf = "http://github.com/"
+  pushInsteadOf = "git://github.com/"
+  pushInsteadOf = "gh:"
+[user]
+  signingkey = 05AB53BA
+[commit]
+  gpgsign = true
+[hub]
+  protocol = ssh

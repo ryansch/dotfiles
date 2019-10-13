@@ -12,6 +12,11 @@
       glob: true
       path: bin/*
       relink: true
+    ~/.tmux.conf.user:
+    ~/.gitconfig.user:
+    ~/.zsh.after:
+    ~/.zsh.before:
+    ~/.zsh.prompts:
 - shell:
   - "curl -sL https://releases.rancher.com/dapper/latest/dapper-`uname -s`-`uname -m` > ~/bin/dapper"
   - chmod +x ~/bin/dapper
