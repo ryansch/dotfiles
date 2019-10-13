@@ -18,10 +18,13 @@
     ~/.gitconfig.user:
     ~/.zsh.after:
       relink: true
+      force: true
     ~/.zsh.before:
       relink: true
+      force: true
     ~/.zsh.prompts:
       relink: true
+      force: true
 - shell:
   - "curl -sL https://releases.rancher.com/dapper/latest/dapper-`uname -s`-`uname -m` > ~/bin/dapper"
   - chmod +x ~/bin/dapper
