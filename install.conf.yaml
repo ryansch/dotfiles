@@ -19,9 +19,6 @@
     ~/.zsh.after:
       relink: true
       force: true
-    ~/.zsh.before:
-      relink: true
-      force: true
     ~/.zsh.prompts:
       relink: true
       force: true
