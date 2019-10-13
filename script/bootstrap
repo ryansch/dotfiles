@@ -17,5 +17,5 @@ else
     echo "YADR is already installed"
 fi
 
-cd "${BASEDIR}"
-"${BASEDIR}/install"
+cd "${BASEDIR}/.."
+"./install"
