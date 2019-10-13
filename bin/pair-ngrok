@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ENDPOINT=
+~/bin/ngrok tcp --remote-addr ${ENDPOINT:?} 22

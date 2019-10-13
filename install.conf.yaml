@@ -1,3 +1,19 @@
+- defaults:
+    link:
+      create: true
 - clean: []
-- link: {}
-- shell: []
+- link:
+    ~/.config/nvim/autoload/plug.vim: vim-plug/plug.vim
+    ~/.config/nvim/coc-settings.json: nvim/coc-settings.json
+    ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.config/nvim/settings.vim: nvim/settings.vim
+    ~/.config/nvim/solarized.vim: nvim/solarized.vim
+    ~/bin:
+      glob: true
+      path: bin/*
+      relink: true
+- shell:
+  - "curl -sL https://releases.rancher.com/dapper/latest/dapper-`uname -s`-`uname -m` > ~/bin/dapper"
+  - chmod +x ~/bin/dapper
+  - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v1.0.0/manifest-tool-darwin-amd64 > ~/bin/manifest-tool"
+  - chmod +x ~/bin/manifest-tool

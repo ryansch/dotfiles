@@ -1,0 +1,21 @@
+#!/bin/sh
+ 
+# create an account alias
+#sudo dscl . -append /Users/$USER RecordName Pair pair
+ 
+# configure sshd to only allow public-key authentication
+#sudo sed -E -i.bak 's/^#?(PasswordAuthentication|ChallengeResponseAuthentication).*$/\1 no/' /etc/sshd_config
+ 
+# add pair user public key(s)
+GITHUBUSER=$1
+SESSION=$2
+if [[ -z $GITHUBUSER ]]; then
+  echo 'Github user required'
+  exit 1
+fi
+if [[ -z $SESSION ]]; then
+  echo 'tmux session name required'
+  exit 1
+fi
+touch ~/.ssh/authorized_keys
+gh-auth add --users $GITHUBUSER --command="$( which tmux ) attach -t $SESSION"

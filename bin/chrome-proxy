@@ -1,0 +1,12 @@
+#!/bin/bash
+
+tmp_dir=$(mktemp -d -t chrome-XXXXXXXXXX)
+
+remove_tmp_dir() {
+  rm -rf "$tmp_dir"
+}
+
+trap remove_tmp_dir EXIT
+
+echo "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" "--user-data-dir=$tmp_dir" --proxy-server="http://default:8080" --disable-fre --no-default-browser-check --no-first-run --disable-extensions about:blank
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" "--user-data-dir=$tmp_dir" --proxy-server="http://default:8080" --disable-fre --no-default-browser-check --no-first-run --disable-extensions about:blank
