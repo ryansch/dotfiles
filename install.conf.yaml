@@ -35,3 +35,5 @@
   - defaults write com.apple.finder AppleShowAllFiles -boolean true
   - defaults write com.apple.finder AppleShowAllExtensions -boolean true
   - defaults write com.apple.finder ShowPathbar -boolean true
+  - tic -x ~/.dotfiles/xterm-256color-italic.terminfo
+  - tic -x ~/.dotfiles/tmux-256color-italic.terminfo
