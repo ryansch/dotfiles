@@ -40,3 +40,5 @@
   gpgsign = true
 [hub]
   protocol = ssh
+[core]
+  editor = nvim
