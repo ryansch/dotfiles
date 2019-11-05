@@ -10,6 +10,7 @@
     ~/.config/nvim/init.vim: nvim/init.vim
     ~/.config/nvim/settings.vim: nvim/settings.vim
     ~/.config/nvim/solarized.vim: nvim/solarized.vim
+    ~/.config/grv/grvrc: grvrc
     ~/bin:
       glob: true
       path: bin/*
