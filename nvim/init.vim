@@ -2,7 +2,7 @@ let g:ale_use_global_executables = 1
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/denite.nvim'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
