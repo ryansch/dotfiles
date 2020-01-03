@@ -1,1 +1,1 @@
-prompt ryansch
+prompt minimal
