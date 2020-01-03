@@ -1,0 +1,93 @@
+# add_newline = false
+
+[username]
+# show_always = true
+style_root = "red"
+style_user = "purple"
+
+[hostname]
+# ssh_only = false
+style = "yellow"
+
+[directory]
+style = "green"
+
+[character]
+style_success = "green"
+style_failure = "red"
+
+[cmd_duration]
+style = "yellow"
+
+[git_state]
+style = "yellow"
+
+[git_status]
+style = "bright-yellow"
+stashed = ""
+modified.value = "●"
+modified.style = "red"
+staged.value = "●"
+staged.style = "green"
+untracked.value = "●"
+untracked.style = "purple"
+deleted.value = "●"
+deleted.style = "yellow"
+renamed.value = "●"
+renamed.style = "bright-red"
+
+[jobs]
+style = "blue"
+
+[aws]
+symbol = " "
+disabled = true
+
+[battery]
+full_symbol = ""
+charging_symbol = ""
+discharging_symbol = ""
+
+[conda]
+symbol = " "
+
+[git_branch]
+symbol = " "
+style = "cyan"
+
+[golang]
+symbol = " "
+disabled = true
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+disabled = true
+
+[memory_usage]
+symbol = " "
+
+[nodejs]
+symbol = " "
+disabled = true
+
+[package]
+symbol = " "
+
+[php]
+symbol = " "
+disabled = true
+
+[python]
+symbol = " "
+disabled = true
+
+[ruby]
+symbol = " "
+disabled = true
+
+[rust]
+symbol = " "
+disabled = true
