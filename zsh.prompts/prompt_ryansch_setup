@@ -23,11 +23,6 @@ function prompt_ryansch_precmd {
     git-info on
     git-info
   fi
-
-  # Get ruby information
-  if (( $+functions[ruby-info] )); then
-    ruby-info
-  fi
 }
 
 function prompt_ryansch_setup {
@@ -39,24 +34,13 @@ function prompt_ryansch_setup {
 
   add-zsh-hook precmd prompt_ryansch_precmd
 
-  # Use extended color pallete if available.
-#  if [[ $TERM = *256color* || $TERM = *rxvt* ]]; then
-#    __PROMPT_RYANSCH_COLORS=(
-#      "%F{81}"  # turquoise
-#      "%F{166}" # orange
-#      "%F{135}" # purple
-#      "%F{161}" # hotpink
-#      "%F{118}" # limegreen
-#    )
-#  else
-    __PROMPT_RYANSCH_COLORS=(
-      "%F{cyan}"
-      "%F{yellow}"
-      "%F{magenta}"
-      "%F{red}"
-      "%F{green}"
-    )
-#  fi
+  __PROMPT_RYANSCH_COLORS=(
+    "%F{cyan}"
+    "%F{yellow}"
+    "%F{magenta}"
+    "%F{red}"
+    "%F{green}"
+  )
 
   # git
   zstyle ':prezto:module:git:info:branch' format "${__PROMPT_RYANSCH_COLORS[1]}%b%f"
@@ -66,11 +50,8 @@ function prompt_ryansch_setup {
   zstyle ':prezto:module:git:info:untracked' format "${__PROMPT_RYANSCH_COLORS[3]}●%f"
   zstyle ':prezto:module:git:info:keys' format 'prompt' '(%b%d%a%m%u)'
 
-  # ruby info (rvm, rbenv)
-  zstyle ':prezto:module:ruby:info:version' format '[%v]'
-
   PROMPT="${__PROMPT_RYANSCH_COLORS[3]}%n%f@${__PROMPT_RYANSCH_COLORS[2]}%m%f ${__PROMPT_RYANSCH_COLORS[5]}%~%f "'$git_info[prompt]'"$ "
-  RPROMPT='%F{blue}${ruby_info[version]}'
+  RPROMPT=''
 }
 
 prompt_ryansch_setup "$@"
