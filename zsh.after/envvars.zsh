@@ -6,3 +6,4 @@ export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 export GITHUB_USER='ryansch'
 export SKETCHBOOK_DIR=~/dev/arduino
 export GOSS_PATH=~/goss/goss-linux-amd64
+export GPG_TTY=$(tty)
