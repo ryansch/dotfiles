@@ -275,6 +275,7 @@ set background=dark
 "colorscheme solarized8
 colorscheme NeoSolarized
 set termguicolors
+let g:neosolarized_visibility = "normal"
 
 " keymaps
 " Make 0 go to the first character rather than the beginning
@@ -372,6 +373,7 @@ filetype indent on
 
 " Display tabs and trailing spaces visually
 set listchars=tab:▸\ ,eol:¬,trail:·
+set list!
 
 set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
