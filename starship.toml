@@ -93,3 +93,21 @@ disabled = true
 [rust]
 symbol = " "
 disabled = true
+
+[docker]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[nix_shell]
+symbol = " "
