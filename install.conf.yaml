@@ -25,6 +25,7 @@
       relink: true
       force: true
     ~/.docker/config.json: docker-config.json
+    ~/.hammerspoon:
 - shell:
   - "curl -sL https://releases.rancher.com/dapper/latest/dapper-`uname -s`-`uname -m` > ~/bin/dapper"
   - chmod +x ~/bin/dapper
