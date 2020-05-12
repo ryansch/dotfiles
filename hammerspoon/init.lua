@@ -40,7 +40,7 @@ hs.hotkey.bind({ 'ctrl' }, 'space', function()
       radius = 30,
       textSize = 128,
       fadeInDuration = 0,
-      atScreenEdge = 2
+      atScreenEdge = 0
     }, 'infinite')
 end)
 
