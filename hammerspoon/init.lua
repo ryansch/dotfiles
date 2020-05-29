@@ -1,5 +1,7 @@
 hs.loadSpoon("SpoonInstall")
 
+require("alfred")
+
 hs.window.animationDuration = 0
 
 units = {
