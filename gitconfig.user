@@ -25,7 +25,7 @@
   lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
 
   list-stale = branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:lstrip=2)%(end)"
-  prune-all = !git fetch -p && git branch -d $(git list-stale)
+  prune-all = !git-prune-all
 [format]
   pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset
 [url "git@github.com:"]
