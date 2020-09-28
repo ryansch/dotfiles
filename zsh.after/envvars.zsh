@@ -7,3 +7,5 @@ export GITHUB_USER='ryansch'
 export SKETCHBOOK_DIR=~/dev/arduino
 export GOSS_PATH=~/goss/goss-linux-amd64
 export GPG_TTY=$(tty)
+
+export COMPOSE_DOCKER_CLI_BUILD=1
