@@ -25,18 +25,14 @@ min_time = 5_000
 style = "yellow"
 
 [git_status]
+format = '([\[$conflicted[$deleted](yellow)[$renamed](bright-red)[$modified](red)[$staged](green)[$untracked](purple)$ahead_behind\]]($style) )'
 style = "bright-yellow"
 stashed = ""
-modified.value = "●"
-modified.style = "red"
-staged.value = "●"
-staged.style = "green"
-untracked.value = "●"
-untracked.style = "purple"
-deleted.value = "●"
-deleted.style = "yellow"
-renamed.value = "●"
-renamed.style = "bright-red"
+modified = "●"
+staged = "●"
+untracked = "●"
+deleted = "●"
+renamed = "●"
 
 [jobs]
 style = "blue"
@@ -52,6 +48,7 @@ discharging_symbol = ""
 
 [conda]
 symbol = " "
+disabled = true
 
 [git_branch]
 symbol = " "
@@ -99,15 +96,19 @@ symbol = " "
 
 [elixir]
 symbol = " "
+disabled = true
 
 [elm]
 symbol = " "
+disabled = true
 
 [haskell]
 symbol = " "
+disabled = true
 
 [julia]
 symbol = " "
+disabled = true
 
 [nix_shell]
 symbol = " "
