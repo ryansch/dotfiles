@@ -1,3 +1,8 @@
 #!/bin/bash
 
-git fetch -p && git branch --merged master | egrep -v "(^\*|master)" | xargs git branch -d
+branch=main
+if git branch | grep master ; then
+  branch=master
+fi
+
+git fetch -p && git branch --merged $branch | egrep -v "(^\*|${branch})" | xargs git branch -d
