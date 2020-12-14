@@ -99,7 +99,7 @@ Plug 'markcornick/vim-bats'
 Plug 'zimbatm/haproxy.vim'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
-Plug 'jgdavey/tslime.vim'
+Plug 'jgdavey/tslime.vim', { 'branch': 'main' }
 Plug 'stevearc/vim-arduino'
 
 function! BuildComposer(info)
