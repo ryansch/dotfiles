@@ -12,6 +12,7 @@
     ~/.config/nvim/solarized.vim: nvim/solarized.vim
     ~/.config/grv/grvrc: grvrc
     ~/.config/starship.toml:
+    ~/.config/gh/config.yml: gh-config.yml
     ~/bin:
       glob: true
       path: bin/*
