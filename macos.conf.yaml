@@ -1,0 +1,15 @@
+- defaults:
+    link:
+      create: true
+- clean: []
+- shell:
+  - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v1.0.0/manifest-tool-darwin-amd64 > ~/bin/manifest-tool"
+  - chmod +x ~/bin/manifest-tool
+  - defaults write com.apple.dock autohide-time-modifier -float 0.2
+  - defaults write com.apple.dock autohide-delay -float 0
+  - defaults write com.apple.dock largesize -integer 95
+  - defaults write com.apple.dock tilesize -integer 45
+  - defaults write com.apple.dock autohide -boolean true
+  - defaults write com.apple.finder AppleShowAllFiles -boolean true
+  - defaults write com.apple.finder AppleShowAllExtensions -boolean true
+  - defaults write com.apple.finder ShowPathbar -boolean true
