@@ -11,3 +11,5 @@ export SKETCHBOOK_DIR=~/dev/arduino
 export KALEIDOSCOPE_DIR=~/dev/arduino/Kaleidoscope
 
 export COMPOSE_DOCKER_CLI_BUILD=1
+
+export GLAMOUR_STYLE=dark

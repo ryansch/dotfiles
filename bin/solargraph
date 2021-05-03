@@ -14,7 +14,7 @@ if [[ -n "$project_dir" ]]; then
   volume=$(docker volume ls --format "{{.Name}}" -f label=com.docker.compose.project=${project} -f label=com.outstand.bundler-volume)
 fi
 
-cd ~/dev/shared-containers
+cd /usr/local/shared_containers
 if [[ -z "$volume" ]]; then
   exec dev run --rm solargraph "$@"
 else

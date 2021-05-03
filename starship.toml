@@ -13,10 +13,6 @@ style = "yellow"
 style = "green"
 truncation_length = 5
 
-[character]
-style_success = "green"
-style_failure = "red"
-
 [cmd_duration]
 style = "yellow"
 min_time = 5_000
@@ -91,7 +87,7 @@ disabled = true
 symbol = " "
 disabled = true
 
-[docker]
+[docker_context]
 symbol = " "
 
 [elixir]
@@ -102,13 +98,15 @@ disabled = true
 symbol = " "
 disabled = true
 
-[haskell]
-symbol = " "
-disabled = true
-
 [julia]
 symbol = " "
 disabled = true
 
 [nix_shell]
 symbol = " "
+
+# [custom.mutagen]
+# # when = "rg -c -g '**/*.yml' x-mutagen"
+# files = ["docker-compose.yml"]
+# command = "mutagen sync list --label-selector 'io.mutagen.compose.project.name == app'"
+# disabled = false

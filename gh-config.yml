@@ -8,4 +8,4 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
-    prco: '!gh pr checkout $(gh pr list | fzf --no-sort | awk "{print $1}")'
+    prco: "!gh pr checkout $(gh pr list | fzf --no-sort --preview 'gh pr view {1}' | awk '{split($1,a); print a[1]}')"

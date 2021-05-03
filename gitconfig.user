@@ -42,3 +42,14 @@
   protocol = ssh
 [core]
   editor = nvim
+  pager = delta
+
+[delta]
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  syntax-theme = Solarized (dark)
+  line-numbers = true
+  side-by-side = true
+
+[interactive]
+  diffFilter = delta --color-only

@@ -20,6 +20,7 @@ Plug 'icymind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'jby/tmux.vim'
 Plug 'morhetz/gruvbox'
+Plug 'mhinz/vim-startify'
 
 " Git
 Plug 'gregsexton/gitv'
@@ -654,5 +655,8 @@ nnoremap <silent> <space>l  :<C-u>Denite coc-link<cr>
 
 " git gutter
 autocmd BufWritePost,WinEnter * GitGutter
+
+" vim-startify
+let g:startify_change_to_vcs_root = 1
 
 so ~/.config/nvim/solarized.vim
