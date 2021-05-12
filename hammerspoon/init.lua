@@ -1,6 +1,18 @@
 hs.loadSpoon("SpoonInstall")
+-- spoon.SpoonInstall:andUse("Cherry", {
+--     start = false
+--   })
+spoon.SpoonInstall:andUse("ReloadConfiguration", {
+    start = true
+  })
 
-require("alfred")
+--
+-- If the ipc program is not installed, then install it. This also enables the ipc
+-- commands to work.
+--
+if hs.ipc.cliStatus() == false then
+  hs.ipc.cliInstall()
+end
 
 hs.window.animationDuration = 0
 
