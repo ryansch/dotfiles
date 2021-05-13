@@ -1,5 +1,3 @@
-[credential]
-  helper = osxkeychain
 [help]
   format = web
 [web]

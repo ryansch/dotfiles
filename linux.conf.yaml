@@ -8,7 +8,9 @@
       glob: true
       path: fonts/*
       relink: true
+    ~/.gitconfig.linux:
 - shell:
-  - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v1.0.0/manifest-tool-darwin-amd64 > ~/bin/manifest-tool"
+  - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v1.0.0/manifest-tool-linux-amd64 > ~/bin/manifest-tool"
   - chmod +x ~/bin/manifest-tool
   - fc-cache -vf ~/.fonts
+  - ./script/gitconfig

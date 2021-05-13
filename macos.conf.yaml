@@ -2,6 +2,8 @@
     link:
       create: true
 - clean: []
+- link:
+    ~/.gitconfig.macos:
 - shell:
   - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v1.0.0/manifest-tool-darwin-amd64 > ~/bin/manifest-tool"
   - chmod +x ~/bin/manifest-tool
@@ -13,3 +15,4 @@
   - defaults write com.apple.finder AppleShowAllFiles -boolean true
   - defaults write com.apple.finder AppleShowAllExtensions -boolean true
   - defaults write com.apple.finder ShowPathbar -boolean true
+  - ./script/gitconfig
