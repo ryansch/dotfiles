@@ -48,6 +48,7 @@
   syntax-theme = Solarized (dark)
   line-numbers = true
   side-by-side = true
-
 [interactive]
   diffFilter = delta --color-only
+[pull]
+  ff = only
