@@ -37,8 +37,9 @@ Plug 'skwp/vim-html-escape'
 Plug 'mxw/vim-jsx'
 
 " Project
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'scrooloose/nerdtree'
+"Plug 'jistr/vim-nerdtree-tabs'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Ruby
 Plug 'tpope/vim-rails'
@@ -215,11 +216,6 @@ endfunction
 set laststatus=2
 
 " nerdtree
-" Auto open nerd tree on startup
-let g:nerdtree_tabs_open_on_gui_startup = 0
-" Focus in the main content window
-let g:nerdtree_tabs_focus_on_files = 1
-
 " Make nerdtree look nice
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -652,6 +648,10 @@ nnoremap <silent> <space>c  :<C-u>Denite coc-command<cr>
 nnoremap <silent> <space>s  :<C-u>Denite coc-service<cr>
 " Show links of current buffer
 nnoremap <silent> <space>l  :<C-u>Denite coc-link<cr>
+
+" Shortcuts for NERDTree
+nnoremap <leader>nt :NERDTreeToggleVCS<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " git gutter
 autocmd BufWritePost,WinEnter * GitGutter
