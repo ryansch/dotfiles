@@ -37,7 +37,6 @@ Plug 'skwp/vim-html-escape'
 Plug 'mxw/vim-jsx'
 
 " Project
-"Plug 'jistr/vim-nerdtree-tabs'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
 
@@ -220,6 +219,8 @@ set laststatus=2
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 30
+let g:NERDTreeGitStatusConcealBrackets = 1
+let g:NERDTreeGitStatusUseNerdFonts = 1
 
 " path
 " Set the shell to bash so we inherit its path, to make sure
