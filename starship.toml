@@ -89,6 +89,7 @@ disabled = true
 
 [docker_context]
 symbol = " "
+disabled = true
 
 [elixir]
 symbol = " "
