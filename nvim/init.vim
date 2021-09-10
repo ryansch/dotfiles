@@ -1,6 +1,7 @@
 let g:ale_use_global_executables = 1
 call plug#begin('~/.config/nvim/plugged')
 
+if !exists('g:vscode')
 Plug 'Shougo/denite.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'w0rp/ale'
@@ -102,6 +103,7 @@ Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
 Plug 'jgdavey/tslime.vim', { 'branch': 'main' }
 Plug 'stevearc/vim-arduino'
+Plug 'earthly/earthly.vim', { 'branch': 'main' }
 
 function! BuildComposer(info)
   if a:info.status != 'unchanged' || a:info.force
@@ -661,3 +663,4 @@ autocmd BufWritePost,WinEnter * GitGutter
 let g:startify_change_to_vcs_root = 1
 
 so ~/.config/nvim/solarized.vim
+endif
