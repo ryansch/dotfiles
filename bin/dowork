@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+linode=${1:-ryansch}
+echo "Doing work with '${linode}'"
+
+cd "${HOME}/linodes/${linode}"
+mutagen project start

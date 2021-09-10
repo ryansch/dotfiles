@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+linode=${1:-ryansch}
+echo "Going home from '${linode}'"
+
+cd "${HOME}/linodes/${linode}"
+mutagen project terminate
