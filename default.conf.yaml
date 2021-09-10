@@ -14,7 +14,12 @@
       glob: true
       path: bin/*
       relink: true
-    ~/.tmux.conf.user:
+    ~/.tmux.conf:
+      relink: true
+      force: true
+    ~/.tmux.conf.theme-solarized:
+      relink: true
+      force: true
     ~/.gitconfig:
       relink: true
       force: true
