@@ -162,8 +162,6 @@ let g:lightline = {
       \   'filename': 'MyFilename',
       \   'cocstatus': 'coc#status',
       \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 let g:lightline.component_expand = {
