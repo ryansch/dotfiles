@@ -1,3 +1,5 @@
 eval "$(hub alias -s)"
 alias vim="nvim"
 alias mux="tmuxinator"
+alias ls="exa -g --git -b"
+alias cd="z"
