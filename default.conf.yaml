@@ -5,8 +5,6 @@
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
 - link:
-    ~/.config/nvim/autoload/plug.vim: vim-plug/plug.vim
-    ~/.config/nvim/coc-settings.json: nvim/coc-settings.json
     ~/.config/nvim/init.vim: nvim/init.vim
     ~/.config/nvim/settings.vim: nvim/settings.vim
     ~/.config/nvim/solarized.vim: nvim/solarized.vim
