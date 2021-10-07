@@ -106,8 +106,7 @@ disabled = true
 [nix_shell]
 symbol = " "
 
-# [custom.mutagen]
-# # when = "rg -c -g '**/*.yml' x-mutagen"
-# files = ["docker-compose.yml"]
-# command = "mutagen sync list --label-selector 'io.mutagen.compose.project.name == app'"
-# disabled = false
+[custom.desk]
+description = "indicates whether you're in a desk-spawned shell"
+command = "(command -v desk &>/dev/null && desk | grep -q 'No desk activated.') && echo '' || echo "
+when = "true"
