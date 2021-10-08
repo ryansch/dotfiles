@@ -1,0 +1,100 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# DEBUG=1
+
+if [ -z "${DEBUG:-}" ]; then
+  start_command=start
+else
+  start_command=debug
+  # set -x
+fi
+
+function debug_log() {
+  if [ -n "${DEBUG:-}" ]; then
+    echo "$@"
+  fi
+}
+
+function search_dir() {
+  config_dir="$1"
+  filename="$2"
+
+  if [ -d "$config_dir" ]; then
+    if [ -f "$config_dir/$filename" ]; then
+      echo "$config_dir/$filename"
+      return
+    fi
+  fi
+
+  echo "none"
+}
+
+# mux start outstand -> tmuxinator start default -n outstand
+if [ "${1:-}" = "start" ]; then
+  shift
+  name="${1:-}"
+
+  project_config="none"
+
+  # mux start with a local config
+  if [ -z "${name:-}" ]; then
+    config_dir="$(pwd)"
+    project_config=$(search_dir "$config_dir" ".tmuxinator.yml")
+    if [ "$project_config" != "none" ]; then
+      debug_log Project config: "$project_config"
+      exec tmuxinator "$start_command"
+    fi
+  else
+    # We don't need the name in the positional args now.
+    shift
+  fi
+
+  # Look for a global config file that already knows what to do
+  config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/tmuxinator"
+  project_config=$(search_dir "$config_dir" "$name.yml")
+  if [ "$project_config" != "none" ]; then
+    debug_log Project config: "$project_config"
+    exec tmuxinator "$start_command" "$name" "$@"
+  fi
+
+  root="~/dev/${name}"
+  case "$name" in
+    outstand)
+      root="~/dev/app"
+      ;;
+    buildkite)
+      root="~/dev/docker-images/${name}"
+      ;;
+    outstand-docker)
+      root="~/dev/docker-images/${name}"
+      ;;
+    shared-containers)
+      root="/usr/local/shared_containers"
+      ;;
+    terraform-prod)
+      root="~/dev/outstand-atlas/terraform"
+      ;;
+    unifi)
+      root="~/dev/docker-images/unifi-rpi"
+      ;;
+    dotfiles)
+      root="~/.dotfiles"
+      ;;
+  esac
+
+  # Look for a local .tmuxinator.yml before we use the default
+  config_dir="${root/#\~/$HOME}"
+  project_config=$(search_dir "$config_dir" ".tmuxinator.yml")
+  if [ "$project_config" != "none" ]; then
+    debug_log Project config: "$project_config"
+    cd "$config_dir"
+    exec tmuxinator "$start_command" "$@"
+  fi
+
+  debug_log Using global default project config
+  exec tmuxinator "$start_command" default -n "$name" "$@" "root=${root}"
+else
+  exec tmuxinator "$@"
+fi
