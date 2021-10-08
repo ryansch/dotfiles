@@ -22,6 +22,9 @@
       relink: true
       force: true
     ~/.gitconfig.user:
+    ~/.zshrc:
+      relink: true
+      force: true
     ~/.zsh.after:
       relink: true
       force: true
