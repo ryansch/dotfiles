@@ -1,6 +1,5 @@
 typeset -U path
-path=(~/bin ~/.local/bin /usr/local/opt/ruby/bin "$path[@]" /usr/local/bin)
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/bin
+path=(~/bin ~/.local/bin /usr/local/opt/ruby/bin "$path[@]" /usr/local/sbin /usr/local/bin)
 
 export EDITOR="$(which nvim)"
 export NODE_PATH=/usr/local/lib/node_modules
