@@ -1,4 +1,7 @@
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/bin
+typeset -U path
+path=(~/bin ~/.local/bin /usr/local/opt/ruby/bin "$path[@]" /usr/local/bin)
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/bin
+
 export EDITOR="$(which nvim)"
 export NODE_PATH=/usr/local/lib/node_modules
 export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
