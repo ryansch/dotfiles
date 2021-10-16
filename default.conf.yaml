@@ -29,9 +29,6 @@
     ~/.zsh.after:
       relink: true
       force: true
-    ~/.zsh.prompts:
-      relink: true
-      force: true
 - shell:
   - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/goss-linux-amd64 > ~/bin/goss-linux-amd64"
   - chmod +x ~/bin/goss-linux-amd64
