@@ -80,3 +80,10 @@ vim.g['test#ruby#rspec#executable'] = "rspec"
 vim.api.nvim_set_keymap('n', '<leader>r', ':TestNearest<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>R', ':TestFile<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>l', ':TestLast<CR>', { silent = true })
+
+vim.opt.list = true
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    show_end_of_line = true,
+}
