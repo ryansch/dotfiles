@@ -115,11 +115,6 @@ zinit load ajeetdsouza/zoxide
 
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 
-# Hook for desk activation
-[ -n "$DESK_ENV" ] && source "$DESK_ENV" || true
-source /usr/local/dev-env/ansible/dash_profile
-. /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
-
 setopt pushd_ignore_dups
 # setopt ALWAYS_TO_END        # Move cursor to the end of a completed word.
 # setopt PATH_DIRS            # Perform path search even on command names with slashes.
