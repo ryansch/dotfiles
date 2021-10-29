@@ -1,10 +1,27 @@
 hs.loadSpoon("SpoonInstall")
--- spoon.SpoonInstall:andUse("Cherry", {
---     start = false
+-- spoon.SpoonInstall:andUse("ReloadConfiguration", {
+--     start = true
 --   })
-spoon.SpoonInstall:andUse("ReloadConfiguration", {
-    start = true
-  })
+
+local Packer = hs.loadSpoon("Packer")
+local packer = Packer:new()
+
+packer
+  :setLogLevel('info')
+  :setSpoonDir("Packer")
+  :bindHotKeys({ update = { {'cmd', 'shift'}, 'u' }})
+  :use('dbalatero/VimMode.spoon', function(VimMode)
+    local vim = VimMode:new()
+    vim
+      :disableForApp("iTerm")
+      :disableForApp("Terminal")
+      :disableForApp("Code")
+      :enterWithSequence("jk", 100)
+
+    vim:useFallbackMode("Brave")
+    vim:useFallbackMode("Chrome")
+  end)
+  :activate()
 
 --
 -- If the ipc program is not installed, then install it. This also enables the ipc
