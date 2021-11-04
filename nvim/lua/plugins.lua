@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
   use "rktjmp/lush.nvim"
   use 'icymind/NeoSolarized'
   use 'ishan9299/nvim-solarized-lua'
-  use "~/dev/lunarized"
+  use "ryansch/lunarized"
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -104,6 +104,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-git'
   use 'tpope/vim-rhubarb'
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use {'pwntester/octo.nvim' }
 
   --
   -- (development, et al) --
