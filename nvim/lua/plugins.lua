@@ -173,6 +173,5 @@ return require('packer').startup(function(use)
   use { 'jgdavey/tslime.vim', branch = 'main' }
   use 'stevearc/vim-arduino'
   use { 'earthly/earthly.vim', branch = 'main' }
-  use 'zinit-zsh/zinit-vim-syntax'
 
 end)
