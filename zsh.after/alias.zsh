@@ -8,7 +8,7 @@ alias :q='exit'
 
 # moar bat
 alias cat="bat"
-alias rg="batgrep"
+# alias rg="batgrep"
 alias man="batman"
 alias watch="batwatch"
 
