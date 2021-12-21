@@ -5,6 +5,7 @@
 - link:
     ~/.hammerspoon:
 - shell:
+  - ~/.dotfiles/script/install-packer
   - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-darwin-amd64 > ~/bin/manifest-tool"
   - chmod +x ~/bin/manifest-tool
   - defaults write com.apple.dock autohide-time-modifier -float 0.2

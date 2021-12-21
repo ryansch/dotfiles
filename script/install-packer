@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if [ ! -d ~/.hammerspoon/Spoons/Packer.spoon ]; then
+  cd ~/.hammerspoon
+  mkdir -p Spoons
+  cd Spoons
+  gh repo clone ryansch/Packer.spoon
+fi
