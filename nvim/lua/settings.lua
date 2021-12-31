@@ -283,3 +283,7 @@ require("indent_blankline").setup {
 vim.g.startify_change_to_vcs_root = 1
 
 -- local hilens = require('hilens').setup
+
+if vim.fn.has('macunix') then
+  vim.api.nvim_command('set rtp+=/opt/homebrew/opt/fzf')
+end
