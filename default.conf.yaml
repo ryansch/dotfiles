@@ -32,8 +32,7 @@
       relink: true
       force: true
     ~/.local/share/bash:
-      glob: true
-      path: share/bash/*
+      path: share/bash
       relink: true
       create: true
 - ghe:
