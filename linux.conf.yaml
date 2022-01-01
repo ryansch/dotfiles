@@ -12,6 +12,5 @@
   - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-linux-amd64 > ~/bin/manifest-tool"
   - chmod +x ~/bin/manifest-tool
   - fc-cache -vf ~/.fonts
-  - ./script/gitconfig
   - tic -o ~/.terminfo xterm-256color-italic.terminfo
   - tic -o ~/.terminfo tmux-256color-italic.terminfo
