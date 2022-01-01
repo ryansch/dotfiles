@@ -1,114 +1,55 @@
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+# Clone zcomet if necessary
+if [[ ! -f ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh ]]; then
+  command git clone https://github.com/agkozak/zcomet.git ${ZDOTDIR:-${HOME}}/.zcomet/bin
 fi
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/z-a-rust \
-    zdharma-continuum/z-a-as-monitor \
-    zdharma-continuum/z-a-patch-dl \
-    zdharma-continuum/z-a-bin-gem-node
-
-### End of Zinit's installer chunk
-
-###################################
-# Additional annexes
-###################################
-
-zinit light-mode for \
-    zdharma-continuum/z-a-meta-plugins
-
-###################################
-# Load Immediately
-###################################
-
-# Load starship theme
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
-
-# fzf
-zinit pack"bgn-binary+keys" for fzf
-
-# vi mode
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
+source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 
 # set sane options
-zinit light willghatch/zsh-saneopt
+zcomet load willghatch/zsh-saneopt
 
-zinit lucid for OMZP::ssh-agent/ssh-agent.plugin.zsh
-zinit lucid for PZTM::history
+zcomet load ohmyzsh plugins/ssh-agent
+zcomet load --no-submodules prezto modules/history
 
-###################################
-# Section 0a (First Turbo)
-###################################
+zcomet load zsh-users/zsh-completions
+zcomet load zsh-users/zsh-autosuggestions
+zcomet load --no-submodules prezto modules/completion
 
-zinit wait"0a" lucid light-mode for \
-  blockf \
-    zsh-users/zsh-completions \
-  atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
-  blockf \
-    PZTM::completion
+zcomet load ohmyzsh plugins/gitfast
+zcomet load --no-submodules prezto modules/archive
 
-  # as"completion" nocompile mv'*.zsh -> _git' reset \
-  #   felipec/git-completion \
+zcomet load zsh-users/zsh-history-substring-search
 
-zinit ice svn wait"0a" lucid
-zinit snippet OMZ::plugins/gitfast
+zcomet load Aloxaf/fzf-tab
+zcomet load olets/zsh-abbr
+zcomet load djui/alias-tips
+zcomet load zdharma-continuum/fast-syntax-highlighting
 
-zinit ice svn wait"0a" lucid as"null"
-zinit snippet PZTM::archive
-
-
-# history search with up/down arrows
-bindkey -r '^[[A'
-bindkey -r '^[[B'
-function __bind_history_keys() {
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-
-  # Vi
-  bindkey -M vicmd "k" history-substring-search-up
-  bindkey -M vicmd "j" history-substring-search-down
-}
-zinit ice wait"0a" lucid atload"!__bind_history_keys"
-zinit load zsh-users/zsh-history-substring-search
-
-###################################
-# Section 0b (Second Turbo)
-###################################
-
-zinit wait"0b" lucid light-mode for \
- atload"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting
-
-###################################
-# Section 2 (Load after prompt)
-###################################
-
-# zoxide
-zinit ice wait"2" as"command" from"gh-r" lucid \
-  mv"zoxide*/zoxide -> zoxide" \
-  atclone"./zoxide init zsh > init.zsh" \
-  atpull"%atclone" src"init.zsh" nocompile'!'
-zinit load ajeetdsouza/zoxide
-
-
+# vi mode
+ZVM_INIT_MODE=sourcing
+zcomet load jeffreytse/zsh-vi-mode
 
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Vi
+bindkey -M vicmd "k" history-substring-search-up
+bindkey -M vicmd "j" history-substring-search-down
+
+OS="$(uname)"
+if [[ "$OS" == "Linux" ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  export WHALEBREW_INSTALL_PATH=/home/linuxbrew/.linuxbrew/bin
+fi
+
+if [[ "$OS" == "Darwin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 setopt pushd_ignore_dups
 # setopt ALWAYS_TO_END        # Move cursor to the end of a completed word.
@@ -177,3 +118,5 @@ if [ -d $HOME/.zsh.after/ ]; then
   fi
 fi
 if [ -e /Users/ryansch/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ryansch/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+zcomet compinit
