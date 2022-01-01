@@ -31,8 +31,8 @@
     ~/.zsh.after:
       relink: true
       force: true
-    ~/.local/share/bash:
-      path: share/bash
+    ~/.local/share/sh:
+      path: share/sh
       relink: true
       create: true
 - ghe:

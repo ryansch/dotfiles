@@ -44,8 +44,9 @@ if [[ "$OS" == "Linux" ]]; then
   export WHALEBREW_INSTALL_PATH=/home/linuxbrew/.linuxbrew/bin
 fi
 
+source ${HOME}/.local/share/sh/homebrew.sh
 if [[ "$OS" == "Darwin" ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$($(homebrew_location)/bin/brew shellenv)"
 fi
 
 eval "$(starship init zsh)"
