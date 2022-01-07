@@ -85,6 +85,9 @@ if [ "${1:-}" = "start" ]; then
     dotfiles)
       root="~/.dotfiles"
       ;;
+    homebrew-tools)
+      root="/opt/homebrew/Library/Taps/outstand/homebrew-tools"
+      ;;
   esac
 
   # Look for a local .tmuxinator.yml before we use the default
