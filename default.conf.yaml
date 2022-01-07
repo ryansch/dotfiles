@@ -35,6 +35,10 @@
       path: share/sh
       relink: true
       create: true
+    ~/.config/tmuxinator:
+      path: tmuxinator
+      relink: true
+      create: true
 - ghe:
   - mislav/gh-branch
   - dlvhdr/gh-prs
