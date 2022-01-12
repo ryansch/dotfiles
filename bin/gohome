@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-linode=${1:-$(logname)}
-echo "Going home from '${linode}'"
-
-cd "${XDG_CONFIG_HOME:-${HOME}/.config}/linodes/${linode}"
-mutagen project terminate

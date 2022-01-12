@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-
-linode=${1:-$(logname)}
-echo "Doing work with '${linode}'"
-
-cd "${XDG_CONFIG_HOME:-${HOME}/.config}/linodes/${linode}"
-mutagen project start
