@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if ! git config --get user.name > /dev/null; then
+	touch ~/.gitconfig.user
+
+	while true; do
+		read -p 'Full name for git: ' name
+		read -p "You entered '${name}'. Continue? (Yn) " yn
+		case $yn in
+			[Yy]* ) break;;
+			"" ) break;; # default
+			[Nn]* ) ;;
+			* ) echo "Please answer yes or no.";;
+		esac
+	done
+
+	git config --file ~/.gitconfig.user user.name "${name}"
+fi
+
+if ! git config --get user.email > /dev/null; then
+	touch ~/.gitconfig.user
+
+	while true; do
+		read -p 'Email for git: ' email
+		read -p "You entered '${email}'. Continue? (Yn) " yn
+		case $yn in
+			[Yy]* ) break;;
+			"" ) break;; # default
+			[Nn]* ) ;;
+			* ) echo "Please answer yes or no.";;
+		esac
+	done
+
+	git config --file ~/.gitconfig.user user.email "${email}"
+fi

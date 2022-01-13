@@ -1,9 +1,8 @@
 [user]
+	name = Ryan Schlesinger
+	email = ryan@ryanschlesinger.com
   signingkey = 05AB53BA
 [commit]
   gpgsign = true
-[user]
-  name = Ryan Schlesinger
-  email = ryan@ryanschlesinger.com
 [github]
   user = ryansch
