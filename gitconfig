@@ -14,43 +14,41 @@
 [alias]
   # add
   a = add                           # add
-  chunkyadd = add --patch           # stage commits chunk by chunk
-
-  # via http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
-  snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-  snapshots = !git stash list --grep snapshot
-
-  #via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
-  recent-branches = !git for-each-ref --count=15 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 
   # branch
-  b = branch -v                     # branch (verbose)
+  b = !git checkout $(git -c color.ui=always long-recent | fzf --ansi --no-sort -n1 | sed -E 's/(\\*)?([^ ]+).*/\\2/') # interactive branch switcher via fzf
+  short-recent = for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+  long-recent = for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(HEAD)%(color:yellow)%(refname:short) %(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+  list-stale = branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:lstrip=2)%(end)"
+  prune-all = !git-prune-all
 
   # commit
-  c = commit -m                     # commit with message
-  ca = commit -am                   # commit all with message
-  ci = commit                       # commit
-  amend = commit --amend            # ammend your last commit
-  ammend = commit --amend           # ammend your last commit
+  c = commit                       # commit
+  amend = commit --amend            # amend your last commit
 
   # checkout
   co = checkout                     # checkout
   nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
 
   # cherry-pick
-  cp = cherry-pick -x               # grab a change from a branch
+  cp = cherry-pick                  # grab a change from a branch
+  pick = cherry-pick
 
   # diff
   d = diff                          # diff unstaged changes
   dc = diff --cached                # diff staged changes
   last = diff HEAD^                 # diff last committed change
+  staged = diff --cached
+  unstaged = diff
+  both = diff HEAD
 
   # log
-  l = log --graph --date=short
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   simple = log --pretty=format:\" * %s\"
   shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  l = log --name-status --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
   # pull
   pl = pull                         # pull
@@ -79,7 +77,7 @@
 
   # status
   s = status                        # status
-  st = status                       # status
+  st = status -sb
   stat = status                     # status
 
   # tag
@@ -90,7 +88,7 @@
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
 [format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+  pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset
 [mergetool]
   prompt = false
 [merge]
@@ -106,8 +104,16 @@
   default = upstream
 [core]
   autocrlf = false
-  editor = vim
-  excludesfile = ~/.yadr/git/gitignore
+  editor = nvim
+  pager = delta
+[delta]
+  plus-style = "syntax #012800"
+  minus-style = "syntax #340001"
+  syntax-theme = Solarized (dark)
+  line-numbers = true
+  side-by-side = true
+[interactive]
+  diffFilter = delta --color-only
 [advice]
   statusHints = false
 [diff]
@@ -119,13 +125,6 @@
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
-[include]
-  path = .gitconfig.user
-[user]
-  name = Ryan Schlesinger
-  email = ryan@ryanschlesinger.com
-[github]
-  user = ryansch
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
@@ -133,6 +132,14 @@
 	clean = git-lfs clean -- %f
 [init]
 	defaultBranch = main
+[help]
+  format = web
+[web]
+  browser = open
+[pull]
+  ff = only
+[include]
+  path = .gitconfig.user
 [credential "https://github.com"]
 	helper = 
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
