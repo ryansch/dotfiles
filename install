@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 DEFAULT_CONFIG_PREFIX="default"
 CONFIG_SUFFIX=".conf.yaml"
@@ -14,9 +14,10 @@ git submodule sync --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 git submodule update --init --recursive
 
-for conf in ${DEFAULT_CONFIG_PREFIX} ${@}; do
+for conf in ${DEFAULT_CONFIG_PREFIX}; do
   "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" \
     --plugin-dir plugins/dotbot-gh-extension \
     --plugin-dir plugins/dotbot-brew \
-    -c "${conf}${CONFIG_SUFFIX}"
+    --plugin-dir plugins/dotbot-ifplatform \
+    -c "${conf}${CONFIG_SUFFIX}" "${@}"
 done

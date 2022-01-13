@@ -2,15 +2,11 @@
     link:
       create: true
 - clean: []
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
 - link:
     ~/.config/nvim/init.lua: nvim/init.lua
     ~/.config/nvim/lua: nvim/lua
     ~/.config/gh/config.yml: gh-config.yml
     ~/.config/starship.toml:
-    # ~/.config/nvim/settings.vim: nvim/settings.vim
-    # ~/.config/nvim/solarized.vim: nvim/solarized.vim
     ~/bin:
       glob: true
       path: bin/*
@@ -49,3 +45,33 @@
   - chmod +x ~/bin/dgoss
   - ~/.dotfiles/script/gh-login
   - ~/.dotfiles/script/git-user
+
+- ifanylinux:
+  - link:
+      ~/.fonts:
+        create: true
+        glob: true
+        path: fonts/*
+        relink: true
+  - shell:
+    - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-linux-amd64 > ~/bin/manifest-tool"
+    - chmod +x ~/bin/manifest-tool
+    - fc-cache -vf ~/.fonts
+    - tic -o ~/.terminfo xterm-256color-italic.terminfo
+    - tic -o ~/.terminfo tmux-256color-italic.terminfo
+
+- ifmacos:
+  - link:
+      ~/.hammerspoon:
+  - shell:
+    - ~/.dotfiles/script/install-packer
+    - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-darwin-amd64 > ~/bin/manifest-tool"
+    - chmod +x ~/bin/manifest-tool
+    - defaults write com.apple.dock autohide-time-modifier -float 0.2
+    - defaults write com.apple.dock autohide-delay -float 0
+    - defaults write com.apple.dock largesize -integer 95
+    - defaults write com.apple.dock tilesize -integer 45
+    - defaults write com.apple.dock autohide -boolean true
+    - defaults write com.apple.finder AppleShowAllFiles -boolean true
+    - defaults write com.apple.finder AppleShowAllExtensions -boolean true
+    - defaults write com.apple.finder ShowPathbar -boolean true
