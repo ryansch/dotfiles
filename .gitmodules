@@ -10,3 +10,6 @@
 [submodule "plugins/dotbot-brew"]
 	path = plugins/dotbot-brew
 	url = https://github.com/d12frosted/dotbot-brew.git
+[submodule "plugins/dotbot-ifplatform"]
+	path = plugins/dotbot-ifplatform
+	url = https://github.com/ssbanerje/dotbot-ifplatform.git
