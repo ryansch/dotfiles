@@ -10,8 +10,13 @@ DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
+git submodule sync --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
+git submodule update --init --recursive
 
 for conf in ${DEFAULT_CONFIG_PREFIX} ${@}; do
-  "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" --plugin-dir plugins/dotbot-gh-extension -c "${conf}${CONFIG_SUFFIX}"
+  "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" \
+    --plugin-dir plugins/dotbot-gh-extension \
+    --plugin-dir plugins/dotbot-brew \
+    -c "${conf}${CONFIG_SUFFIX}"
 done
