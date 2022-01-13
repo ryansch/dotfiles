@@ -142,4 +142,4 @@
   path = .gitconfig.user
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+	helper = !$(brew --prefix)/bin/gh auth git-credential
