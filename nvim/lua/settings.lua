@@ -78,8 +78,7 @@ require('telescope').setup {
       "--smart-case",
       "--hidden",
       "--no-ignore",
-      "--follow",
-      "--glob '!.git/*'",
+      "--follow"
     },
     color_devicons = true,
     mappings = {
