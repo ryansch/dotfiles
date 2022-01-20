@@ -1,7 +1,7 @@
 - defaults:
     link:
       create: true
-- clean: []
+- clean: ["~/bin"]
 - link:
     ~/.config/nvim/init.lua: nvim/init.lua
     ~/.config/nvim/lua: nvim/lua
