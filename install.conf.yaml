@@ -2,6 +2,14 @@
     link:
       create: true
 - clean: ["~/bin"]
+- brew:
+  - zoxide
+  - exa
+  - starship
+  - bat
+  - bat-extras
+  - ripgrep
+  - universal-ctags
 - link:
     ~/.config/nvim/init.lua: nvim/init.lua
     ~/.config/nvim/lua: nvim/lua

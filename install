@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-DEFAULT_CONFIG_PREFIX="default"
+DEFAULT_CONFIG_PREFIX="install"
 CONFIG_SUFFIX=".conf.yaml"
 DOTBOT_DIR="dotbot"
 
@@ -14,10 +14,17 @@ git submodule sync --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 git submodule update --init --recursive
 
+shopt -s nullglob
+plugin_dirs=(plugins/*)
+shopt -u nullglob
+
+plugins=()
+for plugin_dir in ${plugin_dirs[@]}; do
+  plugins+=("--plugin-dir" ${plugin_dir})
+done
+
 for conf in ${DEFAULT_CONFIG_PREFIX}; do
   "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" \
-    --plugin-dir plugins/dotbot-gh-extension \
-    --plugin-dir plugins/dotbot-brew \
-    --plugin-dir plugins/dotbot-ifplatform \
+    "${plugins[@]}" \
     -c "${conf}${CONFIG_SUFFIX}" "${@}"
 done
