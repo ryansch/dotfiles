@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+: ${1:?File required}
+
+tail -f "${1}" | bat --paging=never -l log
