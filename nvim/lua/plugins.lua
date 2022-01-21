@@ -18,12 +18,10 @@ return require('packer').startup(function(use)
   --
   -- (appearance/ui) --
   use "rktjmp/lush.nvim"
-  use 'icymind/NeoSolarized'
-  use 'ishan9299/nvim-solarized-lua'
   use "ryansch/lunarized"
   use {
-    'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use "norcalli/nvim-colorizer.lua"
   use "kyazdani42/nvim-web-devicons"
@@ -43,9 +41,9 @@ return require('packer').startup(function(use)
   use 'mhinz/vim-startify'
   use {
     'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end 
+    run = function() vim.fn['firenvim#install'](0) end
   }
-  
+
   -- --
   -- -- (lsp/completion) --
   use "neovim/nvim-lspconfig"

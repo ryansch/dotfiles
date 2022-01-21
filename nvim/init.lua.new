@@ -47,13 +47,6 @@ require('packer').startup(function()
   }
   use "folke/which-key.nvim"
   use 'mhinz/vim-startify'
-  use { 'preservim/nerdtree',
-    requires = {
-      'Xuyuanp/nerdtree-git-plugin'
-    }
-  }
-  use 'tpope/vim-eunuch'
-  use 'christoomey/vim-tmux-navigator'
 end)
 
 --Set highlight on search
@@ -87,69 +80,11 @@ vim.cmd [[colorscheme lunarized]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
--- Use visual bell
-vim.o.visualbell = true
-
--- Automatically reload files changed outside of vim
-vim.o.autoread = true
-
--- Enable system clipboard
-vim.o.clipboard = "unnamedplus"
-
---Incremental live completion (note: this is now a default on master)
-vim.o.inccommand = 'nosplit'
-
---Set highlight on search
-vim.o.hlsearch = true
-
---Make line numbers default
-vim.wo.number = true
-
---Do not save when switching buffers (note: this is now a default on master)
-vim.o.hidden = true
-
---Enable mouse mode
-vim.o.mouse = 'a'
-
---Enable break indent
-vim.o.breakindent = true
-
---Save undo history
-vim.opt.undofile = true
-
---Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
---Decrease update time
-vim.o.updatetime = 250
-vim.opt.timeoutlen = 500
-vim.opt.ttimeoutlen = 10
-vim.wo.signcolumn = 'yes'
-
--- Configure Beacon
-vim.g.beacon_size = 90
-vim.g.beacon_minimal_jump = 25
-vim.g.beacon_ignore_filetypes = { "fzf" }
-
--- Setup cursorhold
--- vim.g.cursorhold_updatetime = 100
-
--- Create window splits easier. The default
--- way is Ctrl-w,v and Ctrl-w,s. I remap
--- this to vv and ss
-vim.api.nvim_set_keymap('n', 'vv', '<C-w>v', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'ss', '<C-w>s', { noremap = true, silent = true })
-
--- Clear current search highlight by double tapping //
-vim.api.nvim_set_keymap('n', '//', ':nohlsearch<CR>', { silent = true })
-
 --Set statusbar
-local lunarized_lualine = require('lunarized.lualine')
 require('lualine').setup {
   options = {
-    icons_enabled = true,
-    theme = lunarized_lualine,
+    icons_enabled = false,
+    theme = 'onedark',
     component_separators = '|',
     section_separators = '',
   },
@@ -158,9 +93,10 @@ require('lualine').setup {
 --Enable Comment.nvim
 require('Comment').setup()
 
---Remap , as leader key
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+--Remap space as leader key
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -179,44 +115,6 @@ vim.g.indent_blankline_char = '┊'
 vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
 vim.g.indent_blankline_show_trailing_blankline_indent = false
-
--- vim-startify
-vim.g.startify_change_to_vcs_root = 1
-
-if vim.fn.has('macunix') then
-  vim.api.nvim_command('set rtp+=/opt/homebrew/opt/fzf')
-end
-
--- which-key
-local wk = require('which-key')
-local t_builtin = require('telescope.builtin')
-wk.setup {
-  window = {
-    border = "single"
-  }
-}
-wk.register({
-  f = {
-    name = "telescope finders",
-    [','] = { t_builtin.buffers, "Lists open buffers" },
-    f = { t_builtin.find_files, "Find file" },
-    b = { t_builtin.current_buffer_fuzzy_find, "Live fuzzy search" },
-    h = { t_builtin.help_tags, "Lists available help tags " },
-    t = { t_builtin.tags, "Lists tags in current directory " },
-    g = { t_builtin.live_grep, "Search for a string" },
-    ['?'] = { t_builtin.oldfiles, "Lists previously open files" },
-  },
-  l = {
-    name = "telescope LSP",
-    a = { t_builtin.diagostics, "Lists diagnostics" },
-    d = { t_builtin.lsp_definitions, "Goto definition" },
-    D = { t_builtin.lsp_type_definitions, "Goto type definition" },
-    r = { t_builtin.lsp_references, "Lists LSP references" },
-    i = { t_builtin.lsp_implementations, "Goto implementation" },
-    s = { t_builtin.lsp_document_symbols, "Lists LSP document symbols" },
-    w = { t_builtin.lsp_dynamic_workspace_symbols, "Dynamically Lists LSP for all workspace symbols" },
-  },
-}, { prefix = "<leader>" })
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -243,6 +141,17 @@ require('telescope').setup {
 
 -- Enable telescope fzf native
 require('telescope').load_extension 'fzf'
+
+--Add leader shortcuts
+vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
