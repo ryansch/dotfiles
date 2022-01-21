@@ -64,6 +64,7 @@ require('packer').startup(function()
   use 'tpope/vim-rake'
   use 'tpope/vim-rvm'
   use 'rafamadriz/friendly-snippets' -- TODO: Set up
+  use 'sheerun/vim-polyglot'
 end)
 
 --Set highlight on search
@@ -262,7 +263,7 @@ require('nvim-treesitter.configs').setup {
     'comment',
     'css',
     'dockerfile',
-    'elixir',
+    -- 'elixir',
     'erlang',
     'go',
     'graphql',
@@ -287,6 +288,9 @@ require('nvim-treesitter.configs').setup {
   },
   highlight = {
     enable = true, -- false will disable the whole extension
+    disable = {
+      "elixir"
+    }
   },
   incremental_selection = {
     enable = true,
@@ -373,6 +377,42 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+local function root_has_file(name)
+  local cwd = vim.loop.cwd()
+  local lsputil = require("lspconfig.util")
+  return lsputil.path.exists(lsputil.path.join(cwd, name)), lsputil.path.join(cwd, name)
+end
+
+local function elixirls_cmd(opts)
+  opts = opts or {}
+  local fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
+
+  local locations = {
+    ".bin/elixir_ls.sh",
+    ".elixir_ls/release/language_server.sh",
+  }
+
+  for _, location in ipairs(locations) do
+    local exists, dir = root_has_file(location)
+    if exists then
+      return vim.fn.expand(dir)
+    end
+  end
+
+  return vim.fn.expand(string.format("%s/lsp/elixir-ls/%s", fallback_dir, "language_server.sh"))
+end
+
+lspconfig.elixirls.setup{
+  cmd = { elixirls_cmd() },
+  settings = {
+    elixirLS = {
+      mixEnv = "dev"
+    }
+  }
+}
+vim.lsp.set_log_level("trace")
+require("vim.lsp.log").set_format_func(vim.inspect)
 
 -- Example custom server
 -- Make runtime files discoverable to the server
