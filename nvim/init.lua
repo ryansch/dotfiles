@@ -29,7 +29,10 @@ require('packer').startup(function()
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
@@ -54,6 +57,13 @@ require('packer').startup(function()
   }
   use 'tpope/vim-eunuch'
   use 'christoomey/vim-tmux-navigator'
+  use {'pwntester/octo.nvim' }
+  -- use 'sheerun/vim-polyglot'
+  -- use "editorconfig/editorconfig-vim"
+  use 'tpope/vim-rails'
+  use 'tpope/vim-rake'
+  use 'tpope/vim-rvm'
+  use 'rafamadriz/friendly-snippets' -- TODO: Set up
 end)
 
 --Set highlight on search
@@ -247,6 +257,34 @@ require('telescope').load_extension 'fzf'
 -- Treesitter configuration
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
+  ensure_installed = {
+    'bash',
+    'comment',
+    'css',
+    'dockerfile',
+    'elixir',
+    'erlang',
+    'go',
+    'graphql',
+    'heex',
+    'html',
+    'http',
+    'javascript',
+    'json',
+    'json5',
+    'lua',
+    'make',
+    'markdown',
+    'nix',
+    'python',
+    'regex',
+    'ruby',
+    'rust',
+    'toml',
+    'typescript',
+    'vim',
+    'yaml',
+  },
   highlight = {
     enable = true, -- false will disable the whole extension
   },
@@ -311,7 +349,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -371,7 +409,9 @@ lspconfig.sumneko_lua.setup {
 
 -- luasnip setup
 local luasnip = require 'luasnip'
+luasnip.filetype_extend("ruby", {"rails"})
 
+-- TODO: Figure out how to get autocomplete working for snippets
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
