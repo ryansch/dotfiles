@@ -51,8 +51,18 @@
   - chmod +x ~/bin/goss-linux-amd64
   - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/dgoss > ~/bin/dgoss"
   - chmod +x ~/bin/dgoss
-  - ~/.dotfiles/script/gh-login
-  - ~/.dotfiles/script/git-user
+  -
+    command: ~/.dotfiles/script/gh-login
+    description: "Log in with gh"
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: ~/.dotfiles/script/git-user
+    description: "Set up git user and email address"
+    stdin: true
+    stdout: true
+    stderr: true
 
 - ifanylinux:
   - link:
