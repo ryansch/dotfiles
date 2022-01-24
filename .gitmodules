@@ -13,3 +13,6 @@
 [submodule "plugins/dotbot-ifplatform"]
 	path = plugins/dotbot-ifplatform
 	url = https://github.com/ssbanerje/dotbot-ifplatform.git
+[submodule "plugins/dotbot-ifarch"]
+	path = plugins/dotbot-ifarch
+	url = https://github.com/ryansch/dotbot-ifarch.git
