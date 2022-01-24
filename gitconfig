@@ -139,7 +139,7 @@
 [pull]
   ff = only
 [url "https://github.com"]
-  insteadOf = "git@github.com"
+  insteadOf = "git@github.com:"
   insteadOf = "ssh://git@github.com"
   insteadOf = "http://github.com"
 [include]
