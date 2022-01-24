@@ -138,6 +138,9 @@
   browser = open
 [pull]
   ff = only
+[url "https://github.com"]
+  insteadOf = "ssh://git@github.com"
+  pushInsteadOf = "ssh://git@github.com"
 [include]
   path = .gitconfig.user
 [credential "https://github.com"]
