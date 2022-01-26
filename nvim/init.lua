@@ -198,6 +198,9 @@ if vim.fn.has('macunix') then
   vim.api.nvim_command('set rtp+=/opt/homebrew/opt/fzf')
 end
 
+-- gutentags
+vim.g.gutentags_cache_dir = "~/.cache/gutentags"
+
 -- which-key
 local wk = require('which-key')
 local t_builtin = require('telescope.builtin')
