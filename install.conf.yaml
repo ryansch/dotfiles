@@ -1,7 +1,7 @@
 - defaults:
     link:
       create: true
-- clean: ["~/bin", "~/.config"]
+- clean: ["~/.local/bin", "~/.config"]
 - brew:
   - zoxide
   - exa
@@ -14,7 +14,7 @@
     ~/.config/nvim/init.lua: nvim/init.lua
     ~/.config/gh/config.yml: gh-config.yml
     ~/.config/starship.toml:
-    ~/bin:
+    ~/.local/bin:
       glob: true
       path: bin/*
       relink: true
@@ -46,10 +46,10 @@
   - mislav/gh-branch
   - dlvhdr/gh-prs
 - shell:
-  - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/goss-linux-amd64 > ~/bin/goss-linux-amd64"
-  - chmod +x ~/bin/goss-linux-amd64
-  - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/dgoss > ~/bin/dgoss"
-  - chmod +x ~/bin/dgoss
+  - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
+  - chmod +x ~/.local/bin/goss-linux-amd64
+  - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/dgoss > ~/.local/bin/dgoss"
+  - chmod +x ~/.local/bin/dgoss
   -
     command: ~/.dotfiles/script/gh-login
     description: "Log in with gh"
@@ -71,8 +71,8 @@
         path: fonts/*
         relink: true
   - shell:
-    - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-linux-amd64 > ~/bin/manifest-tool"
-    - chmod +x ~/bin/manifest-tool
+    - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-linux-amd64 > ~/.local/bin/manifest-tool"
+    - chmod +x ~/.local/bin/manifest-tool
     - fc-cache -vf ~/.fonts
     - tic -o ~/.terminfo xterm-256color-italic.terminfo
     - tic -o ~/.terminfo tmux-256color-italic.terminfo
@@ -82,8 +82,8 @@
       ~/.hammerspoon:
   - shell:
     - ~/.dotfiles/script/install-packer
-    - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-darwin-amd64 > ~/bin/manifest-tool"
-    - chmod +x ~/bin/manifest-tool
+    - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-darwin-amd64 > ~/.local/bin/manifest-tool"
+    - chmod +x ~/.local/bin/manifest-tool
     - defaults write com.apple.dock autohide-time-modifier -float 0.2
     - defaults write com.apple.dock autohide-delay -float 0
     - defaults write com.apple.dock largesize -integer 95
@@ -95,7 +95,7 @@
 
 - ifaarch64:
   - link:
-    ~/bin:
+    ~/.local/bin:
       glob: true
       path: aarch64/*
       relink: true
