@@ -61,7 +61,7 @@ function leaveMode()
   windowMode:exit()
 end
 
-hs.hotkey.bind({ 'ctrl' }, 'space', function()
+hs.hotkey.bind({ 'option' }, 'delete', function()
   windowMode:enter()
   windowModeAlertWindow = hs.alert.show('Window Mode', {
       strokeColor = hs.drawing.color.x11.orangered,
