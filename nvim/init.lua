@@ -237,6 +237,18 @@ wk.register({
     s = { t_builtin.lsp_document_symbols, "Lists LSP document symbols" },
     w = { t_builtin.lsp_dynamic_workspace_symbols, "Dynamically Lists LSP for all workspace symbols" },
   },
+  r = {
+    name = "test runners",
+  },
+  d = {
+    name = "debugger",
+    l = {
+      name = "lua",
+      l = { "<Plug>(Luadev-RunLine)", "Execute the current line" },
+      r = { "<Plug>(Luadev-Run)", "Execute lua code over a movement or text object" },
+      w = { "<Plug>(Luadev-RunWord)", "Eval identifier under cursor" },
+    },
+  },
 }, { prefix = "<leader>" })
 
 -- Gitsigns
@@ -372,7 +384,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
 end
 
 -- nvim-cmp supports additional completion capabilities
@@ -399,6 +411,7 @@ local function elixirls_cmd(opts)
   local fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
 
   local locations = {
+    ".elixir-ls-release/language_server.sh",
     ".bin/elixir_ls.sh",
     ".elixir_ls/release/language_server.sh",
   }
@@ -413,16 +426,22 @@ local function elixirls_cmd(opts)
   return vim.fn.expand(string.format("%s/lsp/elixir-ls/%s", fallback_dir, "language_server.sh"))
 end
 
+vim.lsp.set_log_level("trace")
+require("vim.lsp.log").set_format_func(vim.inspect)
+
 lspconfig.elixirls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
   cmd = { elixirls_cmd() },
   settings = {
     elixirLS = {
-      mixEnv = "dev"
+      mixEnv = "test",
+      trace = {
+        server = "verbose",
+      }
     }
   }
 }
-vim.lsp.set_log_level("trace")
-require("vim.lsp.log").set_format_func(vim.inspect)
 
 -- Example custom server
 -- Make runtime files discoverable to the server
