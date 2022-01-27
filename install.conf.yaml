@@ -1,7 +1,7 @@
 - defaults:
     link:
       create: true
-- clean: ["~/bin"]
+- clean: ["~/bin", "~/.config"]
 - brew:
   - zoxide
   - exa
