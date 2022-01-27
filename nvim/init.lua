@@ -43,6 +43,7 @@ require('packer').startup(function()
 
   -- Customizations
   use "rktjmp/lush.nvim"
+  use "rktjmp/shipwright.nvim"
   use "ryansch/lunarized"
   use {
     'nvim-lualine/lualine.nvim',
@@ -65,6 +66,7 @@ require('packer').startup(function()
   use 'tpope/vim-rvm'
   use 'rafamadriz/friendly-snippets' -- TODO: Set up
   use 'sheerun/vim-polyglot'
+  use 'bfredl/nvim-luadev'
 end)
 
 --Set highlight on search
