@@ -400,24 +400,45 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-local function root_has_file(name)
+_G.logger = require("log")
+
+function _G.put(...)
+  return logger.debug(...)
+end
+
+local lsputil = require("lspconfig.util")
+
+local function dir_has_file(dir, name)
+  return lsputil.path.exists(lsputil.path.join(dir, name)), lsputil.path.join(dir, name)
+end
+
+local function workspace_root()
   local cwd = vim.loop.cwd()
-  local lsputil = require("lspconfig.util")
-  return lsputil.path.exists(lsputil.path.join(cwd, name)), lsputil.path.join(cwd, name)
+
+  local function cb(dir, _)
+    return dir_has_file(dir, "compose.yml") --or dir_has_file(dir, "docker-compose.yml")
+  end
+
+  local root, _ = lsputil.path.traverse_parents(cwd, cb)
+  return root
 end
 
 local function elixirls_cmd(opts)
   opts = opts or {}
   local fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
 
+  local root = workspace_root()
+  if not root then
+    root = vim.loop.cwd()
+  end
+
   local locations = {
     ".elixir-ls-release/language_server.sh",
-    ".bin/elixir_ls.sh",
     ".elixir_ls/release/language_server.sh",
   }
 
   for _, location in ipairs(locations) do
-    local exists, dir = root_has_file(location)
+    local exists, dir = dir_has_file(root, location)
     if exists then
       return vim.fn.expand(dir)
     end
