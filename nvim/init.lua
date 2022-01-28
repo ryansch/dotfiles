@@ -424,35 +424,58 @@ local function workspace_root()
   return root
 end
 
-local function elixirls_cmd(opts)
+--- Build the language server command.
+-- @param opts options
+-- @param opts.locations table Locations to search relative to the workspace root
+-- @param opts.fallback_dir string Path to use if locations don't contain the binary
+-- @return a string containing the command
+local function language_server_cmd(opts)
   opts = opts or {}
-  local fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
+  local fallback_dir = opts.fallback_dir
+  local locations = opts.locations or {}
 
   local root = workspace_root()
   if not root then
     root = vim.loop.cwd()
   end
 
-  local locations = {
-    ".elixir-ls-release/language_server.sh",
-    ".elixir_ls/release/language_server.sh",
-  }
-
   for _, location in ipairs(locations) do
     local exists, dir = dir_has_file(root, location)
     if exists then
-      logger.fmt_debug("elixirls_cmd: %s", vim.fn.expand(dir))
+      logger.fmt_debug("language_server_cmd: %s", vim.fn.expand(dir))
       return vim.fn.expand(dir)
     end
   end
 
-  local fallback = vim.fn.expand(string.format("%s/lsp/elixir-ls/%s", fallback_dir, "language_server.sh"))
-  logger.fmt_debug("elixirls_cmd: %s", fallback)
+  local fallback = vim.fn.expand(fallback_dir)
+  logger.fmt_debug("language_server_cmd: %s", fallback)
   return fallback
 end
 
-vim.lsp.set_log_level("trace")
-require("vim.lsp.log").set_format_func(vim.inspect)
+--- Build the elixir-ls command.
+-- @param opts options
+-- @param opts.fallback_dir string Path to use if locations don't contain the binary
+local function elixirls_cmd(opts)
+  opts = opts or {}
+  opts = vim.tbl_deep_extend(
+    "force",
+    opts,
+    {
+      locations = {
+        ".elixir-ls-release/language_server.sh",
+        ".elixir_ls/release/language_server.sh",
+      },
+    }
+  )
+
+  opts.fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
+  opts.fallback_dir = string.format("%s/lsp/elixir-ls/%s", opts.fallback_dir, "language_server.sh")
+
+  return language_server_cmd(opts)
+end
+
+-- vim.lsp.set_log_level("trace")
+-- require("vim.lsp.log").set_format_func(vim.inspect)
 
 lspconfig.elixirls.setup{
   on_attach = on_attach,
@@ -461,9 +484,39 @@ lspconfig.elixirls.setup{
   settings = {
     elixirLS = {
       mixEnv = "test",
-      trace = {
-        server = "verbose",
-      }
+    }
+  }
+}
+
+--- Build the solargraph command.
+-- @param opts options
+-- @param opts.fallback_dir string Path to use if locations don't contain the binary
+local function solargraph_cmd(opts)
+  opts = opts or {}
+  opts = vim.tbl_deep_extend(
+    "force",
+    opts,
+    {
+      locations = {
+        ".bin/solargraph",
+      },
+    }
+  )
+
+  opts.fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
+  opts.fallback_dir = string.format("%s/lsp/solargraph/%s", opts.fallback_dir, "solargraph")
+
+  return language_server_cmd(opts)
+end
+
+lspconfig.solargraph.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { solargraph_cmd() },
+  settings = {
+    solargraph = {
+      folding = false,
+      logLevel = "debug",
     }
   }
 }
