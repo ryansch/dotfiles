@@ -67,7 +67,10 @@ require('packer').startup(function()
   use 'rafamadriz/friendly-snippets' -- TODO: Set up
   use 'sheerun/vim-polyglot'
   use 'bfredl/nvim-luadev'
+  use 'outstand/logger.nvim'
 end)
+
+require('global')
 
 --Set highlight on search
 vim.o.hlsearch = false
@@ -400,12 +403,6 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-_G.logger = require("log")
-
-function _G.put(...)
-  return logger.debug(...)
-end
-
 local lsputil = require("lspconfig.util")
 
 local function dir_has_file(dir, name)
@@ -416,7 +413,7 @@ local function workspace_root()
   local cwd = vim.loop.cwd()
 
   local function cb(dir, _)
-    return dir_has_file(dir, "compose.yml") --or dir_has_file(dir, "docker-compose.yml")
+    return dir_has_file(dir, "compose.yml") or dir_has_file(dir, "docker-compose.yml")
   end
 
   local root, _ = lsputil.path.traverse_parents(cwd, cb)
@@ -440,11 +437,11 @@ local function elixirls_cmd(opts)
   for _, location in ipairs(locations) do
     local exists, dir = dir_has_file(root, location)
     if exists then
-      return vim.fn.expand(dir)
+      return logger.fmt_debug("elixirls_cmd: %s", vim.fn.expand(dir))
     end
   end
 
-  return vim.fn.expand(string.format("%s/lsp/elixir-ls/%s", fallback_dir, "language_server.sh"))
+  return logger.fmt_debug("elixirls_cmd: %s", vim.fn.expand(string.format("%s/lsp/elixir-ls/%s", fallback_dir, "language_server.sh")))
 end
 
 vim.lsp.set_log_level("trace")
