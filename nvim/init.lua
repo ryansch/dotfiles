@@ -412,6 +412,10 @@ end
 local function workspace_root()
   local cwd = vim.loop.cwd()
 
+  if dir_has_file(cwd, "compose.yml") or dir_has_file(cwd, "docker-compose.yml") then
+    return cwd
+  end
+
   local function cb(dir, _)
     return dir_has_file(dir, "compose.yml") or dir_has_file(dir, "docker-compose.yml")
   end
