@@ -437,11 +437,14 @@ local function elixirls_cmd(opts)
   for _, location in ipairs(locations) do
     local exists, dir = dir_has_file(root, location)
     if exists then
-      return logger.fmt_debug("elixirls_cmd: %s", vim.fn.expand(dir))
+      logger.fmt_debug("elixirls_cmd: %s", vim.fn.expand(dir))
+      return vim.fn.expand(dir)
     end
   end
 
-  return logger.fmt_debug("elixirls_cmd: %s", vim.fn.expand(string.format("%s/lsp/elixir-ls/%s", fallback_dir, "language_server.sh")))
+  local fallback = vim.fn.expand(string.format("%s/lsp/elixir-ls/%s", fallback_dir, "language_server.sh"))
+  logger.fmt_debug("elixirls_cmd: %s", fallback)
+  return fallback
 end
 
 vim.lsp.set_log_level("trace")
