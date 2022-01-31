@@ -74,7 +74,7 @@ if [ "${1:-}" = "start" ]; then
       root="~/dev/docker-images/${name}"
       ;;
     shared-containers)
-      root="/usr/local/shared_containers"
+      root="/opt/shared_containers"
       ;;
     terraform-prod)
       root="~/dev/outstand-atlas/terraform"
