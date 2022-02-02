@@ -512,7 +512,7 @@ end
 lspconfig.solargraph.setup{
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { solargraph_cmd() },
+  cmd = { solargraph_cmd(), "stdio" },
   settings = {
     solargraph = {
       folding = false,
