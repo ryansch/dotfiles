@@ -174,10 +174,6 @@ require('lualine').setup {
 --Enable Comment.nvim
 require('Comment').setup()
 
--- --Remap , as leader key
--- vim.g.mapleader = ','
--- vim.g.maplocalleader = ','
-
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
