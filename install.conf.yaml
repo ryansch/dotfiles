@@ -43,6 +43,10 @@
       path: tmuxinator
       relink: true
       create: true
+    ~/.config/kitty:
+      path: kitty
+      relink: true
+      create: true
 - ghe:
   - mislav/gh-branch
   - dlvhdr/gh-prs
@@ -96,7 +100,7 @@
 
 - ifaarch64:
   - link:
-    ~/.local/bin:
-      glob: true
-      path: aarch64/*
-      relink: true
+      ~/.local/bin:
+        glob: true
+        path: aarch64/*
+        relink: true
