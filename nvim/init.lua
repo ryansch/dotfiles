@@ -210,6 +210,12 @@ vim.g.gutentags_cache_dir = "~/.cache/gutentags"
 -- which-key
 local wk = require('which-key')
 local t_builtin = require('telescope.builtin')
+local function find_files()
+  t_builtin.find_files({
+    hidden = true,
+    no_ignore = true,
+  })
+end
 wk.setup {
   window = {
     border = "single"
@@ -219,7 +225,7 @@ wk.register({
   f = {
     name = "telescope finders",
     [','] = { t_builtin.buffers, "Lists open buffers" },
-    f = { t_builtin.find_files, "Find file" },
+    f = { find_files, "Find file" },
     b = { t_builtin.current_buffer_fuzzy_find, "Live fuzzy search" },
     h = { t_builtin.help_tags, "Lists available help tags " },
     t = { t_builtin.tags, "Lists tags in current directory " },
