@@ -48,26 +48,11 @@
       path: kitty
       relink: true
       create: true
-- ghe:
-  - mislav/gh-branch
-  - dlvhdr/gh-prs
 - shell:
   - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
   - chmod +x ~/.local/bin/goss-linux-amd64
   - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/dgoss > ~/.local/bin/dgoss"
   - chmod +x ~/.local/bin/dgoss
-  -
-    command: ~/.dotfiles/script/gh-login
-    description: "Log in with gh"
-    stdin: true
-    stdout: true
-    stderr: true
-  -
-    command: ~/.dotfiles/script/git-user
-    description: "Set up git user and email address"
-    stdin: true
-    stdout: true
-    stderr: true
 
 - ifanylinux:
   - link:
@@ -105,3 +90,21 @@
         glob: true
         path: aarch64/*
         relink: true
+
+- shell:
+  -
+    command: ~/.dotfiles/script/gh-login
+    description: "Log in with gh"
+    stdin: true
+    stdout: true
+    stderr: true
+  -
+    command: ~/.dotfiles/script/git-user
+    description: "Set up git user and email address"
+    stdin: true
+    stdout: true
+    stderr: true
+
+- ghe:
+  - mislav/gh-branch
+  - dlvhdr/gh-prs
