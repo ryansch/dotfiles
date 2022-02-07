@@ -1,4 +1,10 @@
-OS="$(uname)"
-if [[ "$OS" == "Linux" ]]; then
-  export TERM=xterm-256color-italic
+if infocmp -a xterm-kitty >/dev/null; then
+	alias ssh="kitty +kitten ssh"
+fi
+
+if test -n "$KITTY_INSTALLATION_DIR"; then
+    export KITTY_SHELL_INTEGRATION="enabled"
+    autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
+    kitty-integration
+    unfunction kitty-integration
 fi
