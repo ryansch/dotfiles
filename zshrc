@@ -121,3 +121,15 @@ fi
 if [ -e /Users/ryansch/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ryansch/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 zcomet compinit
+
+if [ -n "$SETPWD" ]; then
+  cd "$SETPWD"
+
+  if [ -f Deskfile ]; then
+    eval $(desk load)
+  fi
+fi
+
+if [ -n "$RUN" ]; then
+  eval "$RUN"
+fi

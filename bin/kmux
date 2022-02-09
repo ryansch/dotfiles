@@ -1,0 +1,112 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+function debug_log() {
+  if [ -n "${DEBUG:-}" ]; then
+    echo "$@"
+  fi
+}
+
+function search_dir() {
+  config_dir="$1"
+  filename="$2"
+
+  if [ -d "$config_dir" ]; then
+    if [ -f "$config_dir/$filename" ]; then
+      echo "$config_dir/$filename"
+      return
+    fi
+  fi
+
+  echo "none"
+}
+
+function build_zsh_command() {
+  zparseopts -D -E -A opts -setpwd:: -run:: -remote::
+
+  cmd=()
+
+  if [ -n "${opts[--setpwd]:-}" ]; then
+    cmd+=("SETPWD=\"${opts[--setpwd]}\"")
+  fi
+
+  if [ -n "${opts[--run]:-}" ]; then
+    cmd+=("RUN=\"${opts[--run]}\"")
+  fi
+
+  cmd+=("zsh" "-i")
+
+  if [ "${opts[--remote]:-false}" = "true" ]; then
+    cmd=("/opt/homebrew/bin/et" "ryansch-dev" "-c" "\"${cmd[*]}\"")
+  fi
+
+  echo "${cmd[*]}"
+}
+
+if [ "${1:-}" = "start" ]; then
+  shift
+  name="${1:-}"
+  shift
+
+  project_config="none"
+
+  root="~/dev/${name}"
+  case "$name" in
+    outstand)
+      root="~/dev/app"
+      ;;
+    buildkite)
+      root="~/dev/docker-images/${name}"
+      ;;
+    outstand-docker)
+      root="~/dev/docker-images/${name}"
+      ;;
+    cypress)
+      root="~/dev/docker-images/${name}"
+      ;;
+    shared-containers)
+      root="/opt/shared_containers"
+      ;;
+    terraform-prod)
+      root="~/dev/outstand-atlas/terraform"
+      ;;
+    unifi)
+      root="~/dev/docker-images/unifi-rpi"
+      ;;
+    dotfiles)
+      root="~/.dotfiles"
+      ;;
+    homebrew-tools)
+      root="/opt/homebrew/Library/Taps/outstand/homebrew-tools"
+      ;;
+    dash)
+      root="/opt/dev-env"
+      ;;
+  esac
+
+  cwd=()
+  opts=()
+
+  if [ -n "$SSH_CONNECTION" ]; then
+    # we're in ssh!
+    opts+=("--setpwd" "${root}")
+    opts+=("--remote" "true")
+  else
+    cwd+=(--cwd "${root}")
+  fi
+
+  top_id=$(kitty @ launch --title "${name}" "${cwd[@]}" --type tab)
+  kitty @ send-text -m "id:${top_id}" "$(build_zsh_command "${opts[@]}" --run nvim)\n"
+  kitty @ goto-layout -m "id:${top_id}" 'fat:bias=75;full_size=1'
+
+  bottom_id=$(kitty @ launch --title "${name}" "${cwd[@]}" --type window)
+  kitty @ send-text -m "id:${bottom_id}" "$(build_zsh_command "${opts[@]}")\n"
+elif [ "${1:-}" = "ls" ]; then
+  # kitty @ ls | jq -r '.[].tabs[].title'
+  echo "not implemented"
+  exit 0
+else
+  echo "Unknown subcommand!"
+  exit 1
+fi
