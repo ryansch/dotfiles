@@ -3,5 +3,10 @@
 set -euo pipefail
 
 if ! gh auth status; then
-  gh auth login
+  OS="$(uname)"
+  if [[ "$OS" == "Linux" ]]; then
+    BROWSER="${HOME}/.local/bin/xdg-open" gh auth login
+  else
+    gh auth login
+  fi
 fi
