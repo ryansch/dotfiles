@@ -11,6 +11,8 @@
   - ripgrep
   - universal-ctags
   - neovim
+  - terraform
+  - docker-credential-helper
 - link:
     ~/.config/nvim/init.lua: nvim/init.lua
     ~/.config/nvim/lua: nvim/lua
