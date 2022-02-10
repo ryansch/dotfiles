@@ -9,6 +9,9 @@ style_user = "purple"
 # ssh_only = false
 style = "yellow"
 
+[localip]
+disabled = true
+
 [directory]
 style = "green"
 truncation_length = 5
