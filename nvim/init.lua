@@ -224,9 +224,8 @@ wk.setup {
 wk.register({
   f = {
     name = "telescope finders",
-    [','] = { t_builtin.buffers, "Lists open buffers" },
+    b = { t_builtin.buffers, "Lists open buffers" },
     f = { find_files, "Find file" },
-    b = { t_builtin.current_buffer_fuzzy_find, "Live fuzzy search" },
     h = { t_builtin.help_tags, "Lists available help tags " },
     t = { t_builtin.tags, "Lists tags in current directory " },
     g = { t_builtin.live_grep, "Search for a string" },
