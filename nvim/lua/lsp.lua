@@ -1,31 +1,121 @@
 local M = {}
 
-function M.setup()
+local lspconfig = require 'lspconfig'
+local lsputil = require("lspconfig.util")
 
-  -- LSP settings
-  local lspconfig = require 'lspconfig'
-  local on_attach = function(_, bufnr)
-    local opts = { noremap = true, silent = true }
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
+local function on_attach(_, bufnr)
+  local opts = { noremap = true, silent = true }
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'i', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
+end
+
+-- nvim-cmp supports additional completion capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+local function dir_has_file(dir, name)
+  return lsputil.path.exists(lsputil.path.join(dir, name)), lsputil.path.join(dir, name)
+end
+
+local function workspace_root()
+  local cwd = vim.loop.cwd()
+
+  if dir_has_file(cwd, "compose.yml") or dir_has_file(cwd, "docker-compose.yml") then
+    return cwd
   end
 
-  -- nvim-cmp supports additional completion capabilities
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  local function cb(dir, _)
+    return dir_has_file(dir, "compose.yml") or dir_has_file(dir, "docker-compose.yml")
+  end
 
+  local root, _ = lsputil.path.traverse_parents(cwd, cb)
+  return root
+end
+
+--- Build the language server command.
+-- @param opts options
+-- @param opts.locations table Locations to search relative to the workspace root
+-- @param opts.fallback_dir string Path to use if locations don't contain the binary
+-- @return a string containing the command
+local function language_server_cmd(opts)
+  opts = opts or {}
+  local fallback_dir = opts.fallback_dir
+  local locations = opts.locations or {}
+
+  local root = workspace_root()
+  if not root then
+    root = vim.loop.cwd()
+  end
+
+  for _, location in ipairs(locations) do
+    local exists, dir = dir_has_file(root, location)
+    if exists then
+      logger.fmt_debug("language_server_cmd: %s", vim.fn.expand(dir))
+      return vim.fn.expand(dir)
+    end
+  end
+
+  local fallback = vim.fn.expand(fallback_dir)
+  logger.fmt_debug("language_server_cmd: %s", fallback)
+  return fallback
+end
+
+--- Build the elixir-ls command.
+-- @param opts options
+-- @param opts.fallback_dir string Path to use if locations don't contain the binary
+local function elixirls_cmd(opts)
+  opts = opts or {}
+  opts = vim.tbl_deep_extend(
+    "force",
+    opts,
+  {
+      locations = {
+        ".elixir-ls-release/language_server.sh",
+        ".elixir_ls/release/language_server.sh",
+      },
+    }
+  )
+
+  opts.fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
+  opts.fallback_dir = string.format("%s/lsp/elixir-ls/%s", opts.fallback_dir, "language_server.sh")
+
+  return language_server_cmd(opts)
+end
+
+--- Build the solargraph command.
+-- @param opts options
+-- @param opts.fallback_dir string Path to use if locations don't contain the binary
+local function solargraph_cmd(opts)
+  opts = opts or {}
+  opts = vim.tbl_deep_extend(
+    "force",
+    opts,
+  {
+      locations = {
+        ".bin/solargraph",
+      },
+    }
+  )
+
+  opts.fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
+  opts.fallback_dir = string.format("%s/lsp/solargraph/%s", opts.fallback_dir, "solargraph")
+
+  return language_server_cmd(opts)
+end
+
+function M.setup()
   -- Enable the following language servers
   local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
   for _, lsp in ipairs(servers) do
@@ -33,77 +123,6 @@ function M.setup()
       on_attach = on_attach,
       capabilities = capabilities,
     }
-  end
-
-  local lsputil = require("lspconfig.util")
-
-  local function dir_has_file(dir, name)
-    return lsputil.path.exists(lsputil.path.join(dir, name)), lsputil.path.join(dir, name)
-  end
-
-  local function workspace_root()
-    local cwd = vim.loop.cwd()
-
-    if dir_has_file(cwd, "compose.yml") or dir_has_file(cwd, "docker-compose.yml") then
-      return cwd
-    end
-
-    local function cb(dir, _)
-      return dir_has_file(dir, "compose.yml") or dir_has_file(dir, "docker-compose.yml")
-    end
-
-    local root, _ = lsputil.path.traverse_parents(cwd, cb)
-    return root
-  end
-
-  --- Build the language server command.
-  -- @param opts options
-  -- @param opts.locations table Locations to search relative to the workspace root
-  -- @param opts.fallback_dir string Path to use if locations don't contain the binary
-  -- @return a string containing the command
-  local function language_server_cmd(opts)
-    opts = opts or {}
-    local fallback_dir = opts.fallback_dir
-    local locations = opts.locations or {}
-
-    local root = workspace_root()
-    if not root then
-      root = vim.loop.cwd()
-    end
-
-    for _, location in ipairs(locations) do
-      local exists, dir = dir_has_file(root, location)
-      if exists then
-        logger.fmt_debug("language_server_cmd: %s", vim.fn.expand(dir))
-        return vim.fn.expand(dir)
-      end
-    end
-
-    local fallback = vim.fn.expand(fallback_dir)
-    logger.fmt_debug("language_server_cmd: %s", fallback)
-    return fallback
-  end
-
-  --- Build the elixir-ls command.
-  -- @param opts options
-  -- @param opts.fallback_dir string Path to use if locations don't contain the binary
-  local function elixirls_cmd(opts)
-    opts = opts or {}
-    opts = vim.tbl_deep_extend(
-      "force",
-      opts,
-      {
-        locations = {
-          ".elixir-ls-release/language_server.sh",
-          ".elixir_ls/release/language_server.sh",
-        },
-      }
-    )
-
-    opts.fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
-    opts.fallback_dir = string.format("%s/lsp/elixir-ls/%s", opts.fallback_dir, "language_server.sh")
-
-    return language_server_cmd(opts)
   end
 
   vim.lsp.set_log_level("trace")
@@ -119,27 +138,6 @@ function M.setup()
       }
     }
   }
-
-  --- Build the solargraph command.
-  -- @param opts options
-  -- @param opts.fallback_dir string Path to use if locations don't contain the binary
-  local function solargraph_cmd(opts)
-    opts = opts or {}
-    opts = vim.tbl_deep_extend(
-      "force",
-      opts,
-      {
-        locations = {
-          ".bin/solargraph",
-        },
-      }
-    )
-
-    opts.fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
-    opts.fallback_dir = string.format("%s/lsp/solargraph/%s", opts.fallback_dir, "solargraph")
-
-    return language_server_cmd(opts)
-  end
 
   lspconfig.solargraph.setup{
     on_attach = on_attach,
