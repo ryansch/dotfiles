@@ -5,13 +5,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   _G.packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
--- vim.cmd [[
---   augroup Packer
---     autocmd!
---     autocmd BufWritePost init.lua source <afile> | PackerCompile
---   augroup end
--- ]]
-
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
