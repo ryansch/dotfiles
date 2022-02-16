@@ -1,19 +1,18 @@
 -- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  _G.packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-vim.cmd [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]]
+-- vim.cmd [[
+--   augroup Packer
+--     autocmd!
+--     autocmd BufWritePost init.lua source <afile> | PackerCompile
+--   augroup end
+-- ]]
 
-local use = require('packer').use
-require('packer').startup(function()
+require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-fugitive' -- Git commands in nvim
   use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
@@ -22,8 +21,6 @@ require('packer').startup(function()
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  -- use 'mjlbach/onedark.nvim' -- Theme inspired by Atom
-  -- use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   -- Add indentation guides even on blank lines
   use 'lukas-reineke/indent-blankline.nvim'
   -- Add git related info in the signs columns and popups
@@ -51,10 +48,17 @@ require('packer').startup(function()
   }
   use "folke/which-key.nvim"
   use 'mhinz/vim-startify'
-  use { 'preservim/nerdtree',
+  -- use { 'preservim/nerdtree',
+  --   requires = {
+  --     'Xuyuanp/nerdtree-git-plugin'
+  --   }
+  -- }
+  use {
+    'kyazdani42/nvim-tree.lua',
     requires = {
-      'Xuyuanp/nerdtree-git-plugin'
-    }
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    -- config = function() require'nvim-tree'.setup {} end
   }
   use 'tpope/vim-eunuch'
   use 'christoomey/vim-tmux-navigator'
@@ -72,9 +76,39 @@ require('packer').startup(function()
   use 'sheerun/vim-polyglot'
   use 'bfredl/nvim-luadev'
   use 'outstand/logger.nvim'
+  use 'nvim-lua/lsp-status.nvim'
+  use 'mhartington/formatter.nvim'
+  use 'rcarriga/nvim-notify' -- TODO
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if _G.packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 
 require('global')
+require("treesitter").setup()
+require("lsp").setup()
+require("formatting").setup()
+
+-- nvim-tree
+local nvim_tree = require("nvim-tree")
+nvim_tree.setup {
+  auto_close = true,
+}
 
 -- which-key
 local wk = require('which-key')
@@ -110,7 +144,7 @@ wk.register({
     s = { t_builtin.lsp_document_symbols, "Lists LSP document symbols" },
     w = { t_builtin.lsp_dynamic_workspace_symbols, "Dynamically Lists LSP for all workspace symbols" },
   },
-  r = {
+  t = {
     name = "test runners",
   },
   d = {
@@ -122,7 +156,22 @@ wk.register({
       w = { "<Plug>(Luadev-RunWord)", "Eval identifier under cursor" },
     },
   },
+  r = {
+    name = "runners",
+    f = { "<cmd>Format<cr>", "Format" },
+  },
+  o = {
+    name = "open",
+    d = { function() nvim_tree.toggle(true) end, "Open directory" },
+    f = { function() nvim_tree.find_file(true) end, "Focus file in directory" },
+  },
 }, { prefix = "<leader>" })
+
+-- Diagnostic keymaps
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -244,6 +293,14 @@ require('lualine').setup {
     component_separators = '|',
     section_separators = '',
   },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename', "require'lsp-status'.status()"},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
 }
 
 --Enable Comment.nvim
@@ -284,14 +341,5 @@ vim.g.gutentags_cache_dir = "~/.cache/gutentags"
 
 -- Enable telescope fzf native
 require('telescope').load_extension 'fzf'
-
--- Diagnostic keymaps
-vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', { noremap = true, silent = true })
-
-require("treesitter").setup()
-require("lsp").setup()
 
 -- vim: ts=2 sts=2 sw=2 et

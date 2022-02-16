@@ -2,8 +2,15 @@ local M = {}
 
 local lspconfig = require 'lspconfig'
 local lsputil = require("lspconfig.util")
+local lsp_status = require("lsp-status")
+lsp_status.config {
+  current_function = false,
+  diagnostics = false,
+  status_symbol = '',
+}
+lsp_status.register_progress()
 
-local function on_attach(_, bufnr)
+local function on_attach(client, bufnr)
   local opts = { noremap = true, silent = true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -18,12 +25,16 @@ local function on_attach(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting_sync()' ]]
+
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+
+  lsp_status.on_attach(client)
 end
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
 local function dir_has_file(dir, name)
   return lsputil.path.exists(lsputil.path.join(dir, name)), lsputil.path.join(dir, name)
@@ -80,7 +91,7 @@ local function elixirls_cmd(opts)
   opts = vim.tbl_deep_extend(
     "force",
     opts,
-  {
+    {
       locations = {
         ".elixir-ls-release/language_server.sh",
         ".elixir_ls/release/language_server.sh",
@@ -102,7 +113,7 @@ local function solargraph_cmd(opts)
   opts = vim.tbl_deep_extend(
     "force",
     opts,
-  {
+    {
       locations = {
         ".bin/solargraph",
       },
@@ -115,9 +126,27 @@ local function solargraph_cmd(opts)
   return language_server_cmd(opts)
 end
 
+local function tsserver_cmd(opts)
+  opts = opts or {}
+  opts = vim.tbl_deep_extend(
+    "force",
+    opts,
+    {
+      locations = {
+        ".bin/typescript-language-server",
+      },
+    }
+  )
+
+  opts.fallback_dir = opts.fallback_dir or vim.env.XDG_DATA_HOME or "~/.local/share"
+  opts.fallback_dir = string.format("%s/lsp/tsserver/%s", opts.fallback_dir, "typescript-language-server")
+
+  return language_server_cmd(opts)
+end
+
 function M.setup()
   -- Enable the following language servers
-  local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+  local servers = { 'clangd', 'rust_analyzer', 'pyright' }
   for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
       on_attach = on_attach,
@@ -148,6 +177,16 @@ function M.setup()
         folding = false,
         logLevel = "debug",
       }
+    }
+  }
+
+  lspconfig.tsserver.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { tsserver_cmd(), "--stdio" },
+    init_options = {
+      hostInfo = "neovim",
+      logVerbosity = "verbose"
     }
   }
 
