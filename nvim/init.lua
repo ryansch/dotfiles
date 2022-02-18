@@ -41,17 +41,11 @@ require('packer').startup(function(use)
   }
   use "folke/which-key.nvim"
   use 'mhinz/vim-startify'
-  -- use { 'preservim/nerdtree',
-  --   requires = {
-  --     'Xuyuanp/nerdtree-git-plugin'
-  --   }
-  -- }
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     },
-    -- config = function() require'nvim-tree'.setup {} end
   }
   use 'tpope/vim-eunuch'
   use 'christoomey/vim-tmux-navigator'
@@ -214,7 +208,6 @@ vim.wo.signcolumn = 'yes'
 
 --Set colorscheme
 vim.o.termguicolors = true
--- vim.cmd [[colorscheme onedark]]
 vim.cmd [[colorscheme lunarized]]
 
 -- Set completeopt to have a better completion experience
