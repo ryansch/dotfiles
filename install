@@ -7,8 +7,9 @@ if ! command -v brew >/dev/null; then
   exit 1
 fi
 
-if brew info bash | grep 'Not installed' >/dev/null; then
-  echo 'You need to first install bash with: `brew install bash`'
+if [[ "$(echo "${BASH_VERSION}" | cut -d '.' -f 1)" != "5" ]]; then
+  echo 'You need to first install bash 5.x.'
+  echo 'You can do this with: `brew install bash`'
   echo "Then rerun this script."
   exit 1
 fi
