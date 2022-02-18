@@ -8,7 +8,7 @@ source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
 # set sane options
 zcomet load willghatch/zsh-saneopt
 
-zcomet load ohmyzsh plugins/ssh-agent
+# zcomet load ohmyzsh plugins/ssh-agent
 zcomet load --no-submodules prezto modules/history
 
 zcomet load zsh-users/zsh-completions

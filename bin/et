@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -euo pipefail
+
+source ~/.local/share/sh/homebrew.sh
+
+options=()
+
+if [ -S "${HOME}/.1password/agent.sock" ]; then
+  options+=("--forward-ssh-agent" "--ssh-socket" "${HOME}/.1password/agent.sock")
+fi
+
+exec $(homebrew_location)/bin/et "${options[@]}" "${@}"
