@@ -253,6 +253,15 @@ vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
 vim.wo.signcolumn = 'yes'
 
+--Indenting/tabs/spaces
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.smarttab = true
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+vim.o.tabstop = 2
+vim.o.expandtab = true
+
 -- Configure Beacon
 vim.g.beacon_size = 90
 vim.g.beacon_minimal_jump = 25
