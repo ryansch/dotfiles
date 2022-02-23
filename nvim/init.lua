@@ -301,10 +301,6 @@ toggleterm.setup{
 
     if not term.opened then
       term:send("eval $(desk load)")
-      local socket = vim.env.NVIM_LISTEN_ADDRESS
-      -- if socket ~= '' then
-      --   term:send("NVIM_LISTEN_ADDRESS=" .. socket)
-      -- end
     end
 
     term.opened = true
@@ -345,5 +341,9 @@ vim.g["test#strategy"] = "toggleterm"
 -- vim.g["test#transformation"] = "dev"
 vim.g["test#ruby#use_binstubs"] = 0
 vim.g["test#ruby#bundle_exec"] = 0
+
+-- TODO:
+-- If terminal is hidden when tests finish: show notification
+-- Add movement keys to terminal setup
 
 -- vim: ts=2 sts=2 sw=2 et
