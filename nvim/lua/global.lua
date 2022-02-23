@@ -1,5 +1,5 @@
 _G.logger = require("logger").new {
-  level = "trace",
+  level = "info",
 }
 
 function _G.put(...)
