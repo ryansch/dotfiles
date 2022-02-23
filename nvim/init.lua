@@ -171,6 +171,9 @@ vim.o.expandtab = true
 --Don't show mode (lualine does it already)
 vim.o.showmode = false
 
+--Make sure we can see context above/below the cursor
+vim.o.scrolloff = 5
+
 -- Configure Beacon
 vim.g.beacon_size = 90
 vim.g.beacon_minimal_jump = 25
