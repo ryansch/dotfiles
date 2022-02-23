@@ -1,90 +1,4 @@
--- Install packer
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  _G.packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
-
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- Package manager
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
-  -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  -- Add indentation guides even on blank lines
-  use 'lukas-reineke/indent-blankline.nvim'
-  -- Add git related info in the signs columns and popups
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  -- Additional textobjects for treesitter
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
-
-  -- Customizations
-  use "rktjmp/lush.nvim"
-  use "rktjmp/shipwright.nvim"
-  use "ryansch/lunarized"
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use "folke/which-key.nvim"
-  use 'mhinz/vim-startify'
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
-  }
-  use 'tpope/vim-eunuch'
-  use 'christoomey/vim-tmux-navigator'
-  -- use {
-  --   'knubie/vim-kitty-navigator',
-  --   run = 'cp ./*.py ~/.config/kitty/'
-  -- }
-  use {'pwntester/octo.nvim' }
-  -- use 'sheerun/vim-polyglot'
-  -- use "editorconfig/editorconfig-vim"
-  use 'tpope/vim-rails'
-  use 'tpope/vim-rake'
-  use 'tpope/vim-rvm'
-  use 'rafamadriz/friendly-snippets' -- TODO: Set up
-  use 'sheerun/vim-polyglot'
-  use 'bfredl/nvim-luadev'
-  use 'outstand/logger.nvim'
-  use 'nvim-lua/lsp-status.nvim'
-  use 'mhartington/formatter.nvim'
-  use 'rcarriga/nvim-notify' -- TODO
-
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if _G.packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+require("packer-config")
 
 require('global')
 require("treesitter").setup()
@@ -131,9 +45,6 @@ wk.register({
     s = { t_builtin.lsp_document_symbols, "Lists LSP document symbols" },
     w = { t_builtin.lsp_dynamic_workspace_symbols, "Dynamically Lists LSP for all workspace symbols" },
   },
-  t = {
-    name = "test runners",
-  },
   d = {
     name = "debugger",
     l = {
@@ -146,11 +57,21 @@ wk.register({
   r = {
     name = "runners",
     f = { "<cmd>Format<cr>", "Format" },
+    t = { "<cmd>TestNearest<cr>", "Run test under cursor"},
+    T = { "<cmd>TestFile<cr>", "Run tests for file"},
+    l = { "<cmd>TestLast<cr>", "Run last test"},
+    v = { "<cmd>TestVisit<cr>", "Open last test file used"},
   },
   o = {
     name = "open",
     d = { function() nvim_tree.toggle(true) end, "Open directory" },
     f = { function() nvim_tree.find_file(true) end, "Focus file in directory" },
+  },
+  t = {
+    name = "terminal",
+    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+    h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal" },
+    v = { "<cmd>ToggleTerm direction=vertical<cr>", "Vertical" },
   },
 }, { prefix = "<leader>" })
 
@@ -183,8 +104,10 @@ require('telescope').setup {
   },
 }
 
+-- Options from kickstart.nvim
+
 --Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 --Make line numbers default
 vim.wo.number = true
@@ -206,15 +129,20 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
+
+-- End kickstart.nvim options
+
 --Set colorscheme
 vim.o.termguicolors = true
 vim.cmd [[colorscheme lunarized]]
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
 -- Use visual bell
 vim.o.visualbell = true
+
+-- Enable hidden buffers
+vim.o.hidden = true
 
 -- Automatically reload files changed outside of vim
 vim.o.autoread = true
@@ -224,28 +152,6 @@ vim.o.clipboard = "unnamedplus"
 
 --Incremental live completion (note: this is now a default on master)
 vim.o.inccommand = 'nosplit'
-
---Set highlight on search
-vim.o.hlsearch = true
-
---Make line numbers default
-vim.wo.number = true
-
---Do not save when switching buffers (note: this is now a default on master)
-vim.o.hidden = true
-
---Enable mouse mode
-vim.o.mouse = 'a'
-
---Enable break indent
-vim.o.breakindent = true
-
---Save undo history
-vim.opt.undofile = true
-
---Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
 
 --Decrease update time
 vim.o.updatetime = 250
@@ -262,6 +168,9 @@ vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.expandtab = true
 
+--Don't show mode (lualine does it already)
+vim.o.showmode = false
+
 -- Configure Beacon
 vim.g.beacon_size = 90
 vim.g.beacon_minimal_jump = 25
@@ -273,14 +182,38 @@ vim.g.beacon_ignore_filetypes = { "fzf" }
 -- Create window splits easier. The default
 -- way is Ctrl-w,v and Ctrl-w,s. I remap
 -- this to vv and ss
-vim.api.nvim_set_keymap('n', 'vv', '<C-w>v', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'ss', '<C-w>s', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', 'vv', '<C-w>v', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', 'ss', '<C-w>s', { noremap = true, silent = true })
+vim.keymap.set('n', 'vv', '<C-w>v', { noremap=true, silent=true, nowait=true })
+vim.keymap.set('n', 'ss', '<C-w>s', { noremap=true, silent=true, nowait=true })
+
+-- neozoom
+-- vim.keymap.set('n', 'vv', function () vim.cmd('NeoVSplit') end, { noremap=true, silent=true, nowait=true })
+-- vim.keymap.set('n', 'ss', function () vim.cmd('NeoSplit') end, { noremap=true, silent=true, nowait=true })
+-- vim.keymap.set('n', '<C-W>"', function () vim.cmd('NeoSplit') end, { noremap=true, silent=true, nowait=true })
+-- vim.keymap.set('n', '<C-W>%', function () vim.cmd('NeoVSplit') end, { noremap=true, silent=true, nowait=true })
+--
+-- vim.keymap.set('n', '<C-Space>z', "<cmd>NeoZoomToggle<cr>", { noremap=true, silent=true, nowait=true })
 
 -- Clear current search highlight by double tapping //
 vim.api.nvim_set_keymap('n', '//', ':nohlsearch<CR>', { silent = true })
 
 --Set statusbar
 local lunarized_lualine = require('lunarized.lualine')
+local function toggleterm_statusline()
+  return 'ToggleTerm #' .. vim.b.toggle_number
+end
+local custom_toggleterm = {
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = { toggleterm_statusline },
+  },
+  inactive_sections = {
+    lualine_c = { toggleterm_statusline },
+  },
+  filetypes = { 'toggleterm' },
+}
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -296,7 +229,16 @@ require('lualine').setup {
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
+  extensions = {
+    custom_toggleterm,
+    'fugitive',
+    'nvim-tree',
+    'quickfix',
+  },
 }
+
+-- tabby
+require("tabby-config")
 
 --Enable Comment.nvim
 require('Comment').setup()
@@ -336,5 +278,72 @@ vim.g.gutentags_cache_dir = "~/.cache/gutentags"
 
 -- Enable telescope fzf native
 require('telescope').load_extension 'fzf'
+
+-- harpoon
+-- vim.g.harpoon_log_level = "debug"
+-- require("harpoon").setup({})
+-- require("telescope").load_extension('harpoon')
+
+-- toggleterm
+local toggleterm = require("toggleterm")
+
+toggleterm.setup{
+  size = function(term)
+    if term.direction == "horizontal" then
+      return 20
+    elseif term.direction == "vertical" then
+      return vim.o.columns * 0.4
+    end
+  end,
+  persist_size = false,
+  on_open = function(term)
+    term.opened = term.opened or false
+
+    if not term.opened then
+      term:send("eval $(desk load)")
+      local socket = vim.env.NVIM_LISTEN_ADDRESS
+      -- if socket ~= '' then
+      --   term:send("NVIM_LISTEN_ADDRESS=" .. socket)
+      -- end
+    end
+
+    term.opened = true
+  end,
+}
+
+function _G.set_terminal_keymaps()
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+require('telescope').load_extension("termfinder")
+
+-- local function dev_transform(cmd)
+--   return string.format("dev run --rm rails %s", cmd)
+-- end
+--
+-- vim.g["test#custom_transformations"] = {
+--   dev = function(cmd)
+--     return dev_transform(cmd)
+--   end,
+-- }
+
+vim.g["test#custom_strategies"] = {
+  toggleterm = function(cmd)
+    toggleterm.exec(cmd)
+  end,
+}
+
+vim.g["test#strategy"] = "toggleterm"
+-- vim.g["test#transformation"] = "dev"
+vim.g["test#ruby#use_binstubs"] = 0
+vim.g["test#ruby#bundle_exec"] = 0
 
 -- vim: ts=2 sts=2 sw=2 et
