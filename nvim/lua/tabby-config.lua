@@ -1,6 +1,16 @@
 local filename = require('tabby.filename')
 local util = require('tabby.util')
 
+local function get_win_name(winid)
+  local bufid = vim.api.nvim_win_get_buf(winid)
+  local ft = vim.api.nvim_buf_get_option(bufid, "filetype")
+  if ft == "toggleterm" then
+    return 'ToggleTerm #' .. vim.api.nvim_buf_get_var(bufid, "toggle_number")
+  else
+    return filename.unique(winid)
+  end
+end
+
 local function tab_label(tabid, active)
   local icon = active and '' or ''
   local number = vim.api.nvim_tabpage_get_number(tabid)
@@ -15,7 +25,7 @@ end
 
 local function win_label(winid, top)
   local icon = top and '' or ''
-  return string.format(' %s %s ', icon, filename.unique(winid))
+  return string.format(' %s %s ', icon, get_win_name(winid))
 end
 
 require('plenary.reload').reload_module('lunarized', true)
