@@ -1,7 +1,5 @@
-hs.loadSpoon("SpoonInstall")
--- spoon.SpoonInstall:andUse("ReloadConfiguration", {
---     start = true
---   })
+local spoon_install = hs.loadSpoon("SpoonInstall")
+spoon_install:andUse("EmmyLua")
 
 local Packer = hs.loadSpoon("Packer")
 local packer = Packer:new()
@@ -33,7 +31,7 @@ end
 
 hs.window.animationDuration = 0
 
-units = {
+local units = {
   right50       = { x = 0.50, y = 0.00, w = 0.50, h = 1.00 },
   left50        = { x = 0.00, y = 0.00, w = 0.50, h = 1.00 },
   right30       = { x = 0.70, y = 0.00, w = 0.30, h = 1.00 },
@@ -50,10 +48,10 @@ units = {
   maximum       = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 }
 }
 
-windowModeAlertWindow = nil
-windowMode = hs.hotkey.modal.new({}, nil, nil)
+local windowModeAlertWindow = nil
+local windowMode = hs.hotkey.modal.new({}, nil, nil)
 
-function leaveMode()
+local function leaveMode()
   if windowModeAlertWindow ~= nil then
     hs.alert.closeSpecific(windowModeAlertWindow, 0)
     windowModeAlertWindow = nil
