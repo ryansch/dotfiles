@@ -10,12 +10,13 @@ function cleanup {
 }
 trap cleanup EXIT
 
+cd "${dir}"
+
 version=$(lastversion estesp/manifest-tool --having-asset)
 echo "Found version ${version}"
-curl -fsSL https://github.com/estesp/manifest-tool/releases/download/v${version}/binaries-manifest-tool-${version}.tar.gz > /tmp/binaries-manifest-tool.tar.gz
+curl -fsSL https://github.com/estesp/manifest-tool/releases/download/v${version}/binaries-manifest-tool-${version}.tar.gz > binaries-manifest-tool.tar.gz
 
-cd "${dir}"
-tar -xf /tmp/binaries-manifest-tool.tar.gz
+tar -xf binaries-manifest-tool.tar.gz
 
 cp -f "${selected_binary}" ~/.local/bin/manifest-tool
 chmod +x ~/.local/bin/manifest-tool
