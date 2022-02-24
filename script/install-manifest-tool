@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+selected_binary="${1:?Missing required argument: selected binary}"
+
+dir=$(mktemp -d -t "install-manifest-tool")
+function cleanup {
+  rm -rf "${dir}"
+}
+trap cleanup EXIT
+
+version=$(lastversion estesp/manifest-tool --having-asset)
+echo "Found version ${version}"
+curl -fsSL https://github.com/estesp/manifest-tool/releases/download/v${version}/binaries-manifest-tool-${version}.tar.gz > /tmp/binaries-manifest-tool.tar.gz
+
+cd "${dir}"
+tar -xf /tmp/binaries-manifest-tool.tar.gz
+
+cp -f "${selected_binary}" ~/.local/bin/manifest-tool
+chmod +x ~/.local/bin/manifest-tool

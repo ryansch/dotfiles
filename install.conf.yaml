@@ -62,11 +62,6 @@
       path: config/kitty
       relink: true
       create: true
-# - shell:
-#   - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
-#   - chmod +x ~/.local/bin/goss-linux-amd64
-#   - "curl -sL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss)/dgoss > ~/.local/bin/dgoss"
-#   - chmod +x ~/.local/bin/dgoss
 
 - ifanylinux:
   - link:
@@ -77,8 +72,11 @@
         relink: true
   - shell:
     - fc-cache -vf ~/.fonts
-    # - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-linux-amd64 > ~/.local/bin/manifest-tool"
-    # - chmod +x ~/.local/bin/manifest-tool
+    - ~/.dotfiles/script/install-manifest-tool manifest-tool-linux-amd64
+    - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
+    - chmod +x ~/.local/bin/goss-linux-amd64
+    - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/dgoss > ~/.local/bin/dgoss"
+    - chmod +x ~/.local/bin/dgoss
     # - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     # - ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 
@@ -92,8 +90,8 @@
         path: config/hammerspoon
   - shell:
     - ~/.dotfiles/script/install-packer
-    - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-darwin-amd64 > ~/.local/bin/manifest-tool"
-    - chmod +x ~/.local/bin/manifest-tool
+    - ~/.dotfiles/script/1p-ssh
+    - ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-amd64
     - defaults write com.apple.dock autohide-time-modifier -float 0.2
     - defaults write com.apple.dock autohide-delay -float 0
     - defaults write com.apple.dock largesize -integer 95
