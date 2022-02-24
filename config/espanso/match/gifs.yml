@@ -1,0 +1,7 @@
+matches:
+  - trigger: ":doitlive"
+    image_path: /Users/ryansch/Documents/gifs/doitlive.jpeg
+  - trigger: ":holdontoyourbutts"
+    image_path: /Users/ryansch/Documents/gifs/holdontoyourbutts.gif
+  - trigger: ":fun"
+    image_path: /Users/ryansch/Documents/gifs/fun.gif

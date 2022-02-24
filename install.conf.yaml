@@ -62,6 +62,10 @@
       path: config/kitty
       relink: true
       create: true
+    ~/.config/espanso:
+      path: config/espanso
+      relink: true
+      create: true
 
 - ifanylinux:
   - link:
