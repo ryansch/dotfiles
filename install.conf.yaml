@@ -77,8 +77,6 @@
         relink: true
   - shell:
     - fc-cache -vf ~/.fonts
-    - tic -o ~/.terminfo xterm-256color-italic.terminfo
-    - tic -o ~/.terminfo tmux-256color-italic.terminfo
     # - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-linux-amd64 > ~/.local/bin/manifest-tool"
     # - chmod +x ~/.local/bin/manifest-tool
     # - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
