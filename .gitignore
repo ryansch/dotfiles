@@ -1,7 +1,7 @@
-zsh.after/sendgrid.zsh
-zsh.after/mailhog.zsh
-hammerspoon/Spoons/*
-!hammerspoon/Spoons/SpoonInstall.spoon
-!hammerspoon/Spoons/EmmyLua.spoon
-!hammerspoon/Spoons/ReloadConfiguration.spoon
-hammerspoon/Spoons/EmmyLua.spoon/annotations/*
+config/zsh/zsh.after/sendgrid.zsh
+config/zsh/zsh.after/mailhog.zsh
+config/hammerspoon/Spoons/*
+!config/hammerspoon/Spoons/SpoonInstall.spoon
+!config/hammerspoon/Spoons/EmmyLua.spoon
+!config/hammerspoon/Spoons/ReloadConfiguration.spoon
+config/hammerspoon/Spoons/EmmyLua.spoon/annotations/*

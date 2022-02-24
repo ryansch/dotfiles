@@ -1,43 +1,53 @@
 - defaults:
     link:
       create: true
-- clean: ["~/.local/bin", "~/.config"]
+- clean:
+    ~/:
+    ~/.local/bin:
+    ~/.config:
+      recursive: true
 - brew:
-  - zoxide
-  - exa
-  - starship
-  - bat
-  - bat-extras
-  - ripgrep
-  - universal-ctags
-  - neovim
-  - gh
-  - docker-credential-helper
-  - terraform
-  - lua-language-server
+    - zoxide
+    - exa
+    - starship
+    - bat
+    - bat-extras
+    - ripgrep
+    - universal-ctags
+    - neovim
+    - gh
+    - docker-credential-helper
+    - terraform
+    - lua-language-server
 - link:
-    ~/.config/nvim/init.lua: nvim/init.lua
-    ~/.config/nvim/lua: nvim/lua
-    ~/.config/gh/config.yml: gh-config.yml
-    ~/.config/starship.toml:
+    ~/.config/nvim/init.lua: config/nvim/init.lua
+    ~/.config/nvim/lua: config/nvim/lua
+    ~/.config/gh/config.yml: config/gh/gh-config.yml
+    ~/.config/starship.toml: config/starship/starship.toml
     ~/.local/bin:
       glob: true
       path: bin/*
       relink: true
     ~/.tmux.conf:
+      path: config/tmux/tmux.conf
       relink: true
       force: true
     ~/.tmux.conf.theme-solarized:
+      path: config/tmux/tmux.conf.theme-solarized
       relink: true
       force: true
     ~/.gitconfig:
+      path: config/git/gitconfig
       relink: true
       force: true
     ~/.gitconfig.user:
+      path: config/git/gitconfig.user
     ~/.zshrc:
+      path: config/zsh/zshrc
       relink: true
       force: true
     ~/.zsh.after:
+      path: config/zsh/zsh.after
       relink: true
       force: true
     ~/.local/share/sh:
@@ -45,11 +55,11 @@
       relink: true
       create: true
     ~/.config/tmuxinator:
-      path: tmuxinator
+      path: config/tmuxinator
       relink: true
       create: true
     ~/.config/kitty:
-      path: kitty
+      path: config/kitty
       relink: true
       create: true
 # - shell:
@@ -81,6 +91,7 @@
     - font-hack-nerd-font
   - link:
       ~/.hammerspoon:
+        path: config/hammerspoon
   - shell:
     - ~/.dotfiles/script/install-packer
     - "curl -sL https://github.com/estesp/manifest-tool/releases/download/v$(lastversion estesp/manifest-tool)/manifest-tool-darwin-amd64 > ~/.local/bin/manifest-tool"
