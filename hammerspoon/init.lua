@@ -12,12 +12,14 @@ packer
     local vim = VimMode:new()
     vim
       :disableForApp("iTerm")
+      :disableForApp("kitty")
       :disableForApp("Terminal")
       :disableForApp("Code")
       :enterWithSequence("jk", 100)
 
     vim:useFallbackMode("Brave")
     vim:useFallbackMode("Chrome")
+    vim:useFallbackMode("Firefox")
   end)
   :activate()
 
