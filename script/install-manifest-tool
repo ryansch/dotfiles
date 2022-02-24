@@ -4,7 +4,7 @@ set -euo pipefail
 
 selected_binary="${1:?Missing required argument: selected binary}"
 
-dir=$(mktemp -d -t "install-manifest-tool")
+dir=$(mktemp -d -t "install-manifest-tool.XXXXXX")
 function cleanup {
   rm -rf "${dir}"
 }
