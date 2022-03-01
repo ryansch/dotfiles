@@ -1,4 +1,4 @@
-export FLYCTL_INSTALL="/Users/ryansch/.fly"
+export FLYCTL_INSTALL="${HOME}/.fly"
 source ${HOME}/.local/share/sh/homebrew.sh
 homebrew_dir=$(homebrew_location)
 
