@@ -1,6 +1,7 @@
 - defaults:
     link:
       create: true
+      relink: true
 - clean:
     ~/:
     ~/.local/bin:
@@ -30,42 +31,31 @@
       relink: true
     ~/.tmux.conf:
       path: config/tmux/tmux.conf
-      relink: true
       force: true
     ~/.tmux.conf.theme-solarized:
       path: config/tmux/tmux.conf.theme-solarized
-      relink: true
       force: true
     ~/.gitconfig:
       path: config/git/gitconfig
-      relink: true
       force: true
     ~/.gitconfig.user:
       path: config/git/gitconfig.user
     ~/.zshrc:
       path: config/zsh/zshrc
-      relink: true
       force: true
     ~/.zsh.after:
       path: config/zsh/zsh.after
-      relink: true
       force: true
     ~/.local/share/sh:
       path: share/sh
-      relink: true
-      create: true
+    ~/.local/share/lsp:
+      path: share/lsp
     ~/.config/tmuxinator:
       path: config/tmuxinator
-      relink: true
-      create: true
     ~/.config/kitty:
       path: config/kitty
-      relink: true
-      create: true
     ~/.config/espanso:
       path: config/espanso
-      relink: true
-      create: true
 
 - ifanylinux:
   - link:
