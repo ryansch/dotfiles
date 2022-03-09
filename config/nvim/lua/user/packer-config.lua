@@ -10,10 +10,10 @@ local function use(plugin_spec)
     spec = plugin_spec,
     line = debug.getinfo(2, 'l').currentline,
   }
-  plugin_specs[#plugin_specs + 1] = spec
+  spec.name = titan_packer_util.plugin_name(spec.spec, spec.line)
 
-  local name = titan_packer_util.plugin_name(spec.spec, spec.line)
-  plugin_specs_by_name[name] = spec
+  plugin_specs[#plugin_specs + 1] = spec
+  plugin_specs_by_name[spec.name] = spec
 end
 
 function M.reset()
@@ -27,6 +27,8 @@ function M.config()
   -- User plugins and overrides go here
   use "~/dev/titan.nvim"
   use "~/dev/lunarized"
+  use "natecraddock/sessions.nvim"
+  use "natecraddock/workspaces.nvim"
 
   return {
     plugin_specs = plugin_specs,
