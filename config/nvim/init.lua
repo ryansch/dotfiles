@@ -10,3 +10,6 @@ packer_bootstrap.startup(user_packer_config)
 
 local titan = require("titan")
 titan.setup{}
+
+local user = require("user")
+user.setup{}

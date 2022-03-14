@@ -43,6 +43,7 @@ function M.startup(user_packer_config)
       local name = plugin_data.name
 
       if not vim.tbl_contains(overrides, name) then
+        logger.debug("USER: " .. name)
         use(plugin_spec)
       end
     end
