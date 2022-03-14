@@ -19,8 +19,8 @@ function M.setup(conf)
       open_pre = {
         function()
           logger.debug("workspaces.open_pre")
-        end,
-        function()
+          require("user.sessions").save_and_stop()
+
           for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
             -- TODO: Deal with terminal windows
             -- TODO: Deal with modified buffers
@@ -34,7 +34,7 @@ function M.setup(conf)
           vim.cmd("Startify")
 
           require("titan.lsp").reload_custom_commands()
-          require("sessions").load(nil, { silent = true })
+          require("user.sessions").load(name)
 
           -- Set kitty tab name
           -- local result = vim.fn.system({"kitty", "@", "set-tab-title", "-m", "recent:0", name})
@@ -43,6 +43,8 @@ function M.setup(conf)
       },
     },
   }
+
+  require("telescope").load_extension("workspaces")
 end
 
 return M
