@@ -27,8 +27,15 @@ function M.config()
   -- User plugins and overrides go here
   use "~/dev/titan.nvim"
   use "~/dev/lunarized"
-  use "natecraddock/sessions.nvim"
-  use "natecraddock/workspaces.nvim"
+
+  use "nvim-telescope/telescope-file-browser.nvim"
+  use {
+    "~/dev/habitats.nvim",
+    requires = {
+      "natecraddock/sessions.nvim",
+      "natecraddock/workspaces.nvim"
+    }
+  }
 
   return {
     plugin_specs = plugin_specs,
