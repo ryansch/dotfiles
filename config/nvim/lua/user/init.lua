@@ -1,10 +1,10 @@
 local M = {}
 
-local default_opts = {
+local config = {
 }
 
-function M.setup(conf)
-  conf = vim.tbl_deep_extend('force', default_opts, conf or {})
+function M.setup(opts)
+  config = vim.tbl_deep_extend('force', config, opts or {})
 
   require("habitats").setup{}
 
