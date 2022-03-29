@@ -28,10 +28,10 @@ function M.config()
   use "~/dev/titan.nvim"
   use "~/dev/lunarized"
 
-  use "nvim-telescope/telescope-file-browser.nvim"
   use {
     "~/dev/habitats.nvim",
     requires = {
+      "nvim-telescope/telescope-file-browser.nvim",
       "natecraddock/sessions.nvim",
       "natecraddock/workspaces.nvim"
     }
