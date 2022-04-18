@@ -1,10 +1,3 @@
-nvim() {
-	if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-		nvr -p "$@"
-	else
-		command nvim "$@"
-	fi
-}
 alias vim="nvim"
 
 alias ls="exa -g --git -b"
