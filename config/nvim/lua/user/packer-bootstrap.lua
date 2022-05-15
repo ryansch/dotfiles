@@ -14,6 +14,9 @@ end
 local M = {}
 
 local titan_packer_util = require("titan.packer.util")
+local logger = require("titan.logger").new {
+  level = "info",
+}
 
 function M.startup(user_packer_config)
   local titan_packer_config = require("titan").packer_config
@@ -32,6 +35,10 @@ function M.startup(user_packer_config)
         logger.debug("USER: " .. name)
         use(user_packer_config.plugin_specs_by_name[name].spec)
         overrides[#overrides + 1] = name
+      elseif vim.tbl_contains(user_packer_config.skip_plugins, name) then
+        logger.debug("SKIP: " .. name)
+      elseif user_packer_config.skip_all_plugins then
+        logger.debug("SKIP(all): " .. name)
       else
         logger.debug("titan: " .. name)
         use(plugin_spec)

@@ -4,6 +4,8 @@ local titan_packer_util = require("titan.packer.util")
 
 local plugin_specs = nil
 local plugin_specs_by_name = nil
+local skip_plugins = nil
+local skip_all_plugins = false
 
 local function use(plugin_spec)
   local spec = {
@@ -12,24 +14,37 @@ local function use(plugin_spec)
   }
   spec.name = titan_packer_util.plugin_name(spec.spec, spec.line)
 
-  plugin_specs[#plugin_specs + 1] = spec
+  plugin_specs[#plugin_specs+1] = spec
   plugin_specs_by_name[spec.name] = spec
+end
+
+local function skip(name)
+  skip_plugins[#skip_plugins+1] = name
+end
+
+local function skip_all()
+  skip_all_plugins = true
 end
 
 function M.reset()
   plugin_specs = {}
   plugin_specs_by_name = {}
+  skip_plugins = {}
+  skip_all_plugins = false
 end
 
 function M.config()
   M.reset()
 
+  -- skip_all()
+  -- skip "toggleterm.nvim"
+
   -- User plugins and overrides go here
   use "~/dev/titan.nvim"
-  use "~/dev/lunarized"
+  -- use "~/dev/lunarized"
 
   use {
-    "~/dev/habitats.nvim",
+    "ryansch/habitats.nvim",
     requires = {
       "nvim-telescope/telescope-file-browser.nvim",
       "natecraddock/sessions.nvim",
@@ -40,6 +55,8 @@ function M.config()
   return {
     plugin_specs = plugin_specs,
     plugin_specs_by_name = plugin_specs_by_name,
+    skip_plugins = skip_plugins,
+    skip_all_plugins = skip_all_plugins,
   }
 end
 
