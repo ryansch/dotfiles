@@ -8,6 +8,7 @@ style_user = "purple"
 [hostname]
 # ssh_only = false
 style = "yellow"
+ssh_symbol = "ﳣ "
 
 [localip]
 disabled = true
