@@ -46,8 +46,58 @@ full_symbol = ""
 charging_symbol = ""
 discharging_symbol = ""
 
+[buf]
+format = "via [$symbol]($style)"
+disabled = true
+
+[cmake]
+format = "via [$symbol]($style)"
+disabled = true
+
+[cobol]
+format = "via [$symbol]($style)"
+disabled = true
+
 [conda]
 symbol = " "
+disabled = true
+
+[crystal]
+format = "via [$symbol]($style)"
+disabled = true
+
+[daml]
+format = "via [$symbol]($style)"
+disabled = true
+
+[dart]
+format = "via [$symbol]($style)"
+disabled = true
+
+[deno]
+format = "via [$symbol]($style)"
+disabled = true
+
+[docker_context]
+symbol = " "
+disabled = true
+
+[dotnet]
+format = "[$symbol(🎯 $tfm )]($style)"
+disabled = true
+
+[elixir]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[elm]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[erlang]
+format = 'via [$symbol]($style)'
 disabled = true
 
 [git_branch]
@@ -55,7 +105,12 @@ symbol = " "
 style = "cyan"
 
 [golang]
+format = 'via [$symbol]($style)'
 symbol = " "
+disabled = true
+
+[helm]
+format = 'via [$symbol]($style)'
 disabled = true
 
 [hg_branch]
@@ -65,50 +120,97 @@ symbol = " "
 symbol = " "
 disabled = true
 
+[julia]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[kotlin]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[lua]
+format = 'via [$symbol]($style)'
+disabled = true
+
 [memory_usage]
 symbol = " "
 
-[nodejs]
-symbol = " "
-disabled = true
-
-[package]
-symbol = " "
-
-[php]
-symbol = " "
-disabled = true
-
-[python]
-symbol = " "
-disabled = true
-
-[ruby]
-symbol = " "
-disabled = true
-
-[rust]
-symbol = " "
-disabled = true
-
-[docker_context]
-symbol = " "
-disabled = true
-
-[elixir]
-symbol = " "
-disabled = true
-
-[elm]
-symbol = " "
-disabled = true
-
-[julia]
-symbol = " "
+[nim]
+format = 'via [$symbol]($style)'
 disabled = true
 
 [nix_shell]
 symbol = " "
+
+[nodejs]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[ocaml]
+format = 'via [$symbol(\($switch_indicator$switch_name\) )]($style)'
+disabled = true
+
+[package]
+symbol = " "
+disabled = true
+
+[perl]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[php]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[pulumi]
+format = 'via [$symbol$stack]($style)'
+disabled = true
+
+[purescript]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[python]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[red]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[rlang]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[ruby]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[rust]
+format = 'via [$symbol]($style)'
+symbol = " "
+disabled = true
+
+[swift]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[vagrant]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[vlang]
+format = 'via [$symbol]($style)'
+disabled = true
+
+[zig]
+format = 'via [$symbol]($style)'
+disabled = true
 
 [custom.desk]
 description = "indicates whether you're in a desk-spawned shell"
