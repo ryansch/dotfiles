@@ -35,20 +35,21 @@ end
 
 function M.config()
   M.reset()
-
   -- skip_all()
-  -- skip "toggleterm.nvim"
+  -- use 'wbthomason/packer.nvim' -- Package manager
 
   -- User plugins and overrides go here
   use "~/dev/titan.nvim"
   -- use "~/dev/lunarized"
 
   use {
+    -- "~/dev/habitats.nvim",
     "ryansch/habitats.nvim",
     requires = {
+      "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
       "natecraddock/sessions.nvim",
-      "natecraddock/workspaces.nvim"
+      "natecraddock/workspaces.nvim",
     }
   }
 
