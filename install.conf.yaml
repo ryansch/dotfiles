@@ -90,7 +90,7 @@
   - shell:
     - ~/.dotfiles/script/install-packer
     - ~/.dotfiles/script/1p-ssh
-    - ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-amd64
+    # - ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-amd64
     - defaults write com.apple.dock autohide-time-modifier -float 0.2
     - defaults write com.apple.dock autohide-delay -float 0
     - defaults write com.apple.dock largesize -integer 95
