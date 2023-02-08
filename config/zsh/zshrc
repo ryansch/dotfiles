@@ -25,6 +25,9 @@ zcomet load olets/zsh-abbr
 zcomet load djui/alias-tips
 zcomet load zdharma-continuum/fast-syntax-highlighting
 
+zcomet load chisui/zsh-nix-shell
+zcomet load nix-community/nix-zsh-completions
+
 # vi mode
 ZVM_INIT_MODE=sourcing
 zcomet load jeffreytse/zsh-vi-mode
