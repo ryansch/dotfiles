@@ -39,20 +39,20 @@ function M.config()
   -- use 'wbthomason/packer.nvim' -- Package manager
 
   -- User plugins and overrides go here
-  use "~/dev/titan.nvim"
+  -- use "~/dev/titan.nvim"
   -- use "~/dev/lunarized"
 
-  use {
-    -- "~/dev/habitats.nvim",
-    "ryansch/habitats.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
-      "natecraddock/sessions.nvim",
-      "natecraddock/workspaces.nvim",
-    }
-  }
-
+  -- use "~/dev/workspaces.nvim"
+  -- use {
+  --   "ryansch/habitats.nvim",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope-file-browser.nvim",
+  --     "natecraddock/sessions.nvim",
+  --     "natecraddock/workspaces.nvim",
+  --   }
+  -- }
+  
   return {
     plugin_specs = plugin_specs,
     plugin_specs_by_name = plugin_specs_by_name,
