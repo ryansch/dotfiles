@@ -45,12 +45,12 @@
       path: config/espanso
 
 - ifanylinux:
-  # - link:
-  #     ~/.fonts:
-  #       create: true
-  #       glob: true
-  #       path: fonts/*
-  #       relink: true
+  - link:
+      ~/.fonts:
+        create: true
+        glob: true
+        path: fonts/*
+        relink: true
   # - shell:
   #   - fc-cache -vf ~/.fonts
   #   - pip3 install lastversion
