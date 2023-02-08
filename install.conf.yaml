@@ -45,24 +45,24 @@
       path: config/espanso
 
 - ifanylinux:
-  - link:
-      ~/.fonts:
-        create: true
-        glob: true
-        path: fonts/*
-        relink: true
-  - shell:
-    - fc-cache -vf ~/.fonts
-    - pip3 install lastversion
-    - ~/.dotfiles/script/install-manifest-tool manifest-tool-linux-amd64
-    - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
-    - chmod +x ~/.local/bin/goss-linux-amd64
-    - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm > ~/.local/bin/goss-linux-arm"
-    - chmod +x ~/.local/bin/goss-linux-arm
-    - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm64 > ~/.local/bin/goss-linux-arm64"
-    - chmod +x ~/.local/bin/goss-linux-arm64
-    - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/dgoss > ~/.local/bin/dgoss"
-    - chmod +x ~/.local/bin/dgoss
+  # - link:
+  #     ~/.fonts:
+  #       create: true
+  #       glob: true
+  #       path: fonts/*
+  #       relink: true
+  # - shell:
+  #   - fc-cache -vf ~/.fonts
+  #   - pip3 install lastversion
+  #   - ~/.dotfiles/script/install-manifest-tool manifest-tool-linux-amd64
+  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
+  #   - chmod +x ~/.local/bin/goss-linux-amd64
+  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm > ~/.local/bin/goss-linux-arm"
+  #   - chmod +x ~/.local/bin/goss-linux-arm
+  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm64 > ~/.local/bin/goss-linux-arm64"
+  #   - chmod +x ~/.local/bin/goss-linux-arm64
+  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/dgoss > ~/.local/bin/dgoss"
+  #   - chmod +x ~/.local/bin/dgoss
     # - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
     # - ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 
