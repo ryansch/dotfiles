@@ -39,13 +39,13 @@ bindkey -M vicmd "k" history-substring-search-up
 bindkey -M vicmd "j" history-substring-search-down
 
 OS="$(uname)"
-if [[ "$OS" == "Linux" ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  export WHALEBREW_INSTALL_PATH=/home/linuxbrew/.linuxbrew/bin
-fi
+# if [[ "$OS" == "Linux" ]]; then
+#   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#   export WHALEBREW_INSTALL_PATH=/home/linuxbrew/.linuxbrew/bin
+# fi
 
-source ${HOME}/.local/share/sh/homebrew.sh
 if [[ "$OS" == "Darwin" ]]; then
+  source ${HOME}/.local/share/sh/homebrew.sh
   eval "$($(homebrew_location)/bin/brew shellenv)"
 fi
 
@@ -118,6 +118,7 @@ if [ -d $HOME/.zsh.after/ ]; then
     for config_file ($HOME/.zsh.after/*.zsh) source $config_file
   fi
 fi
-if [ -e /Users/ryansch/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ryansch/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# if [ -e /Users/ryansch/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ryansch/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 zcomet compinit

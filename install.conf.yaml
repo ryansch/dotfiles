@@ -7,19 +7,6 @@
     ~/.local/bin:
     ~/.config:
       recursive: true
-- brew:
-    - zoxide
-    - exa
-    - starship
-    - bat
-    - bat-extras
-    - ripgrep
-    - universal-ctags
-    - neovim
-    - gh
-    - docker-credential-helper
-    - terraform
-    - lua-language-server
 - link:
     ~/.config/nvim/init.lua: config/nvim/init.lua
     ~/.config/nvim/lua: config/nvim/lua
@@ -84,6 +71,19 @@
     - homebrew/cask-fonts
   - cask:
     - font-hack-nerd-font
+  - brew:
+      - zoxide
+      - exa
+      - starship
+      - bat
+      - bat-extras
+      - ripgrep
+      - universal-ctags
+      - neovim
+      - gh
+      - docker-credential-helper
+      - terraform
+      - lua-language-server
   - link:
       ~/.hammerspoon:
         path: config/hammerspoon
