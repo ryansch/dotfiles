@@ -101,13 +101,6 @@
     - defaults write com.apple.finder AppleShowAllExtensions -boolean true
     - defaults write com.apple.finder ShowPathbar -boolean true
 
-- ifaarch64:
-  - link:
-      ~/.local/bin:
-        glob: true
-        path: aarch64/*
-        relink: true
-
 - shell:
   -
     command: ~/.dotfiles/script/gh-login
