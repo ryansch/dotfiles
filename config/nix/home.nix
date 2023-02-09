@@ -45,5 +45,7 @@
     pkgs.nodejs
     pkgs.tree-sitter
     pkgs.unzip
+
+    pkgs.awscli2
   ];
 }
