@@ -23,6 +23,7 @@
     pkgs.gh
     pkgs.mkcert
     pkgs.bat
+    pkgs.bat-extras
     pkgs.starship
     pkgs.hub
     #pkgs.git-delta
