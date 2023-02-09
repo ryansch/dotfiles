@@ -23,7 +23,12 @@
     pkgs.gh
     pkgs.mkcert
     pkgs.bat
-    pkgs.bat-extras
+    pkgs.bat-extras.batgrep
+    pkgs.bat-extras.batman
+    pkgs.bat-extras.batpipe
+    pkgs.bat-extras.batwatch
+    pkgs.bat-extras.batdiff
+    pkgs.bat-extras.prettybat
     pkgs.starship
     pkgs.hub
     #pkgs.git-delta
