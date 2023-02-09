@@ -52,8 +52,8 @@
         glob: true
         path: fonts/*
         relink: true
-  # - shell:
-  #   - fc-cache -vf ~/.fonts
+  - shell:
+    - fc-cache -vf ~/.fonts
   #   - pip3 install lastversion
   #   - ~/.dotfiles/script/install-manifest-tool manifest-tool-linux-amd64
   #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
