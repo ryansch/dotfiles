@@ -42,10 +42,11 @@ bindkey -M vicmd "k" history-substring-search-up
 bindkey -M vicmd "j" history-substring-search-down
 
 OS="$(uname)"
-# if [[ "$OS" == "Linux" ]]; then
-#   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-#   export WHALEBREW_INSTALL_PATH=/home/linuxbrew/.linuxbrew/bin
-# fi
+if [[ "$OS" == "Linux" ]]; then
+  if [ -d /home/linuxbrew/.linuxbrew/ ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+fi
 
 if [[ "$OS" == "Darwin" ]]; then
   source ${HOME}/.local/share/sh/homebrew.sh
