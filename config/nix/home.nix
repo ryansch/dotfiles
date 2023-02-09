@@ -49,5 +49,6 @@
     pkgs.awscli2
     pkgs._1password
     pkgs.kitty
+    pkgs.bottom
   ];
 }
