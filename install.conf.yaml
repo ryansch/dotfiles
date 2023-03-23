@@ -10,6 +10,10 @@
 - link:
     ~/.config/nvim/init.lua: config/nvim/init.lua
     ~/.config/nvim/lua: config/nvim/lua
+    ~/.config/lvim:
+      path: config/lvim
+      relink: true
+      force: true
     ~/.config/gh/config.yml: config/gh/gh-config.yml
     ~/.config/starship.toml: config/starship/starship.toml
     ~/.local/bin:
