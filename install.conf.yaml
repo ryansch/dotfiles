@@ -43,7 +43,7 @@
       path: config/kitty
     ~/.config/espanso:
       path: config/espanso
-    ~/.config/nixpkgs/home.nix: config/nix/home.nix
+    ~/.config/home-manager/home.nix: config/nix/home.nix
     ~/.config/nixpkgs/config.nix: config/nix/config.nix
 
 - ifanylinux:
