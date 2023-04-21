@@ -8,8 +8,12 @@
     ~/.config:
       recursive: true
 - link:
-    ~/.config/nvim/init.lua: config/nvim/init.lua
-    ~/.config/nvim/lua: config/nvim/lua
+    # ~/.config/nvim/init.lua: config/nvim/init.lua
+    # ~/.config/nvim/lua: config/nvim/lua
+    ~/.config/nvim:
+      path: config/lazyvim
+      relink: true
+      force: true
     ~/.config/lvim:
       path: config/lvim
       relink: true
