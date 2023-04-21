@@ -123,6 +123,9 @@ if [ -d $HOME/.zsh.after/ ]; then
   fi
 fi
 
-# if [ -e /Users/ryansch/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/ryansch/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# nix home-manager integration
+if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then
+  . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+fi
 
 zcomet compinit

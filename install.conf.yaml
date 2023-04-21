@@ -51,8 +51,9 @@
       path: config/kitty
     ~/.config/espanso:
       path: config/espanso
+    ~/.config/nix/nix.conf: config/nix/nix.conf
     ~/.config/home-manager/home.nix: config/nix/home.nix
-    ~/.config/nixpkgs/config.nix: config/nix/config.nix
+    ~/.config/nixpkgs/config.nix: config/nix/nixpkgs.nix
 
 - ifanylinux:
   - link:
