@@ -22,6 +22,10 @@ return {
           if util.workspace_has_file("Deskfile") then
             term:send("eval $(desk load)")
           end
+
+          if util.workspace_has_file("shell.nix") then
+            term:send("nix-shell")
+          end
         end
       end
 
