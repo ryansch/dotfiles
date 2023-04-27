@@ -29,24 +29,6 @@ return {
       })
 
       opts.sections = vim.tbl_extend("force", opts.sections, {
-        -- lualine_c = {
-        --   {
-        --     "diagnostics",
-        --     symbols = {
-        --       error = icons.diagnostics.Error,
-        --       warn = icons.diagnostics.Warn,
-        --       info = icons.diagnostics.Info,
-        --       hint = icons.diagnostics.Hint,
-        --     },
-        --   },
-        --   { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-        --   { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
-        --   -- stylua: ignore
-        --   {
-        --     function() return require("nvim-navic").get_location() end,
-        --     cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
-        --   },
-        -- },
         lualine_x = { { "filetype", icons_enabled = true } },
         lualine_y = {
           -- stylua: ignore
@@ -82,15 +64,6 @@ return {
           { "location", padding = { left = 0, right = 1 } },
         },
       })
-
-      -- opts.sections = {
-      --   lualine_a = { "mode" },
-      --   lualine_b = { "branch", "diff", "diagnostics" },
-      --   lualine_c = { "filename", "require'lsp-status'.status()" },
-      --   lualine_x = { "encoding", "fileformat", "filetype" },
-      --   lualine_y = { "progress" },
-      --   lualine_z = { "location" },
-      -- }
 
       opts.extensions = {
         custom_toggleterm,
