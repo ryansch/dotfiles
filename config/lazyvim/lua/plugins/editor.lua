@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local finders = require("util.finders")
 
 return {
   {
@@ -7,6 +8,18 @@ return {
     keys = function(_, keys)
       vim.list_extend(keys, {
         { "<leader>fg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
+        {
+          "<leader>ff",
+          finders.find_files,
+          desc = "Find Files (root dir)",
+        },
+        {
+          "<leader>fc",
+          function()
+            return require("telescope").extensions.githubcoauthors.coauthors()
+          end,
+          desc = "Add coauthors",
+        },
       })
     end,
 
@@ -55,6 +68,28 @@ return {
       }
     end,
   },
+
+  {
+    "telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
+  },
+
+  {
+    "telescope.nvim",
+    dependencies = {
+      "cwebster2/github-coauthors.nvim",
+      config = function()
+        require("telescope").load_extension("githubcoauthors")
+      end,
+    },
+  },
+
   {
     "folke/todo-comments.nvim",
     opts = {

@@ -7,4 +7,5 @@ return {
       colorscheme = "lunarized",
     },
   },
+  { "nvim-lua/plenary.nvim" },
 }

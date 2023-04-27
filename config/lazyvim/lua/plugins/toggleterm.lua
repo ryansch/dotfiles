@@ -14,7 +14,8 @@ return {
       local util = require("util")
 
       local config = {
-        desk_integration = true,
+        desk_integration = false,
+        nix_integration = false,
       }
 
       local function on_first_open(term)
@@ -22,7 +23,9 @@ return {
           if util.workspace_has_file("Deskfile") then
             term:send("eval $(desk load)")
           end
+        end
 
+        if config.nix_integration then
           if util.workspace_has_file("shell.nix") then
             term:send("nix-shell")
           end

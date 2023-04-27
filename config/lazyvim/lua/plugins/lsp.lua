@@ -18,10 +18,26 @@ return {
   {
     "folke/neoconf.nvim",
 
-    config = function(plugin, opts)
-      require("neoconf").setup(opts)
+    dependencies = {
+      { "ryansch/neoconf-lspcmd" },
+      { "nvim-lua/plenary.nvim" },
+    },
 
-      require("neoconf.plugins").register(require("util.lspcmd"))
+    opts = function(_, opts)
+      opts.plugins = vim.tbl_extend("force", opts.plugins or {}, {
+        lspcmd = {
+          enabled = true,
+          log_level = "info",
+          ls_mappings = {
+            standardrb = "standardRuby",
+          },
+        },
+      })
+    end,
+
+    config = function(_, opts)
+      require("neoconf").setup(opts)
+      require("neoconf.plugins").register(require("neoconf-lspcmd"))
     end,
   },
 }
