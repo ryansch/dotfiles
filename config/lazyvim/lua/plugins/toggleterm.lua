@@ -1,20 +1,12 @@
 return {
   {
-    "tknightz/telescope-termfinder.nvim",
-    config = function()
-      require("telescope").load_extension("termfinder")
-    end,
-  },
-  {
     "akinsho/toggleterm.nvim",
-    dependencies = {
-      "tknightz/telescope-termfinder.nvim",
-    },
+
     opts = function(_, opts)
       local util = require("util")
 
       local config = {
-        desk_integration = false,
+        desk_integration = true,
         nix_integration = false,
       }
 
@@ -42,7 +34,7 @@ return {
         end,
         shade_terminals = false,
         persist_size = false,
-        persist_mode = false,
+        persist_mode = true,
         on_open = function(term)
           term.opened = term.opened or false
 
@@ -52,33 +44,78 @@ return {
 
           term.opened = true
         end,
+        auto_scroll = false,
       }
     end,
-    config = function(_, opts)
-      local ok, toggleterm = pcall(require, "toggleterm")
-      if not ok then
-        print("Unable to require toggleterm")
-        return
-      end
 
-      toggleterm.setup(opts)
+    config = function(_, opts)
+      require("toggleterm").setup(opts)
 
       function _G.set_terminal_keymaps()
         local keymap_opts = { buffer = true }
         vim.keymap.set("t", "<C-v><Esc>", [[<C-\><C-n>]], keymap_opts)
-        vim.keymap.set("t", "<C-h>", [[<C-\><C-n><C-W>h]], keymap_opts)
-        vim.keymap.set("t", "<C-j>", [[<C-\><C-n><C-W>j]], keymap_opts)
-        vim.keymap.set("t", "<C-k>", [[<C-\><C-n><C-W>k]], keymap_opts)
-        vim.keymap.set("t", "<C-l>", [[<C-\><C-n><C-W>l]], keymap_opts)
+        vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], keymap_opts)
+        vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], keymap_opts)
+        vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], keymap_opts)
+        vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], keymap_opts)
       end
 
       -- if you only want these mappings for toggle term use term://*toggleterm#* instead
       vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
     end,
+
+    cmd = {
+      "ToggleTerm",
+      "ToggleTermToggleAll",
+      "TermExec",
+      "TermSelect",
+      "ToggleTermSendCurrentLine",
+      "ToggleTermSendVisualLines",
+      "ToggleTermSendVisualSelection",
+      "ToggleTermSetName",
+    },
+
     keys = {
-      { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm Float" },
-      { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "ToggleTerm Horizontal" },
-      -- v = { "<cmd>ToggleTerm direction=vertical<cr>", "Vertical" },
+      {
+        "<leader>tf",
+        function()
+          require("toggleterm").toggle(vim.v.count, nil, nil, "float")
+        end,
+        desc = "ToggleTerm Float",
+      },
+      {
+        "<leader>th",
+        function()
+          require("toggleterm").toggle(vim.v.count, nil, nil, "horizontal")
+        end,
+        desc = "ToggleTerm Horizontal",
+      },
+      {
+        "<leader>tv",
+        function()
+          require("toggleterm").toggle(vim.v.count, nil, nil, "vertical")
+        end,
+        desc = "ToggleTerm Vertical",
+      },
+      {
+        "<leader>tc",
+        function()
+          local terms = require("toggleterm.terminal")
+          local terminals = terms.get_all()
+
+          for _, term in pairs(terminals) do
+            if term:is_open() then
+              term:close()
+            end
+          end
+        end,
+        desc = "Close all terminals",
+      },
+      {
+        "<leader>tt",
+        "<cmd>TermSelect<cr>",
+        desc = "Find terminals",
+      },
     },
   },
 }
