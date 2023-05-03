@@ -142,6 +142,7 @@ disabled = true
 
 [nix_shell]
 symbol = " "
+format = 'via [$symbol($name)]($style) '
 
 [nodejs]
 format = 'via [$symbol]($style)'
