@@ -22,8 +22,12 @@ return {
   },
   {
     "tpope/vim-rails",
+
+    event = "VeryLazy",
   },
   {
     "tpope/vim-projectionist",
+
+    event = "VeryLazy",
   },
 }

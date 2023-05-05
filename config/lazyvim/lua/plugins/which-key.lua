@@ -1,6 +1,7 @@
 return {
   {
     "folke/which-key.nvim",
+
     opts = function(_, opts)
       opts.defaults = vim.tbl_extend("error", opts.defaults, {
         ["<leader>t"] = { name = "+terminal" },

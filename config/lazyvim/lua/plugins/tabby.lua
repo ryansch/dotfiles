@@ -1,7 +1,9 @@
 return {
   {
     "nanozuki/tabby.nvim",
+
     event = "VeryLazy",
+
     opts = function(_, opts)
       local config = {
         layout = "active_wins_at_tail",

@@ -7,5 +7,7 @@ return {
     },
 
     config = true,
+
+    event = "VeryLazy",
   },
 }
