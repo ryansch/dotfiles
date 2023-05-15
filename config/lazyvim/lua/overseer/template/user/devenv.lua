@@ -1,5 +1,5 @@
 return {
-  name = "devenv up",
+  name = "dev up",
 
   builder = function(params)
     return {
@@ -7,8 +7,9 @@ return {
         "direnv",
         "exec",
         vim.env.DEVENV_ROOT,
-        "devenv",
+        "dev",
         "up",
+        "-df",
       },
     }
   end,
