@@ -14,7 +14,6 @@ return {
         adapters = {
           require("neotest-rspec")({
             rspec_cmd = function()
-              local util = require("util")
               return vim.tbl_flatten({
                 ".bin/rspec",
               })
