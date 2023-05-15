@@ -16,10 +16,7 @@ return {
             rspec_cmd = function()
               local util = require("util")
               return vim.tbl_flatten({
-                "direnv",
-                "exec",
-                util.workspace_root(),
-                "rspec",
+                ".bin/rspec",
               })
             end,
           }),
@@ -37,6 +34,27 @@ return {
           require("neotest").run.run()
         end,
         desc = "Nearest Test",
+      },
+      {
+        "<leader>ra",
+        function()
+          require("neotest").run.run(vim.fn.expand("%"))
+        end,
+        desc = "Test Current File",
+      },
+      {
+        "<leader>ra",
+        function()
+          require("neotest").run.run(vim.fn.expand("%"))
+        end,
+        desc = "Test Current File",
+      },
+      {
+        "<leader>rs",
+        function()
+          require("neotest").summary.toggle()
+        end,
+        desc = "Toggle Test Summary",
       },
     },
   },
