@@ -4,15 +4,22 @@ return {
 
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        "clangd",
-        "pyright",
-        "terraform-ls",
         "bash-language-server",
+        "clangd",
         "elixir-ls",
-        "solargraph",
-        "typescript-language-server",
-        "lua-language-server",
         "erb-lint",
+        "json-lsp",
+        "lua-language-server",
+        "nil",
+        "pyright",
+        "shfmt",
+        "solargraph",
+        "standardrb",
+        "stylua",
+        "tailwindcss-language-server",
+        "terraform-ls",
+        "typescript-language-server",
+        "yaml-language-server",
       })
     end,
   },
