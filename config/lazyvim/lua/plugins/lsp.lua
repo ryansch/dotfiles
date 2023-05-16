@@ -71,6 +71,7 @@ return {
           log_level = "info",
           ls_mappings = {
             standardrb = "standardRuby",
+            yamlls = "yaml",
           },
         },
       })
