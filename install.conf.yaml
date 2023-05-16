@@ -24,11 +24,11 @@
       glob: true
       path: bin/*
       relink: true
-    ~/.tmux.conf:
+    ~/.config/tmux/tmux.conf:
       path: config/tmux/tmux.conf
       force: true
-    ~/.tmux.conf.theme-solarized:
-      path: config/tmux/tmux.conf.theme-solarized
+    ~/.config/tmux/solarized.conf:
+      path: config/tmux/solarized.conf
       force: true
     ~/.gitconfig:
       path: config/git/gitconfig
