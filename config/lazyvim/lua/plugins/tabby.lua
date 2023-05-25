@@ -1,5 +1,10 @@
 return {
   {
+    "akinsho/bufferline.nvim",
+    enabled = false,
+  },
+
+  {
     "nanozuki/tabby.nvim",
 
     event = "VeryLazy",
