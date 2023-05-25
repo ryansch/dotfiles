@@ -9,52 +9,67 @@ return {
       "olimorris/neotest-rspec",
     },
 
-    opts = function()
-      return {
-        adapters = {
-          require("neotest-rspec")({
-            rspec_cmd = function()
-              return vim.tbl_flatten({
-                ".bin/rspec",
-              })
-            end,
-          }),
+    opts = function(_, opts)
+      opts.adapters = vim.tbl_extend("force", opts.adapters or {}, {
+        ["neotest-rspec"] = {
+          rspec_cmd = function()
+            return vim.tbl_flatten({
+              ".bin/rspec",
+            })
+          end,
         },
-        consumers = {
-          overseer = require("neotest.consumers.overseer"),
-        },
-      }
+      })
+
+      -- opts.consumers = vim.tbl_extend("force", opts.consumers or {}, {
+      --   overseer = require("neotest.consumers.overseer"),
+      -- })
     end,
 
-    keys = {
-      {
-        "<leader>rt",
-        function()
-          require("neotest").run.run()
-        end,
-        desc = "Nearest Test",
-      },
-      {
-        "<leader>ra",
-        function()
-          require("neotest").run.run(vim.fn.expand("%"))
-        end,
-        desc = "Test Current File",
-      },
-      {
-        "<leader>ra",
-        function()
-          require("neotest").run.run(vim.fn.expand("%"))
-        end,
-        desc = "Test Current File",
-      },
-      {
-        "<leader>rs",
-        function()
-          require("neotest").summary.toggle()
-        end,
-        desc = "Toggle Test Summary",
-      },
-    },
+    keys = function(_, keys)
+      vim.list_extend(keys, {
+        {
+          "<leader>rt",
+          function()
+            require("neotest").run.run()
+          end,
+          desc = "Nearest Test",
+        },
+        {
+          "<leader>ra",
+          function()
+            require("neotest").run.run(vim.fn.expand("%"))
+          end,
+          desc = "Test Current File",
+        },
+        {
+          "<leader>ro",
+          function()
+            require("neotest").output.open({ enter = true, auto_close = true })
+          end,
+          desc = "Show Output",
+        },
+        {
+          "<leader>rO",
+          function()
+            require("neotest").output_panel.toggle()
+          end,
+          desc = "Toggle Output Panel",
+        },
+        {
+          "<leader>rs",
+          function()
+            require("neotest").summary.toggle()
+          end,
+          desc = "Toggle Test Summary",
+        },
+        {
+          "<leader>rS",
+          function()
+            require("neotest").run.stop()
+          end,
+          desc = "Stop",
+        },
+      })
+    end,
   },
 }
