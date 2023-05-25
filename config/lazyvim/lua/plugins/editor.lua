@@ -1,5 +1,4 @@
-local Util = require("lazyvim.util")
-local finders = require("util.finders")
+local Util = require("util")
 
 return {
   {
@@ -10,7 +9,7 @@ return {
         { "<leader>fg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
         {
           "<leader>ff",
-          finders.find_files,
+          Util.telescope("files"),
           desc = "Find Files (root dir)",
         },
         {

@@ -30,6 +30,10 @@ function M.workspace_has_file(name)
   return M.dir_has_file(root, name)
 end
 
+function M.telescope(builtin, opts)
+  return require("util.finders").telescope(builtin, opts)
+end
+
 M.logger = require("plenary.log").new({
   plugin = "lazyvim",
   level = "debug",
