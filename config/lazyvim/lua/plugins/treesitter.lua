@@ -57,6 +57,15 @@ return {
         "yaml",
         "zig",
       })
+
+      opts.context_commentstring = vim.tbl_extend("force", opts.context_commentstring or {}, {
+        enable = true,
+        config = {
+          terraform = {
+            __default = "# %s",
+          },
+        },
+      })
     end,
   },
 }
