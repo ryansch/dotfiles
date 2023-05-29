@@ -25,8 +25,8 @@ return {
       -- })
     end,
 
-    keys = function(_, keys)
-      vim.list_extend(keys, {
+    keys = function()
+      return {
         {
           "<leader>rt",
           function()
@@ -69,7 +69,22 @@ return {
           end,
           desc = "Stop",
         },
-      })
+      }
+    end,
+  },
+
+  {
+    "mfussenegger/nvim-dap",
+    keys = function()
+      return {
+        {
+          "<leader>rd",
+          function()
+            require("neotest").run.run({ strategy = "dap" })
+          end,
+          desc = "Debug Nearest",
+        },
+      }
     end,
   },
 }
