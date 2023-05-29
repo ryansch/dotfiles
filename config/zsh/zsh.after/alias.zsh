@@ -17,3 +17,5 @@ alias watch="batwatch"
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
+
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
