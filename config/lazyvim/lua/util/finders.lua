@@ -29,7 +29,7 @@ function M.telescope(builtin, opts)
         builtin = "find_files"
       end
     end
-    return LazyUtil.telescope(builtin, opts)
+    return LazyUtil.telescope(builtin, opts)()
   end
 end
 
