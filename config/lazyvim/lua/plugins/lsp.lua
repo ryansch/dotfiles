@@ -24,17 +24,23 @@ return {
     end,
   },
 
-  -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --
-  --   opts = function(_, opts)
-  --     local nls = require("null-ls")
-  --     vim.list_extend(opts.sources, {
-  --       nls.builtins.diagnostics.erb_lint,
-  --       nls.builtins.formatting.erb_lint,
-  --     })
-  --   end,
-  -- },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+
+    opts = function(_, opts)
+      -- opts.debug = true
+
+      local nls = require("null-ls")
+      vim.list_extend(opts.sources, {
+        nls.builtins.diagnostics.erb_lint.with({
+          only_local = ".bin",
+        }),
+        nls.builtins.formatting.erb_lint.with({
+          only_local = ".bin",
+        }),
+      })
+    end,
+  },
 
   -- {
   --   "jay-babu/mason-null-ls.nvim",
@@ -107,6 +113,8 @@ return {
           end
           return client.name ~= "null-ls" and client.name ~= "solargraph"
         end,
+
+        timeout_ms = 2000,
       })
     end,
   },
