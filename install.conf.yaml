@@ -8,14 +8,8 @@
     ~/.config:
       recursive: true
 - link:
-    # ~/.config/nvim/init.lua: config/nvim/init.lua
-    # ~/.config/nvim/lua: config/nvim/lua
     ~/.config/nvim:
       path: config/lazyvim
-      relink: true
-      force: true
-    ~/.config/lvim:
-      path: config/lvim
       relink: true
       force: true
     ~/.config/gh/config.yml: config/gh/gh-config.yml
@@ -52,7 +46,7 @@
     ~/.config/espanso:
       path: config/espanso
     ~/.config/nix/nix.conf: config/nix/nix.conf
-    ~/.config/home-manager/home.nix: config/nix/home.nix
+    ~/.config/home-manager: config/nix/home-manager
     ~/.config/nixpkgs/config.nix: config/nix/nixpkgs.nix
 
 - ifanylinux:
