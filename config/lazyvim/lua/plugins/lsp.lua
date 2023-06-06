@@ -21,6 +21,8 @@ return {
         "typescript-language-server",
         "yaml-language-server",
       })
+
+      opts.PATH = "append"
     end,
   },
 
