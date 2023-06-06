@@ -27,8 +27,8 @@
     ~/.gitconfig:
       path: config/git/gitconfig
       force: true
-    ~/.gitconfig.user:
-      path: config/git/gitconfig.user
+    ~/.gitconfig.user: config/git/gitconfig.user
+    ~/.gitignore: config/git/gitignore
     ~/.zshrc:
       path: config/zsh/zshrc
       force: true
