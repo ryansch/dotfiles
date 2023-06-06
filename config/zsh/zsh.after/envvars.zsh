@@ -2,7 +2,6 @@
 # homebrew_dir=$(homebrew_location)
 
 typeset -U path
-# path=(~/.local/bin /opt/homebrew/opt/python@3.9/libexec/bin "$path[@]" /usr/local/sbin /usr/local/bin)
 path=(~/.local/bin "$path[@]" /usr/local/sbin /usr/local/bin)
 
 export EDITOR="$(which nvim)"
