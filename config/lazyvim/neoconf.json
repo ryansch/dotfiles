@@ -1,0 +1,7 @@
+{
+  "standardRuby.mode": "enableUnconditionally",
+  "solargraph.diagnostics": true,
+  "solargraph.autoformat": false,
+  "solargraph.formatting": false,
+  "yaml.keyOrdering": false
+}
