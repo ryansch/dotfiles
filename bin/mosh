@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -euo pipefail
-source ~/.local/share/sh/homebrew.sh
-
-name="$1"
-shift
-
-exec $(homebrew_location)/bin/mosh "$name" --server=/home/linuxbrew/.linuxbrew/bin/mosh-server "$@"
