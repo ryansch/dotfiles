@@ -67,6 +67,12 @@ if [ -d $HOME/.zsh.after/ ]; then
   fi
 fi
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+
 # nix home-manager integration
 if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then
   . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
