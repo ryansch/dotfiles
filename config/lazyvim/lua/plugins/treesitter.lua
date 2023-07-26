@@ -64,6 +64,9 @@ return {
           terraform = {
             __default = "# %s",
           },
+          nix = {
+            __default = "# %s",
+          },
         },
       })
     end,

@@ -94,4 +94,10 @@ return {
       }
     end,
   },
+
+  {
+    "olimorris/neotest-rspec",
+
+    dev = true,
+  },
 }
