@@ -50,75 +50,68 @@
     ~/.config/nixpkgs/config.nix: config/nix/nixpkgs.nix
 
 - ifanylinux:
-  - link:
-      ~/.fonts:
-        create: true
-        glob: true
-        path: fonts/*
-        relink: true
-  - shell:
-    - fc-cache -vf ~/.fonts
-  #   - pip3 install lastversion
-  #   - ~/.dotfiles/script/install-manifest-tool manifest-tool-linux-amd64
-  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
-  #   - chmod +x ~/.local/bin/goss-linux-amd64
-  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm > ~/.local/bin/goss-linux-arm"
-  #   - chmod +x ~/.local/bin/goss-linux-arm
-  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm64 > ~/.local/bin/goss-linux-arm64"
-  #   - chmod +x ~/.local/bin/goss-linux-arm64
-  #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/dgoss > ~/.local/bin/dgoss"
-  #   - chmod +x ~/.local/bin/dgoss
-    # - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-    # - ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
+    - link:
+        ~/.fonts:
+          create: true
+          glob: true
+          path: fonts/*
+          relink: true
+    - shell:
+        - fc-cache -vf ~/.fonts
+        #   - pip3 install lastversion
+        #   - ~/.dotfiles/script/install-manifest-tool manifest-tool-linux-amd64
+        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
+        #   - chmod +x ~/.local/bin/goss-linux-amd64
+        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm > ~/.local/bin/goss-linux-arm"
+        #   - chmod +x ~/.local/bin/goss-linux-arm
+        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm64 > ~/.local/bin/goss-linux-arm64"
+        #   - chmod +x ~/.local/bin/goss-linux-arm64
+        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/dgoss > ~/.local/bin/dgoss"
+        #   - chmod +x ~/.local/bin/dgoss
+        # - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+        # - ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 
 - ifmacos:
-  - tap:
-    - homebrew/cask-fonts
-  - cask:
-    - font-hack-nerd-font
-  - brew:
-      - zoxide
-      - exa
-      - starship
-      - bat
-      - bat-extras
-      - ripgrep
-      - universal-ctags
-      - neovim
-      - gh
-      - docker-credential-helper
-      - terraform
-      - lua-language-server
-  - link:
-      ~/.hammerspoon:
-        path: config/hammerspoon
-  - shell:
-    - ~/.dotfiles/script/install-packer
-    - ~/.dotfiles/script/1p-ssh
-    # - ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-amd64
-    - defaults write com.apple.dock autohide-time-modifier -float 0.2
-    - defaults write com.apple.dock autohide-delay -float 0
-    - defaults write com.apple.dock largesize -integer 95
-    - defaults write com.apple.dock tilesize -integer 45
-    - defaults write com.apple.dock autohide -boolean true
-    - defaults write com.apple.finder AppleShowAllFiles -boolean true
-    - defaults write com.apple.finder AppleShowAllExtensions -boolean true
-    - defaults write com.apple.finder ShowPathbar -boolean true
+    - tap:
+        - homebrew/cask-fonts
+    - cask:
+        - font-hack-nerd-font
+    - brew:
+        - zoxide
+        - exa
+        - starship
+        - bat
+        - bat-extras
+        - ripgrep
+        - neovim
+        - gh
+    - link:
+        ~/.hammerspoon:
+          path: config/hammerspoon
+    - shell:
+        - ~/.dotfiles/script/1p-ssh
+        # - ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-amd64
+        - defaults write com.apple.dock autohide-time-modifier -float 0.2
+        - defaults write com.apple.dock autohide-delay -float 0
+        - defaults write com.apple.dock largesize -integer 95
+        - defaults write com.apple.dock tilesize -integer 45
+        - defaults write com.apple.dock autohide -boolean true
+        - defaults write com.apple.finder AppleShowAllFiles -boolean true
+        - defaults write com.apple.finder AppleShowAllExtensions -boolean true
+        - defaults write com.apple.finder ShowPathbar -boolean true
 
 - shell:
-  -
-    command: ~/.dotfiles/script/gh-login
-    description: "Log in with gh"
-    stdin: true
-    stdout: true
-    stderr: true
-  -
-    command: ~/.dotfiles/script/git-user
-    description: "Set up git user and email address"
-    stdin: true
-    stdout: true
-    stderr: true
+    - command: ~/.dotfiles/script/gh-login
+      description: "Log in with gh"
+      stdin: true
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/git-user
+      description: "Set up git user and email address"
+      stdin: true
+      stdout: true
+      stderr: true
 
 - ghe:
-  - mislav/gh-branch
-  - dlvhdr/gh-prs
+    - mislav/gh-branch
+    - dlvhdr/gh-prs
