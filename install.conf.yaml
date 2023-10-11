@@ -58,18 +58,6 @@
           relink: true
     - shell:
         - fc-cache -vf ~/.fonts
-        #   - pip3 install lastversion
-        #   - ~/.dotfiles/script/install-manifest-tool manifest-tool-linux-amd64
-        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-amd64 > ~/.local/bin/goss-linux-amd64"
-        #   - chmod +x ~/.local/bin/goss-linux-amd64
-        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm > ~/.local/bin/goss-linux-arm"
-        #   - chmod +x ~/.local/bin/goss-linux-arm
-        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/goss-linux-arm64 > ~/.local/bin/goss-linux-arm64"
-        #   - chmod +x ~/.local/bin/goss-linux-arm64
-        #   - "set -eo pipefail; curl -fsSL https://github.com/aelsabbahy/goss/releases/download/v$(lastversion aelsabbahy/goss --having-asset)/dgoss > ~/.local/bin/dgoss"
-        #   - chmod +x ~/.local/bin/dgoss
-        # - curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-        # - ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 
 - ifmacos:
     - tap:
@@ -109,6 +97,14 @@
     - command: ~/.dotfiles/script/git-user
       description: "Set up git user and email address"
       stdin: true
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/install-goss
+      description: "Install goss/dgoss"
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-arm64
+      description: "Install manifest-tool"
       stdout: true
       stderr: true
 

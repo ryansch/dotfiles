@@ -6,15 +6,15 @@ selected_binary="${1:?Missing required argument: selected binary}"
 
 dir=$(mktemp -d -t "install-manifest-tool.XXXXXX")
 function cleanup {
-  rm -rf "${dir}"
+	rm -rf "${dir}"
 }
 trap cleanup EXIT
 
 cd "${dir}"
 
-version=$(lastversion estesp/manifest-tool --having-asset)
-echo "Found version ${version}"
-curl -fsSL https://github.com/estesp/manifest-tool/releases/download/v${version}/binaries-manifest-tool-${version}.tar.gz > binaries-manifest-tool.tar.gz
+download_url=$(curl -fsSL https://api.github.com/repos/estesp/manifest-tool/releases/latest | jq -r '.assets[] | select(.name | contains("binaries-manifest-tool") and contains("sha256sum") | not) | .browser_download_url')
+echo "Downloading from $download_url"
+curl -fsSL "${download_url}" >binaries-manifest-tool.tar.gz
 
 tar -xf binaries-manifest-tool.tar.gz
 
