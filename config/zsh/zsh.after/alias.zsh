@@ -1,6 +1,6 @@
 alias vim="nvim"
 
-alias ls="exa -g --git -b"
+alias ls="eza -g --git -b"
 alias cd="z"
 alias cdi="zi"
 
