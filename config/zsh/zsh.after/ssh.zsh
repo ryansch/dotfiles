@@ -1,5 +1,6 @@
 if [[ "$(ssh-add -l)" == "The agent has no identities." ]]; then
 
+  # Default ssh keys
   potential_keys=(
     ~/.ssh/id_dsa
     ~/.ssh/id_ecdsa
@@ -7,6 +8,10 @@ if [[ "$(ssh-add -l)" == "The agent has no identities." ]]; then
     ~/.ssh/id_ed25519
     ~/.ssh/id_ed25519_sk
     ~/.ssh/id_rsa
+  )
+
+  # Personal additions
+  potential_keys+=(
     ~/.ssh/heroku
   )
 
