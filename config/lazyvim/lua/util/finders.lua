@@ -1,9 +1,23 @@
 local LazyUtil = require("lazyvim.util")
+-- local util = require("util")
+local Path = require("plenary.path")
 
 local M = {}
 
-function M.file_exists(file)
-  return vim.loop.fs_stat(file) ~= nil
+function M.file_exists(...)
+  return Path:new(...):exists()
+end
+
+function M.file_exists_in_dir(dir, ...)
+  return M.file_exists(Path:new(dir, ...))
+end
+
+function M.file_exists_in_cwd(...)
+  return M.file_exists_in_dir(LazyUtil.root.cwd(), ...)
+end
+
+function M.file_exists_in_root(...)
+  return M.file_exists_in_dir(LazyUtil.root.get(), ...)
 end
 
 function M.find_command()
@@ -15,14 +29,14 @@ function M.telescope(builtin, opts)
   return function()
     builtin = params.builtin
     opts = params.opts
-    opts = vim.tbl_deep_extend("force", { cwd = LazyUtil.get_root() }, opts or {})
+    opts = vim.tbl_deep_extend("force", { cwd = LazyUtil.root.get() }, opts or {})
 
     if builtin == "files" then
-      if M.file_exists((opts.cwd or vim.loop.cwd()) .. "/.ignore") then
+      if M.file_exists_in_dir(opts.cwd, ".ignore") then
         builtin = "find_files"
         opts.find_command = M.find_command
         opts.hidden = true
-      elseif M.file_exists((opts.cwd or vim.loop.cwd()) .. "/.git") then
+      elseif M.file_exists_in_dir(opts.cwd, ".git") then
         opts.show_untracked = true
         builtin = "git_files"
       else

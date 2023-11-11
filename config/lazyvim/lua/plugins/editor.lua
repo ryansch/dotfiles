@@ -68,16 +68,16 @@ return {
     end,
   },
 
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, dashboard)
-      -- Override default find files button to use Util.telescope
-      local button = dashboard.button("f", " " .. " Find file", [[:lua require("util").telescope("files")() <cr>]])
-      button.opts.hl = "AlphaButtons"
-      button.opts.hl_shortcut = "AlphaShortcut"
-      dashboard.section.buttons.val[1] = button
-    end,
-  },
+  -- {
+  --   "goolord/alpha-nvim",
+  --   opts = function(_, dashboard)
+  --     -- Override default find files button to use Util.telescope
+  --     local button = dashboard.button("f", " " .. " Find file", [[:lua require("util").telescope("files")() <cr>]])
+  --     button.opts.hl = "AlphaButtons"
+  --     button.opts.hl_shortcut = "AlphaShortcut"
+  --     dashboard.section.buttons.val[1] = button
+  --   end,
+  -- },
 
   {
     "telescope.nvim",

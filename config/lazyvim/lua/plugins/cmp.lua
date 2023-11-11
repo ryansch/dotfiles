@@ -1,6 +1,6 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
+    "nvim-cmp",
 
     opts = function(_, opts)
       local cmp = require("cmp")
