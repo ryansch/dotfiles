@@ -151,7 +151,3 @@
 [credential "https://git.ryansch.net"]
 	helper = osxkeychain
 	helper = oauth
-	oauthClientId = 31227915-2bdd-4eb0-8088-786fb7e50e13
-  oauthScopes =
-  oauthAuthURL = https://git.ryansch.net/login/oauth/authorize
-  oauthTokenURL = https://git.ryansch.net/login/oauth/access_token
