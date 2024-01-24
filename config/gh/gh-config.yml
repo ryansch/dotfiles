@@ -9,6 +9,7 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
-    prco: "!gh pr checkout $(GH_FORCE_TTY=49% gh pr list | fzf --no-sort --ansi --preview \"GH_FORCE_TTY=1 CLICOLOR_FORCE=1 gh pr view {1}\" | awk '{split($1,a); print a[1]}')"
+    prco: '!gh pr checkout $(GH_FORCE_TTY=49% gh pr list | fzf --no-sort --ansi --preview "GH_FORCE_TTY=1 CLICOLOR_FORCE=1 gh pr view {1}" | awk ''{split($1,a); print a[1]}'')'
     prv: "!gh pr view --web"
     b: branch
+version: "1"
