@@ -174,11 +174,6 @@ disabled = true
 format = 'via [$symbol]($style)'
 disabled = true
 
-[python]
-format = 'via [$symbol]($style)'
-symbol = " "
-disabled = true
-
 [red]
 format = 'via [$symbol]($style)'
 disabled = true
