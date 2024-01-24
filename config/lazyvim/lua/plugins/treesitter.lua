@@ -69,6 +69,8 @@ return {
           },
         },
       })
+
+      opts.auto_install = true
     end,
 
     ---@param opts TSConfig
