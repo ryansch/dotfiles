@@ -1,8 +1,10 @@
 #!/bin/bash
 
-branch=main
-if git branch | grep master ; then
-  branch=master
+branch=${1:-main}
+if git branch | grep master; then
+	branch=master
 fi
 
-git fetch -p && git branch --merged $branch | egrep -v "(^\*|${branch})" | xargs git branch -d
+echo "Pruning all branches merged into $branch"
+
+git fetch -p && git branch --merged "$branch" | grep -E -v "(^\*|${branch})" | xargs git branch -d
