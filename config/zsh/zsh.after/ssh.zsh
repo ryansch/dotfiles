@@ -13,6 +13,7 @@ if [[ "$(ssh-add -l)" == "The agent has no identities." ]]; then
   # Personal additions
   potential_keys+=(
     ~/.ssh/heroku
+    ~/.ssh/gh_ryansch
   )
 
   keys=()
