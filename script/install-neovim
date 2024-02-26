@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if command -v nvim &>/dev/null; then
+	echo "Neovim is already installed"
+	exit 0
+fi
+
+brew install neovim

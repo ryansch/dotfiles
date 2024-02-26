@@ -12,6 +12,11 @@
       path: config/lazyvim
       relink: true
       force: true
+    ~/.config/nvims/neovim_distros:
+      path: config/nvims/neovim_distros
+      create: true
+      relink: true
+      force: true
     ~/.config/gh/config.yml: config/gh/gh-config.yml
     ~/.config/starship.toml: config/starship/starship.toml
     ~/.local/bin:
@@ -66,18 +71,20 @@
         - font-hack-nerd-font
     - brew:
         - zoxide
-        - exa
+        - eza
         - starship
         - bat
         - bat-extras
         - ripgrep
-        - neovim
         - gh
     - link:
         ~/.hammerspoon:
           path: config/hammerspoon
     - shell:
         - ~/.dotfiles/script/1p-ssh
+        - command: ~/.dotfiles/script/install-neovim
+          description: Optionally install neovim
+          stdout: true
         # - ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-amd64
         - defaults write com.apple.dock autohide-time-modifier -float 0.2
         - defaults write com.apple.dock autohide-delay -float 0

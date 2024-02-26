@@ -12,7 +12,7 @@ trap cleanup EXIT
 
 cd "${dir}"
 
-download_url=$(curl -fsSL https://api.github.com/repos/estesp/manifest-tool/releases/latest | jq -r '.assets[] | select(.name | contains("binaries-manifest-tool") and contains("sha256sum") | not) | .browser_download_url')
+download_url=$(gh api /repos/estesp/manifest-tool/releases/latest | jq -r '.assets[] | select(.name | contains("binaries-manifest-tool") and contains("sha256sum") | not) | .browser_download_url')
 echo "Downloading from $download_url"
 curl -fsSL "${download_url}" >binaries-manifest-tool.tar.gz
 
