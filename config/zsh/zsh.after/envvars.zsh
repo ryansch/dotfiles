@@ -25,5 +25,5 @@ export XDG_STATE_HOME=${HOME}/.local/state
 export XDG_DATA_DIRS=/usr/local/share:/usr/share # Should I add /opt/homebrew/share?
 export XDG_CONFIG_DIRS=/etc/xdg
 export XDG_CACHE_HOME=${HOME}/.cache
-export XDG_RUNTIME_DIR=${HOME}/Library/Caches/TemporaryItems
+# export XDG_RUNTIME_DIR=${HOME}/Library/Caches/TemporaryItems
 # No XDG env var for it, but binaries go in ~/.local/bin
