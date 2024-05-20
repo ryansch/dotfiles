@@ -1,8 +1,8 @@
 return {
-  {
-    "ryansch/scissors",
-
-    dev = true,
-    config = true,
-  },
+  -- {
+  --   "ryansch/scissors",
+  --
+  --   dev = true,
+  --   config = true,
+  -- },
 }

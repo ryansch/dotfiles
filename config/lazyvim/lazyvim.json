@@ -1,9 +1,13 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.vscode"
+    "lazyvim.plugins.extras.editor.trouble-v3",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.vscode",
+    "plugins.extras.lang.ruby",
+    "plugins.extras.lang.terraform"
   ],
   "news": {
-    "NEWS.md": "2123"
+    "NEWS.md": "4964"
   },
-  "version": 2
+  "version": 4
 }
