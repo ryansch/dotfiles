@@ -1,5 +1,4 @@
-local LazyUtil = require("lazyvim.util")
--- local util = require("util")
+local LazyVim = require("lazyvim.util")
 local Path = require("plenary.path")
 
 local M = {}
@@ -13,11 +12,11 @@ function M.file_exists_in_dir(dir, ...)
 end
 
 function M.file_exists_in_cwd(...)
-  return M.file_exists_in_dir(LazyUtil.root.cwd(), ...)
+  return M.file_exists_in_dir(LazyVim.root.cwd(), ...)
 end
 
 function M.file_exists_in_root(...)
-  return M.file_exists_in_dir(LazyUtil.root.get(), ...)
+  return M.file_exists_in_dir(LazyVim.root.get(), ...)
 end
 
 function M.find_command()
@@ -29,7 +28,7 @@ function M.telescope(builtin, opts)
   return function()
     builtin = params.builtin
     opts = params.opts
-    opts = vim.tbl_deep_extend("force", { cwd = LazyUtil.root.get() }, opts or {})
+    opts = vim.tbl_deep_extend("force", { cwd = LazyVim.root.get() }, opts or {})
 
     if builtin == "files" then
       if M.file_exists_in_dir(opts.cwd, ".ignore") then
@@ -43,7 +42,7 @@ function M.telescope(builtin, opts)
         builtin = "find_files"
       end
     end
-    return LazyUtil.telescope(builtin, opts)()
+    return LazyVim.pick.open(builtin, opts)
   end
 end
 

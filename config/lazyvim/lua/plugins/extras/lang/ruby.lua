@@ -152,12 +152,6 @@ return {
     -- dev = true,
   },
   {
-    "folke/neodev.nvim",
-    opts = {
-      library = { plugins = { "neotest" }, types = true },
-    },
-  },
-  {
     "overseer.nvim",
 
     opts = function(_, opts)

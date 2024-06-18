@@ -96,6 +96,13 @@ return {
             },
           },
         },
+        harper_ls = {
+          settings = {
+            ["harper_ls"] = {
+              userDictPath = "~/.config/harper_ls",
+            },
+          },
+        },
       },
     },
 
