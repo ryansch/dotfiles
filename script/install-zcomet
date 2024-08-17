@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [ ! -d ~/.zcomet/bin/ ]; then
+  gh repo clone agkozak/zcomet ~/.zcomet/bin
+fi
+
+pushd ~/.zcomet/bin
+gh repo sync
+popd

@@ -65,8 +65,6 @@
         - fc-cache -vf ~/.fonts
 
 - ifmacos:
-    - tap:
-        - homebrew/cask-fonts
     - cask:
         - font-hack-nerd-font
     - brew:
@@ -111,6 +109,10 @@
       stdout: true
       stderr: true
     - command: ~/.dotfiles/script/install-manifest-tool manifest-tool-darwin-arm64
+      description: "Install manifest-tool"
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/install-zcomet
       description: "Install manifest-tool"
       stdout: true
       stderr: true

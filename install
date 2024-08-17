@@ -46,8 +46,8 @@ plugin_dirs=(plugins/*)
 shopt -u nullglob
 
 plugins=()
-for plugin_dir in ${plugin_dirs[@]}; do
-  plugins+=("--plugin-dir" ${plugin_dir})
+for plugin_dir in "${plugin_dirs[@]}"; do
+  plugins+=("--plugin-dir" "${plugin_dir}")
 done
 
 for conf in ${DEFAULT_CONFIG_PREFIX}; do
