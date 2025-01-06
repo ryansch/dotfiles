@@ -1,4 +1,6 @@
-source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
+zstyle ':zcomet:*' home-dir ~/.zcomet
+# source ${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh
+source ${HOME}/.zcomet/bin/zcomet.zsh
 
 # set sane options
 zcomet load willghatch/zsh-saneopt
@@ -52,6 +54,10 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
+
+if command -v devbox >/dev/null; then
+  eval "$(devbox global shellenv)"
+fi
 
 setopt pushd_ignore_dups
 
