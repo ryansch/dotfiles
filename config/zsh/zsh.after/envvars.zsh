@@ -13,6 +13,7 @@ export GOSS_PATH=~/bin/goss-linux-amd64
 export GPG_TTY=$(tty)
 
 export SKETCHBOOK_DIR=~/dev/arduino
+export ARDUINO_DIRECTORIES_USER=~/dev/arduino
 export KALEIDOSCOPE_DIR=~/dev/arduino/Kaleidoscope
 
 export COMPOSE_DOCKER_CLI_BUILD=1
