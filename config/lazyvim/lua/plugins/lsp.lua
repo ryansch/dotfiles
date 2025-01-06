@@ -98,7 +98,7 @@ return {
         },
         harper_ls = {
           settings = {
-            ["harper_ls"] = {
+            ["harper-ls"] = {
               userDictPath = "~/.config/harper_ls",
             },
           },

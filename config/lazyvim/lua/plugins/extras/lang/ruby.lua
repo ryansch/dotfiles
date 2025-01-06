@@ -78,13 +78,13 @@ return {
           rspec_cmd = function()
             local finders = require("util.finders")
             if finders.file_exists(".bin/rspec") then
-              return vim.tbl_flatten({
+              return {
                 ".bin/rspec",
-              })
+              }
             else
-              return vim.tbl_flatten({
+              return {
                 "rspec",
-              })
+              }
             end
           end,
         },
