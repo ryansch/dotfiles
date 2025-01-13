@@ -147,7 +147,7 @@
   path = .gitconfig.user
 [credential "https://github.com"]
 	helper = 
-	helper = !$(brew --prefix)/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://git.ryansch.net"]
 	helper = osxkeychain
 	helper = oauth
