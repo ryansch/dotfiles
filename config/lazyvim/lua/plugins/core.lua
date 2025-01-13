@@ -1,6 +1,6 @@
 return {
   { "rktjmp/lush.nvim" },
-  { "ryansch/lunarized", dev = true },
+  { "ryansch/lunarized" },
   {
     "LazyVim/LazyVim",
     opts = {

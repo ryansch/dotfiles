@@ -6,3 +6,5 @@ devenv.local.nix
 .envrc
 
 .DS_Store
+
+.aider*

@@ -8,5 +8,9 @@ return {
 
       config.defaults.actions.files["ctrl-t"] = actions.file_tabedit
     end,
+
+    keys = {
+      { "<leader>fg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+    },
   },
 }

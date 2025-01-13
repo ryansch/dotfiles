@@ -1,5 +1,3 @@
-local Util = require("util")
-
 return {
   {
     "folke/todo-comments.nvim",
