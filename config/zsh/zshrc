@@ -18,7 +18,8 @@ zcomet load --no-submodules prezto modules/archive
 zcomet load zsh-users/zsh-history-substring-search
 
 zcomet load Aloxaf/fzf-tab
-zcomet load olets/zsh-abbr
+# This is currently busted from an upgrade and I don't think I used it.
+# zcomet load olets/zsh-abbr
 zcomet load djui/alias-tips
 zcomet load zdharma-continuum/fast-syntax-highlighting
 
@@ -50,14 +51,18 @@ if [[ "$OS" == "Darwin" ]]; then
   eval "$($(homebrew_location)/bin/brew shellenv)"
 fi
 
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-export DIRENV_LOG_FORMAT=
-eval "$(direnv hook zsh)"
+if command -v flox >/dev/null; then
+  eval "$(flox activate -m run)"
+fi
 
 if command -v devbox >/dev/null; then
   eval "$(devbox global shellenv)"
 fi
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+export DIRENV_LOG_FORMAT=
+eval "$(direnv hook zsh)"
 
 setopt pushd_ignore_dups
 
