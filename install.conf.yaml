@@ -53,6 +53,7 @@
     ~/.config/nix/nix.conf: config/nix/nix.conf
     ~/.config/home-manager: config/nix/home-manager
     ~/.config/nixpkgs/config.nix: config/nix/nixpkgs.nix
+    ~/.flox: config/flox
 
 - ifanylinux:
     - link:
