@@ -37,6 +37,12 @@
     ~/.zshrc:
       path: config/zsh/zshrc
       force: true
+    ~/.zprofile:
+      path: config/zsh/zprofile
+      force: true
+    ~/.zshenv:
+      path: config/zsh/zshenv
+      force: true
     ~/.zsh.after:
       path: config/zsh/zsh.after
       force: true

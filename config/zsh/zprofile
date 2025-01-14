@@ -1,0 +1,5 @@
+typeset -U path
+path=(~/.local/bin "$path[@]" /usr/local/sbin /usr/local/bin)
+
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :

@@ -208,6 +208,11 @@ disabled = true
 format = 'via [$symbol]($style)'
 disabled = true
 
+[env_var.FLOX_PROMPT_ENVIRONMENTS]
+format = '([$symbol:$env_value]($style) )'
+style = 'green bold'
+symbol = '󰊕'
+
 [custom.desk]
 description = "indicates whether you're in a desk-spawned shell"
 command = "(command -v desk &>/dev/null && desk | grep -q 'No desk activated.') && echo '' || echo 󰇄"

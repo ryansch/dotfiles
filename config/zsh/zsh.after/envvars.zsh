@@ -1,9 +1,6 @@
 # source ${HOME}/.local/share/sh/homebrew.sh
 # homebrew_dir=$(homebrew_location)
 
-typeset -U path
-path=(~/.local/bin "$path[@]" /usr/local/sbin /usr/local/bin)
-
 export EDITOR="$(which nvim)"
 export NODE_PATH=/usr/local/lib/node_modules
 export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"

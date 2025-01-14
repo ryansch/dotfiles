@@ -55,10 +55,6 @@ if command -v flox >/dev/null; then
   eval "$(flox activate -m run)"
 fi
 
-if command -v devbox >/dev/null; then
-  eval "$(devbox global shellenv)"
-fi
-
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 export DIRENV_LOG_FORMAT=
@@ -71,17 +67,6 @@ if [ -d $HOME/.zsh.after/ ]; then
   if [ "$(ls -A $HOME/.zsh.after/)" ]; then
     for config_file ($HOME/.zsh.after/*.zsh) source $config_file
   fi
-fi
-
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-# End Nix
-
-# nix home-manager integration
-if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then
-  . $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 fi
 
 zcomet compinit

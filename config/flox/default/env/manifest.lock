@@ -6,8 +6,29 @@
       "bat": {
         "pkg-path": "bat"
       },
+      "batdiff": {
+        "pkg-path": "bat-extras.batdiff"
+      },
+      "batgrep": {
+        "pkg-path": "bat-extras.batgrep"
+      },
+      "batman": {
+        "pkg-path": "bat-extras.batman"
+      },
+      "batpipe": {
+        "pkg-path": "bat-extras.batpipe"
+      },
+      "batwatch": {
+        "pkg-path": "bat-extras.batwatch"
+      },
+      "delta": {
+        "pkg-path": "delta"
+      },
       "direnv": {
         "pkg-path": "direnv"
+      },
+      "entr": {
+        "pkg-path": "entr"
       },
       "eza": {
         "pkg-path": "eza"
@@ -21,6 +42,9 @@
       "gh": {
         "pkg-path": "gh"
       },
+      "git": {
+        "pkg-path": "git"
+      },
       "lazygit": {
         "pkg-path": "lazygit"
       },
@@ -29,6 +53,9 @@
       },
       "nodejs": {
         "pkg-path": "nodejs"
+      },
+      "prettybat": {
+        "pkg-path": "bat-extras.prettybat"
       },
       "ripgrep": {
         "pkg-path": "ripgrep"
@@ -65,27 +92,28 @@
     {
       "attr_path": "bat",
       "broken": false,
-      "derivation": "/nix/store/8v6ai31v87c0ym0ls81x008yhla3yzfj-bat-0.25.0.drv",
+      "derivation": "/nix/store/lq353bf2aknb2adv7lq0089j86xl31rp-bat-0.24.0.drv",
       "description": "Cat(1) clone with syntax highlighting and Git integration",
       "install_id": "bat",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "bat-0.25.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "bat-0.24.0",
       "pname": "bat",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.25.0",
+      "version": "0.24.0",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/xn4pdjyy7qf63f5f9vyagr3403xalqrb-bat-0.25.0"
+        "out": "/nix/store/ji62ssis7jbfh2fb3xd5iwyj4n1cizk5-bat-0.24.0"
       },
       "system": "aarch64-darwin",
       "group": "toplevel",
@@ -94,27 +122,28 @@
     {
       "attr_path": "bat",
       "broken": false,
-      "derivation": "/nix/store/v30qsf9j9pbf02c1j8yfdm3qhjrx0nc9-bat-0.25.0.drv",
+      "derivation": "/nix/store/k9lasm03h2q965hpa46zd693hi0ha46b-bat-0.24.0.drv",
       "description": "Cat(1) clone with syntax highlighting and Git integration",
       "install_id": "bat",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "bat-0.25.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "bat-0.24.0",
       "pname": "bat",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.25.0",
+      "version": "0.24.0",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/5kal2blyd4l3k39sbm1z28hwp632kq6x-bat-0.25.0"
+        "out": "/nix/store/rcq4cvwzz5z10lb2iafxz7dpqlhfz788-bat-0.24.0"
       },
       "system": "aarch64-linux",
       "group": "toplevel",
@@ -123,27 +152,28 @@
     {
       "attr_path": "bat",
       "broken": false,
-      "derivation": "/nix/store/yrfz1gqyjvnlz1idgpg99ykjiawyas3z-bat-0.25.0.drv",
+      "derivation": "/nix/store/ks6f7p4j8ypfvs2cyifcf377hn2bvx41-bat-0.24.0.drv",
       "description": "Cat(1) clone with syntax highlighting and Git integration",
       "install_id": "bat",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "bat-0.25.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "bat-0.24.0",
       "pname": "bat",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.25.0",
+      "version": "0.24.0",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/3wwns6xw8h9vq1wdvk6xa4c5qn5fscil-bat-0.25.0"
+        "out": "/nix/store/hwi5ynxsvrfny50gsnws3dxr9ajybp76-bat-0.24.0"
       },
       "system": "x86_64-darwin",
       "group": "toplevel",
@@ -152,27 +182,748 @@
     {
       "attr_path": "bat",
       "broken": false,
-      "derivation": "/nix/store/2i5g9gnjhlgspiknxx0q4hn5jsfn0r5w-bat-0.25.0.drv",
+      "derivation": "/nix/store/cbz41c162c0sd5v01idiqfjlcyiig0vf-bat-0.24.0.drv",
       "description": "Cat(1) clone with syntax highlighting and Git integration",
       "install_id": "bat",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "bat-0.25.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "bat-0.24.0",
       "pname": "bat",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.25.0",
+      "version": "0.24.0",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/cxija98kkz5yzk35jqi633iqn2c4dx0s-bat-0.25.0"
+        "out": "/nix/store/s01ih05das85a4w59f1fdsh1cra5svcv-bat-0.24.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batdiff",
+      "broken": false,
+      "derivation": "/nix/store/6vif06xqlqzz8n8j9r4y6h4s14zj81nw-batdiff-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batdiff",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batdiff-2024.07.10",
+      "pname": "batdiff",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/jsm1krb24934jijaj8hj5bagr4r7a5pn-batdiff-2024.07.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batdiff",
+      "broken": false,
+      "derivation": "/nix/store/1521mf4jq3qnfmr5j93lvsr2bvd9s5dj-batdiff-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batdiff",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batdiff-2024.07.10",
+      "pname": "batdiff",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/vp57w09lahbkgvsn75ar27glx444ysda-batdiff-2024.07.10"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batdiff",
+      "broken": false,
+      "derivation": "/nix/store/8hwzy9sfxq2dv7850wv8sf7wa1blggj4-batdiff-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batdiff",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batdiff-2024.07.10",
+      "pname": "batdiff",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/8b6p8z3crz0dyknmm1lw7ca3kmc6jrc8-batdiff-2024.07.10"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batdiff",
+      "broken": false,
+      "derivation": "/nix/store/xs20sgw4rn8wawiknrwwrgsyvnfin032-batdiff-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batdiff",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batdiff-2024.07.10",
+      "pname": "batdiff",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/hqxw38jg329jprpi1cg6ml0mqgw2hl2m-batdiff-2024.07.10"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batgrep",
+      "broken": false,
+      "derivation": "/nix/store/bvhw82a77751c1ww2fsl9ifzmab0n8cd-batgrep-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batgrep",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batgrep-2024.07.10",
+      "pname": "batgrep",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/adk150lz6z62dx4lvhs8cjijyz1s3b0q-batgrep-2024.07.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batgrep",
+      "broken": false,
+      "derivation": "/nix/store/hfvvs6i53k97pkn5byslinvrl769acsh-batgrep-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batgrep",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batgrep-2024.07.10",
+      "pname": "batgrep",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/nj6gn8xi2n66yyw4l4hym5ic1grlq2jf-batgrep-2024.07.10"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batgrep",
+      "broken": false,
+      "derivation": "/nix/store/ba00ghxwi370swg159wq2fdmkvykkgnb-batgrep-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batgrep",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batgrep-2024.07.10",
+      "pname": "batgrep",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/gj76qyrrirqvsy91jw13xxbxkw4xfa8y-batgrep-2024.07.10"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batgrep",
+      "broken": false,
+      "derivation": "/nix/store/1f502vy4dfxcj75yzg3983j09qvck1jd-batgrep-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batgrep",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batgrep-2024.07.10",
+      "pname": "batgrep",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/iv364k0bf2mwwcac94fysyalixaxsi66-batgrep-2024.07.10"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batman",
+      "broken": false,
+      "derivation": "/nix/store/qihk6rvh9m4bvh5qcydjsw1sjvzj773c-batman-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batman",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batman-2024.07.10",
+      "pname": "batman",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/ncvizymw3irb41f62q2sxd8k3kxihd3f-batman-2024.07.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batman",
+      "broken": false,
+      "derivation": "/nix/store/n04va9lchnbni0gw9660klhmaxw4alb5-batman-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batman",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batman-2024.07.10",
+      "pname": "batman",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/5rqxm0dzd2a838qashjs12djfrl4ykv1-batman-2024.07.10"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batman",
+      "broken": false,
+      "derivation": "/nix/store/q1zg3wv4v7aqivn3m4mbsz2h3zyiamlv-batman-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batman",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batman-2024.07.10",
+      "pname": "batman",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/7r1vc5h4hhy3qcazsv3arcfycs9g1qfy-batman-2024.07.10"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batman",
+      "broken": false,
+      "derivation": "/nix/store/8qvmmx6f9bnk736d2jz2hrql4l7s5sw4-batman-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batman",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batman-2024.07.10",
+      "pname": "batman",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/wlksdi6ynzbr6x3f6x3rc2vr78m779xr-batman-2024.07.10"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batpipe",
+      "broken": false,
+      "derivation": "/nix/store/2d6mrm2x8xgpknclvwv1r0ss8kix769f-batpipe-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batpipe",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batpipe-2024.07.10",
+      "pname": "batpipe",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/v7zvasvq0dfdzli6ya7q220lv9qhxps7-batpipe-2024.07.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batpipe",
+      "broken": false,
+      "derivation": "/nix/store/kn7scwv98r6qxbv5wpahaa6m88ly1l17-batpipe-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batpipe",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batpipe-2024.07.10",
+      "pname": "batpipe",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/4039xj4armg7ib65yjfdjr3saz21cwm0-batpipe-2024.07.10"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batpipe",
+      "broken": false,
+      "derivation": "/nix/store/pgfb5a790m3pgs0zylqw6vs3247l77a8-batpipe-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batpipe",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batpipe-2024.07.10",
+      "pname": "batpipe",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/gy02y3rns4rm1yxghmqgjjramwv20d61-batpipe-2024.07.10"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batpipe",
+      "broken": false,
+      "derivation": "/nix/store/vbfbypklplc37v850vi7rj0abgpq4jvj-batpipe-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batpipe",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batpipe-2024.07.10",
+      "pname": "batpipe",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/8491sr8q54aqq5yqabdsamk44cyb1fmg-batpipe-2024.07.10"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batwatch",
+      "broken": false,
+      "derivation": "/nix/store/bl9mjd4kjhfn6c6sa7wgz2v8gqik4dxc-batwatch-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batwatch",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batwatch-2024.07.10",
+      "pname": "batwatch",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/q128fjlc7zkf9p4bzy8dwp62l0fw4r35-batwatch-2024.07.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batwatch",
+      "broken": false,
+      "derivation": "/nix/store/fsxhd72pvi2lgqvfs1gl5wj68idm2x1z-batwatch-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batwatch",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batwatch-2024.07.10",
+      "pname": "batwatch",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/s85izdgym8dn2mfcmwj6f1i3bkb7b9mw-batwatch-2024.07.10"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batwatch",
+      "broken": false,
+      "derivation": "/nix/store/9lj7d1hdpxc9cq4y7h5gahxzh8jsbkaz-batwatch-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batwatch",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batwatch-2024.07.10",
+      "pname": "batwatch",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/w2nl0lm8198cpbpqzb7cxrm0xap4y2k2-batwatch-2024.07.10"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.batwatch",
+      "broken": false,
+      "derivation": "/nix/store/z17z3mdi5ndqlqk445cglf05k56d11m9-batwatch-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "batwatch",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "batwatch-2024.07.10",
+      "pname": "batwatch",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/hclqx1ylbdrdmgdvvpp8lsq7ssklrlh7-batwatch-2024.07.10"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "delta",
+      "broken": false,
+      "derivation": "/nix/store/5cgb773cn6b2dxqp9nj3qpziknbi3619-delta-0.18.2.drv",
+      "description": "Syntax-highlighting pager for git",
+      "install_id": "delta",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "delta-0.18.2",
+      "pname": "delta",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.18.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/5cxfzsjgmjy2fwkc651kmpi6911mpwj7-delta-0.18.2"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "delta",
+      "broken": false,
+      "derivation": "/nix/store/w7lzhgd6rbh7qlmi18gpgnh76qblyfjg-delta-0.18.2.drv",
+      "description": "Syntax-highlighting pager for git",
+      "install_id": "delta",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "delta-0.18.2",
+      "pname": "delta",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.18.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/n0h77wd5aws8rrd55xjzqsif9y5jnipj-delta-0.18.2"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "delta",
+      "broken": false,
+      "derivation": "/nix/store/jmg39svra41rk5wyrpl1wa3bk11ndbh8-delta-0.18.2.drv",
+      "description": "Syntax-highlighting pager for git",
+      "install_id": "delta",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "delta-0.18.2",
+      "pname": "delta",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.18.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/vlm0qgmxfyirmhjq6ym8ply79xfkcnag-delta-0.18.2"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "delta",
+      "broken": false,
+      "derivation": "/nix/store/655a1nlf1fqikd4yca9idpcckd1lslgc-delta-0.18.2.drv",
+      "description": "Syntax-highlighting pager for git",
+      "install_id": "delta",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "delta-0.18.2",
+      "pname": "delta",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.18.2",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/x7iyvipjzd0bi0mgs2c4pdx1x0ibgmpk-delta-0.18.2"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -185,14 +936,15 @@
       "description": "Shell extension that manages your environment",
       "install_id": "direnv",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "direnv-2.35.0",
       "pname": "direnv",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -214,14 +966,15 @@
       "description": "Shell extension that manages your environment",
       "install_id": "direnv",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "direnv-2.35.0",
       "pname": "direnv",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -243,14 +996,15 @@
       "description": "Shell extension that manages your environment",
       "install_id": "direnv",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "direnv-2.35.0",
       "pname": "direnv",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -272,14 +1026,15 @@
       "description": "Shell extension that manages your environment",
       "install_id": "direnv",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "direnv-2.35.0",
       "pname": "direnv",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -295,31 +1050,152 @@
       "priority": 5
     },
     {
-      "attr_path": "eza",
+      "attr_path": "entr",
       "broken": false,
-      "derivation": "/nix/store/mr8r7p59b4q0cb6svrb0pqpzwpq5kj7j-eza-0.20.16.drv",
-      "description": "Modern, maintained replacement for ls",
-      "install_id": "eza",
-      "license": "EUPL-1.2",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "eza-0.20.16",
-      "pname": "eza",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "derivation": "/nix/store/vppxwk8bjsxnv59szcnhj61rf01cj61x-entr-5.6.drv",
+      "description": "Run arbitrary commands when files change",
+      "install_id": "entr",
+      "license": "ISC",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "entr-5.6",
+      "pname": "entr",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.20.16",
+      "version": "5.6",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/wrmnykmhik190y6s8b89n3ll6vl12wa0-entr-5.6"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "entr",
+      "broken": false,
+      "derivation": "/nix/store/6z9p2q9lnqig3mwjgh853b5mj723wc0b-entr-5.6.drv",
+      "description": "Run arbitrary commands when files change",
+      "install_id": "entr",
+      "license": "ISC",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "entr-5.6",
+      "pname": "entr",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "5.6",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/lsgwv7jrjn2mv5a1kiw0799i2s6rpiq8-entr-5.6"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "entr",
+      "broken": false,
+      "derivation": "/nix/store/mjqgsmrd7p9l2fasjpr0r71699x3p94y-entr-5.6.drv",
+      "description": "Run arbitrary commands when files change",
+      "install_id": "entr",
+      "license": "ISC",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "entr-5.6",
+      "pname": "entr",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "5.6",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/jp3i4gr0m0v5igaxn9bi6canqknvx0kj-entr-5.6"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "entr",
+      "broken": false,
+      "derivation": "/nix/store/25x0j8wp4dd8kh7b9h62zvd7b8di9nw9-entr-5.6.drv",
+      "description": "Run arbitrary commands when files change",
+      "install_id": "entr",
+      "license": "ISC",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "entr-5.6",
+      "pname": "entr",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "5.6",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/5pfsh1mikg419d2xn3l2529fmalhby0j-entr-5.6"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "eza",
+      "broken": false,
+      "derivation": "/nix/store/4lc9wqqg7qv6mcgv4vdvp755xcrgjiqz-eza-0.20.15.drv",
+      "description": "Modern, maintained replacement for ls",
+      "install_id": "eza",
+      "license": "EUPL-1.2",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "eza-0.20.15",
+      "pname": "eza",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.20.15",
       "outputs_to_install": [
         "out",
         "man"
       ],
       "outputs": {
-        "man": "/nix/store/z2ylddrpwzybv29n540ml4qjx92mg8yf-eza-0.20.16-man",
-        "out": "/nix/store/jaqbdkkr691anlk51sj68svll556ks3y-eza-0.20.16"
+        "man": "/nix/store/k0if716vv1lmd74d6g4y3zk0p9vn2z5i-eza-0.20.15-man",
+        "out": "/nix/store/63bzzpzks7i4sfkxf6iqa52hnmxl1kxa-eza-0.20.15"
       },
       "system": "aarch64-darwin",
       "group": "toplevel",
@@ -328,29 +1204,30 @@
     {
       "attr_path": "eza",
       "broken": false,
-      "derivation": "/nix/store/cb2dwiyf9sqj4nc5x9p2dvlr5aa0j7nq-eza-0.20.16.drv",
+      "derivation": "/nix/store/wfymb8byijrfvrv6skp9nd2jsf3r404a-eza-0.20.15.drv",
       "description": "Modern, maintained replacement for ls",
       "install_id": "eza",
       "license": "EUPL-1.2",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "eza-0.20.16",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "eza-0.20.15",
       "pname": "eza",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.20.16",
+      "version": "0.20.15",
       "outputs_to_install": [
         "out",
         "man"
       ],
       "outputs": {
-        "man": "/nix/store/a8babix0pbjir5nm9056wh9i8f6ca2m2-eza-0.20.16-man",
-        "out": "/nix/store/c1s19msz5b5wi3j58b17zamm6qfzj5m8-eza-0.20.16"
+        "man": "/nix/store/7ag0y7w7vppgmwmf3qmsxnp97ziswhna-eza-0.20.15-man",
+        "out": "/nix/store/51y169gn91hq52scl2bcfgsz3vl42i73-eza-0.20.15"
       },
       "system": "aarch64-linux",
       "group": "toplevel",
@@ -359,29 +1236,30 @@
     {
       "attr_path": "eza",
       "broken": false,
-      "derivation": "/nix/store/3lnl6gyfd0i2yjw2gsv4mxiykk41fph9-eza-0.20.16.drv",
+      "derivation": "/nix/store/5dh4lbbnnyj9g1n9g5igyaf3mgl1ci9b-eza-0.20.15.drv",
       "description": "Modern, maintained replacement for ls",
       "install_id": "eza",
       "license": "EUPL-1.2",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "eza-0.20.16",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "eza-0.20.15",
       "pname": "eza",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.20.16",
+      "version": "0.20.15",
       "outputs_to_install": [
         "out",
         "man"
       ],
       "outputs": {
-        "man": "/nix/store/6jx4vzpwfz7i81hwfjcq8wddm4d602y9-eza-0.20.16-man",
-        "out": "/nix/store/xx3h5y1xlxsgq2k7q397gdw5jnjf15a5-eza-0.20.16"
+        "man": "/nix/store/84bnqnjhnjmfm0xspx4jmpb0fj3b1765-eza-0.20.15-man",
+        "out": "/nix/store/frhdx24pl1gk5gn7bihvf1lwfj2mvq3s-eza-0.20.15"
       },
       "system": "x86_64-darwin",
       "group": "toplevel",
@@ -390,29 +1268,30 @@
     {
       "attr_path": "eza",
       "broken": false,
-      "derivation": "/nix/store/21jpnd5f05rxkd8jbbq8w3g5ndsicggh-eza-0.20.16.drv",
+      "derivation": "/nix/store/s6gll45q1gagygnybzk4l9acha8yn47z-eza-0.20.15.drv",
       "description": "Modern, maintained replacement for ls",
       "install_id": "eza",
       "license": "EUPL-1.2",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
-      "name": "eza-0.20.16",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "eza-0.20.15",
       "pname": "eza",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "0.20.16",
+      "version": "0.20.15",
       "outputs_to_install": [
         "out",
         "man"
       ],
       "outputs": {
-        "man": "/nix/store/p3y5ribwmz2vaf6sgfjqi3xfhl9xr2ra-eza-0.20.16-man",
-        "out": "/nix/store/8ih7c0jkkizb4rmw2r8nfzsjf2b06lpv-eza-0.20.16"
+        "man": "/nix/store/rb8bf1db70q2sh74rshfvfixsn9qh0hx-eza-0.20.15-man",
+        "out": "/nix/store/jz7bqgw7x8nqglsrqfcdmizkgkzpig6y-eza-0.20.15"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -425,14 +1304,15 @@
       "description": "Simple, fast and user-friendly alternative to find",
       "install_id": "fd",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fd-10.2.0",
       "pname": "fd",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -454,14 +1334,15 @@
       "description": "Simple, fast and user-friendly alternative to find",
       "install_id": "fd",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fd-10.2.0",
       "pname": "fd",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -483,14 +1364,15 @@
       "description": "Simple, fast and user-friendly alternative to find",
       "install_id": "fd",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fd-10.2.0",
       "pname": "fd",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -512,14 +1394,15 @@
       "description": "Simple, fast and user-friendly alternative to find",
       "install_id": "fd",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fd-10.2.0",
       "pname": "fd",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -541,14 +1424,15 @@
       "description": "Command-line fuzzy finder written in Go",
       "install_id": "fzf",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fzf-0.57.0",
       "pname": "fzf",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -572,14 +1456,15 @@
       "description": "Command-line fuzzy finder written in Go",
       "install_id": "fzf",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fzf-0.57.0",
       "pname": "fzf",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -603,14 +1488,15 @@
       "description": "Command-line fuzzy finder written in Go",
       "install_id": "fzf",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fzf-0.57.0",
       "pname": "fzf",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -634,14 +1520,15 @@
       "description": "Command-line fuzzy finder written in Go",
       "install_id": "fzf",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "fzf-0.57.0",
       "pname": "fzf",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -665,14 +1552,15 @@
       "description": "GitHub CLI tool",
       "install_id": "gh",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "gh-2.65.0",
       "pname": "gh",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -694,14 +1582,15 @@
       "description": "GitHub CLI tool",
       "install_id": "gh",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "gh-2.65.0",
       "pname": "gh",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -723,14 +1612,15 @@
       "description": "GitHub CLI tool",
       "install_id": "gh",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "gh-2.65.0",
       "pname": "gh",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -752,14 +1642,15 @@
       "description": "GitHub CLI tool",
       "install_id": "gh",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "gh-2.65.0",
       "pname": "gh",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -775,20 +1666,147 @@
       "priority": 5
     },
     {
+      "attr_path": "git",
+      "broken": false,
+      "derivation": "/nix/store/092n206m8wnljvp6p8kzh00jhsvdy8v0-git-2.47.0.drv",
+      "description": "Distributed version control system",
+      "install_id": "git",
+      "license": "GPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "git-2.47.0",
+      "pname": "git",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.47.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "doc": "/nix/store/ilmzpslj8yvf5krdyz7bj08wjf03pxvj-git-2.47.0-doc",
+        "out": "/nix/store/bi58hj6aqbswrwngsdzszzdf35vzsl36-git-2.47.0"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "git",
+      "broken": false,
+      "derivation": "/nix/store/0644kpl2ayqpdaqif8ayggkqxsci1hnv-git-2.47.0.drv",
+      "description": "Distributed version control system",
+      "install_id": "git",
+      "license": "GPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "git-2.47.0",
+      "pname": "git",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.47.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "debug": "/nix/store/cyfh5sk108g0yhif2ppxw3xyrbz9cc5k-git-2.47.0-debug",
+        "doc": "/nix/store/4rj9xhq42v2b7nxf77xlkqbd20jzby0i-git-2.47.0-doc",
+        "out": "/nix/store/861v7354sw64ydk43jwdswwkqkf0dhq2-git-2.47.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "git",
+      "broken": false,
+      "derivation": "/nix/store/dd89fj9cx0ai9kzw45iw1ddj0jiqrwnw-git-2.47.0.drv",
+      "description": "Distributed version control system",
+      "install_id": "git",
+      "license": "GPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "git-2.47.0",
+      "pname": "git",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.47.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "doc": "/nix/store/i5rw1f8xv1sp13lcsxq0bkswn600lcmx-git-2.47.0-doc",
+        "out": "/nix/store/v283088hdcppiswvqslgfspxwnq4ldz3-git-2.47.0"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "git",
+      "broken": false,
+      "derivation": "/nix/store/n7pwjqn4230bihzqlfxh88n5jxa5wlmw-git-2.47.0.drv",
+      "description": "Distributed version control system",
+      "install_id": "git",
+      "license": "GPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "git-2.47.0",
+      "pname": "git",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.47.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "debug": "/nix/store/1s38v03xh8d88b1wm8iwpkrpy6cf3ydq-git-2.47.0-debug",
+        "doc": "/nix/store/kn855hkv6yda9wi7g48lxwgplijqijb9-git-2.47.0-doc",
+        "out": "/nix/store/iwq58rpn6idjnxbnyjh351776qzvsd0r-git-2.47.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
       "attr_path": "lazygit",
       "broken": false,
       "derivation": "/nix/store/1rs3fimfkgpvcw9zz81xw2pmk09x955c-lazygit-0.44.1.drv",
       "description": "Simple terminal UI for git commands",
       "install_id": "lazygit",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "lazygit-0.44.1",
       "pname": "lazygit",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -810,14 +1828,15 @@
       "description": "Simple terminal UI for git commands",
       "install_id": "lazygit",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "lazygit-0.44.1",
       "pname": "lazygit",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -839,14 +1858,15 @@
       "description": "Simple terminal UI for git commands",
       "install_id": "lazygit",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "lazygit-0.44.1",
       "pname": "lazygit",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -868,14 +1888,15 @@
       "description": "Simple terminal UI for git commands",
       "install_id": "lazygit",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "lazygit-0.44.1",
       "pname": "lazygit",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -897,14 +1918,15 @@
       "description": "Vim text editor fork focused on extensibility and agility",
       "install_id": "neovim",
       "license": "[ Apache-2.0, Vim ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "neovim-0.10.3",
       "pname": "neovim",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -926,14 +1948,15 @@
       "description": "Vim text editor fork focused on extensibility and agility",
       "install_id": "neovim",
       "license": "[ Apache-2.0, Vim ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "neovim-0.10.3",
       "pname": "neovim",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -955,14 +1978,15 @@
       "description": "Vim text editor fork focused on extensibility and agility",
       "install_id": "neovim",
       "license": "[ Apache-2.0, Vim ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "neovim-0.10.3",
       "pname": "neovim",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -984,14 +2008,15 @@
       "description": "Vim text editor fork focused on extensibility and agility",
       "install_id": "neovim",
       "license": "[ Apache-2.0, Vim ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "neovim-0.10.3",
       "pname": "neovim",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1013,14 +2038,15 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1043,14 +2069,15 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1073,14 +2100,15 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1103,14 +2131,15 @@
       "description": "Event-driven I/O framework for the V8 JavaScript engine",
       "install_id": "nodejs",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "nodejs-22.11.0",
       "pname": "nodejs",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1127,20 +2156,141 @@
       "priority": 5
     },
     {
+      "attr_path": "bat-extras.prettybat",
+      "broken": false,
+      "derivation": "/nix/store/3f0xp55h7dvvyp6svd2qdgxbg1zamywz-prettybat-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "prettybat",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "prettybat-2024.07.10",
+      "pname": "prettybat",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/26yrx5v3pr4rrm9xvsvgjk80chzw4y3g-prettybat-2024.07.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.prettybat",
+      "broken": false,
+      "derivation": "/nix/store/fg6cki9a6wr7nrh14lqw9814qil7n13n-prettybat-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "prettybat",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "prettybat-2024.07.10",
+      "pname": "prettybat",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/4ys7s3xparr75w59dm4xvqnhai87dvh1-prettybat-2024.07.10"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.prettybat",
+      "broken": false,
+      "derivation": "/nix/store/2faz4500kh3ljsnxv2nvyshcbjpvc2xw-prettybat-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "prettybat",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "prettybat-2024.07.10",
+      "pname": "prettybat",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/gn39z9i4sn8c5kvpi5hf31sns7xc564p-prettybat-2024.07.10"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "bat-extras.prettybat",
+      "broken": false,
+      "derivation": "/nix/store/y3hmn06rf1z1v5rav9d5vxbs4k5b0mgy-prettybat-2024.07.10.drv",
+      "description": "Bash scripts that integrate bat with various command line tools",
+      "install_id": "prettybat",
+      "license": "[ MIT ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "name": "prettybat-2024.07.10",
+      "pname": "prettybat",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
+      "stabilities": [
+        "staging",
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2024.07.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/znac7kh4rfchjwgng8jn2fmd6nmirap1-prettybat-2024.07.10"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
       "attr_path": "ripgrep",
       "broken": false,
       "derivation": "/nix/store/4fgy4faidncginahncsgz6m63fxcmxp9-ripgrep-14.1.1.drv",
       "description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
       "install_id": "ripgrep",
       "license": "[ Unlicense, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ripgrep-14.1.1",
       "pname": "ripgrep",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1162,14 +2312,15 @@
       "description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
       "install_id": "ripgrep",
       "license": "[ Unlicense, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ripgrep-14.1.1",
       "pname": "ripgrep",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1191,14 +2342,15 @@
       "description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
       "install_id": "ripgrep",
       "license": "[ Unlicense, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ripgrep-14.1.1",
       "pname": "ripgrep",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1220,14 +2372,15 @@
       "description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
       "install_id": "ripgrep",
       "license": "[ Unlicense, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ripgrep-14.1.1",
       "pname": "ripgrep",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1249,14 +2402,15 @@
       "description": "Object-oriented language for quick and easy programming",
       "install_id": "ruby",
       "license": "Ruby",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ruby-3.3.6",
       "pname": "ruby",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1279,14 +2433,15 @@
       "description": "Object-oriented language for quick and easy programming",
       "install_id": "ruby",
       "license": "Ruby",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ruby-3.3.6",
       "pname": "ruby",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1309,14 +2464,15 @@
       "description": "Object-oriented language for quick and easy programming",
       "install_id": "ruby",
       "license": "Ruby",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ruby-3.3.6",
       "pname": "ruby",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1339,14 +2495,15 @@
       "description": "Object-oriented language for quick and easy programming",
       "install_id": "ruby",
       "license": "Ruby",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "ruby-3.3.6",
       "pname": "ruby",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1369,14 +2526,15 @@
       "description": "Minimal, blazing fast, and extremely customizable prompt for any shell",
       "install_id": "starship",
       "license": "ISC",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "starship-1.21.1",
       "pname": "starship",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1398,14 +2556,15 @@
       "description": "Minimal, blazing fast, and extremely customizable prompt for any shell",
       "install_id": "starship",
       "license": "ISC",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "starship-1.21.1",
       "pname": "starship",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1427,14 +2586,15 @@
       "description": "Minimal, blazing fast, and extremely customizable prompt for any shell",
       "install_id": "starship",
       "license": "ISC",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "starship-1.21.1",
       "pname": "starship",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1456,14 +2616,15 @@
       "description": "Minimal, blazing fast, and extremely customizable prompt for any shell",
       "install_id": "starship",
       "license": "ISC",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "starship-1.21.1",
       "pname": "starship",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1485,14 +2646,15 @@
       "description": "Parser generator tool and an incremental parsing library",
       "install_id": "tree-sitter",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "tree-sitter-0.24.4",
       "pname": "tree-sitter",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1514,14 +2676,15 @@
       "description": "Parser generator tool and an incremental parsing library",
       "install_id": "tree-sitter",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "tree-sitter-0.24.4",
       "pname": "tree-sitter",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1543,14 +2706,15 @@
       "description": "Parser generator tool and an incremental parsing library",
       "install_id": "tree-sitter",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "tree-sitter-0.24.4",
       "pname": "tree-sitter",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1572,14 +2736,15 @@
       "description": "Parser generator tool and an incremental parsing library",
       "install_id": "tree-sitter",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "tree-sitter-0.24.4",
       "pname": "tree-sitter",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1601,14 +2766,15 @@
       "description": "Fast cd command that learns your habits",
       "install_id": "zoxide",
       "license": "[ MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "zoxide-0.9.6",
       "pname": "zoxide",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1630,14 +2796,15 @@
       "description": "Fast cd command that learns your habits",
       "install_id": "zoxide",
       "license": "[ MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "zoxide-0.9.6",
       "pname": "zoxide",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1659,14 +2826,15 @@
       "description": "Fast cd command that learns your habits",
       "install_id": "zoxide",
       "license": "[ MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "zoxide-0.9.6",
       "pname": "zoxide",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -1688,14 +2856,15 @@
       "description": "Fast cd command that learns your habits",
       "install_id": "zoxide",
       "license": "[ MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=130595eba61081acde9001f43de3248d8888ac4a",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
       "name": "zoxide-0.9.6",
       "pname": "zoxide",
-      "rev": "130595eba61081acde9001f43de3248d8888ac4a",
-      "rev_count": 736170,
-      "rev_date": "2025-01-10T15:43:18Z",
-      "scrape_date": "2025-01-13T03:35:32Z",
+      "rev": "bffc22eb12172e6db3c5dde9e3e5628f8e3e7912",
+      "rev_count": 735357,
+      "rev_date": "2025-01-08T13:55:31Z",
+      "scrape_date": "2025-01-10T03:41:12Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
