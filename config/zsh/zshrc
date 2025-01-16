@@ -52,7 +52,11 @@ if [[ "$OS" == "Darwin" ]]; then
 fi
 
 if command -v flox >/dev/null; then
-  eval "$(flox activate -m run)"
+  if [ ! -d .flox ]; then
+    eval "$(flox activate -m run -d "$HOME")"
+  else
+    eval "$(flox activate)"
+  fi
 fi
 
 eval "$(starship init zsh)"

@@ -3,3 +3,13 @@ path=(~/.local/bin "$path[@]" /usr/local/sbin /usr/local/bin)
 
 # Added by OrbStack: command-line tools and integration
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+if command -v flox >/dev/null; then
+  if [ ! -d .flox ]; then
+    eval "$(flox activate -m run -d "$HOME")"
+  else
+    eval "$(flox activate)"
+  fi
+fi
+
+# vim: set filetype=zsh :
