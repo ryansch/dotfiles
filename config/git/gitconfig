@@ -106,7 +106,7 @@
   autocrlf = false
   editor = nvim
   pager = delta
-	excludesfile = /Users/ryansch/.gitignore
+	excludesfile = ~/.gitignore
 [delta]
   plus-style = "syntax #012800"
   minus-style = "syntax #340001"
