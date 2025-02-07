@@ -3,7 +3,6 @@ local Util = require("util")
 local M = {}
 
 function M.pick(command, opts)
-  opts = opts or {}
   return function()
     opts = vim.tbl_deep_extend("force", { cwd = LazyVim.root.get() }, opts or {})
     if Util.file_exists_in_dir(opts.cwd, ".ignore") then
