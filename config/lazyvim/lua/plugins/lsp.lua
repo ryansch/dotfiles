@@ -1,8 +1,8 @@
 -- Force erblint to use the .bin stub
-local finders = require("util.finders")
+local pickers = require("util.pickers")
 
 local erb_lint = require("lint").linters.erb_lint
-if finders.file_exists_in_cwd(".bin/erblint") then
+if pickers.file_exists_in_cwd(".bin/erblint") then
   erb_lint.args = { "exec", ".bin/erblint", "--format", "compact" }
 end
 
