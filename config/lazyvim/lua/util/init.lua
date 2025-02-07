@@ -1,11 +1,25 @@
+local Path = require("plenary.path")
+
 local M = {}
 
-function M.workspace_has_file(name)
-  return require("util.finders").file_exists_in_root(name)
+function M.file_exists(...)
+  return Path:new(...):exists()
 end
 
-function M.telescope(builtin, opts)
-  return require("util.finders").telescope(builtin, opts)
+function M.file_exists_in_dir(dir, ...)
+  return M.file_exists(Path:new(dir, ...))
+end
+
+function M.file_exists_in_cwd(...)
+  return M.file_exists_in_dir(LazyVim.root.cwd(), ...)
+end
+
+function M.file_exists_in_root(...)
+  return M.file_exists_in_dir(LazyVim.root.get(), ...)
+end
+
+function M.workspace_has_file(name)
+  return M.file_exists_in_root(name)
 end
 
 M.logger = require("plenary.log").new({
