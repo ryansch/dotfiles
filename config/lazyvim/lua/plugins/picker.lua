@@ -1,3 +1,5 @@
+local pickers = require("util/pickers")
+
 return {
   {
     "snacks.nvim",
@@ -11,12 +13,21 @@ return {
               },
             },
           },
+          sources = {
+            files = {
+              hidden = true,
+            },
+            grep = {
+              hidden = true,
+            },
+          },
         },
       })
     end,
 
     keys = {
-      { "<leader>fg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+      { "<leader>ff", pickers.pick("files"), desc = "Find Files (Root Dir)" },
+      { "<leader>fg", pickers.pick("live_grep"), desc = "Grep (Root Dir)" },
     },
   },
 }
