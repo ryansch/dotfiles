@@ -76,8 +76,8 @@ return {
       opts.adapters = vim.tbl_extend("force", opts.adapters or {}, {
         ["neotest-rspec"] = {
           rspec_cmd = function()
-            local finders = require("util.finders")
-            if finders.file_exists(".bin/rspec") then
+            local Util = require("util")
+            if Util.file_exists(".bin/rspec") then
               return {
                 ".bin/rspec",
               }
