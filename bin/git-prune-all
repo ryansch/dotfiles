@@ -1,8 +1,8 @@
 #!/bin/bash
 
 branch=${1:-main}
-if git branch | grep master; then
-	branch=master
+if git branch | rg -w master; then
+  branch=master
 fi
 
 echo "Pruning all branches merged into $branch"
