@@ -39,6 +39,7 @@ batgrep.pkg-path = "bat-extras.batgrep"
 batpipe.pkg-path = "bat-extras.batpipe"
 batwatch.pkg-path = "bat-extras.batwatch"
 prettybat.pkg-path = "bat-extras.prettybat"
+diskonaut.pkg-path = "diskonaut"
 
 
 ## Environment Variables ---------------------------------------------

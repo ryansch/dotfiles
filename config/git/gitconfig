@@ -21,6 +21,7 @@
   long-recent = for-each-ref --count=25 --sort=-committerdate refs/heads/ --format='%(HEAD)%(color:yellow)%(refname:short) %(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
   list-stale = branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname:lstrip=2)%(end)"
   prune-all = !git-prune-all
+  pa = !git-prune-all
 
   # commit
   c = commit                       # commit
@@ -82,11 +83,6 @@
 
   # tag
   t = tag -n                        # show tags with <n> lines of each tag message
-
-  # svn helpers
-  svnr = svn rebase
-  svnd = svn dcommit
-  svnl = svn log --oneline --show-commit
 [format]
   pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue%an%Creset %Cgreen(%cr)%Creset
 [mergetool]
@@ -137,17 +133,26 @@
   format = web
 [web]
   browser = open
+[push]
+  default = current
 [pull]
   ff = only
+  default = current
 [url "https://github.com/"]
   insteadOf = "git@github.com:"
   insteadOf = "ssh://git@github.com/"
   insteadOf = "http://github.com/"
-[include]
-  path = .gitconfig.user
 [credential "https://github.com"]
 	helper = 
 	helper = !gh auth git-credential
 [credential "https://git.ryansch.net"]
 	helper = osxkeychain
 	helper = oauth
+[user]
+	name = Ryan Schlesinger
+	email = ryan@ryanschlesinger.com
+  signingkey = 05AB53BA
+[commit]
+  gpgsign = true
+[github]
+  user = ryansch
