@@ -217,3 +217,7 @@ symbol = '󰊕'
 description = "indicates whether you're in a desk-spawned shell"
 command = "(command -v desk &>/dev/null && desk | grep -q 'No desk activated.') && echo '' || echo 󰇄"
 when = "true"
+
+# [custom.flox_status]
+# command = "flox services status --json | jq '[.[].exit_code] | any(. == 1)'"
+# detect_folders = [".flox"]
