@@ -9,25 +9,21 @@ end
 return {
   {
     "mason-org/mason.nvim",
-    -- version = "^1.0.0",
 
     opts = function(_, opts)
       opts.PATH = "append"
     end,
   },
-  -- {
-  --   "mason-org/mason-lspconfig.nvim",
-  --   version = "^1.0.0",
-  -- },
 
   {
     "conform.nvim",
 
-    -- opts = function(_, opts)
-    --   opts.formatters_by_ft = {
-    --     eruby = { "erb_format" },
-    --   }
-    -- end,
+    opts = {
+      formatters_by_ft = {
+        -- eruby = { "erb_format" },
+        ruby = { "standardrb", lsp_format = "prefer" },
+      },
+    },
   },
 
   {

@@ -1,20 +1,6 @@
 return {
-  recommended = function()
-    return LazyVim.extras.wants({
-      ft = "ruby",
-      root = "Gemfile",
-    })
-  end,
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "ruby",
-      })
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "erb-lint",
@@ -42,6 +28,10 @@ return {
     },
   },
   {
+    "maxenglander/neotest-minitest",
+    branch = "support-spec-dsl",
+  },
+  {
     "nvim-neotest/neotest",
 
     dependencies = {
@@ -49,6 +39,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "olimorris/neotest-rspec",
+      "neotest-minitest",
     },
 
     opts = function(_, opts)
@@ -74,20 +65,7 @@ return {
       })
 
       opts.adapters = vim.tbl_extend("force", opts.adapters or {}, {
-        ["neotest-rspec"] = {
-          rspec_cmd = function()
-            local Util = require("util")
-            if Util.file_exists(".bin/rspec") then
-              return {
-                ".bin/rspec",
-              }
-            else
-              return {
-                "rspec",
-              }
-            end
-          end,
-        },
+        ["neotest-minitest"] = {},
       })
     end,
 
