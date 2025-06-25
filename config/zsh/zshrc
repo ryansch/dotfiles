@@ -61,8 +61,8 @@ fi
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-export DIRENV_LOG_FORMAT=
-eval "$(direnv hook zsh)"
+# export DIRENV_LOG_FORMAT=
+# eval "$(direnv hook zsh)"
 
 setopt pushd_ignore_dups
 
