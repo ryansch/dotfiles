@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+flox config --set 'set_prompt' false
+flox config --set 'trusted_environments."ryansch/ruby-3.3"' trust
+flox config --set 'trusted_environments."ryansch/ruby-3.4"' trust
