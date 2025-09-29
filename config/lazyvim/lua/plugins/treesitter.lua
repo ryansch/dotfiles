@@ -88,9 +88,9 @@ return {
     -- end,
   },
 
-  {
-    "IndianBoy42/tree-sitter-just",
-
-    config = true,
-  },
+  -- {
+  --   "IndianBoy42/tree-sitter-just",
+  --
+  --   config = true,
+  -- },
 }

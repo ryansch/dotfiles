@@ -1,13 +1,17 @@
 return {
   {
-    "mason-org/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "erb-lint",
-        "ruby-lsp",
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        -- "erb-lint",
+        "ruby_lsp",
         "standardrb",
-      })
-    end,
+      },
+    },
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
   },
   {
     "mfussenegger/nvim-dap",
