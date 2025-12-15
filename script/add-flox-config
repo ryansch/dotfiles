@@ -3,5 +3,6 @@
 set -euo pipefail
 
 flox config --set 'set_prompt' false
+flox config --set 'hide_default_prompt' true
 flox config --set 'trusted_environments."ryansch/ruby-3.3"' trust
 flox config --set 'trusted_environments."ryansch/ruby-3.4"' trust

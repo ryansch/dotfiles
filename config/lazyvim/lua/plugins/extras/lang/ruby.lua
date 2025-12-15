@@ -74,6 +74,10 @@ return {
       opts.adapters = vim.tbl_extend("force", opts.adapters or {}, {
         ["neotest-minitest"] = {},
       })
+
+      opts.floating = vim.tbl_extend("force", opts.floating or {}, {
+        border = "rounded",
+      })
     end,
 
     keys = function()
@@ -142,8 +146,6 @@ return {
     opts = function(_, opts)
       opts.component_aliases = vim.tbl_extend("force", opts.component_aliases or {}, {
         default_neotest = {
-          { "display_duration", detail_level = 2 },
-          "on_output_summarize",
           "on_exit_set_status",
           "on_complete_dispose",
         },
