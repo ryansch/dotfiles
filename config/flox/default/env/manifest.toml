@@ -9,7 +9,7 @@
 version = 1
 
 [include]
-environments = [{ remote = "ryansch/ruby-3.3" }]
+environments = [{ remote = "ryansch/ruby-4-0" }]
 
 ## Install Packages --------------------------------------------------
 ##  $ flox install gum  <- puts a package in [install] section below
@@ -52,6 +52,13 @@ neovim.pkg-path = "neovim"
 ##  ... run by _bash_ shell when you run 'flox activate'.
 ## -------------------------------------------------------------------
 [hook]
+on-activate = """
+  # Set up env vars for bundler/rubygems
+  RUBY_LIB_VERSION=4.0.0
+
+  export GEM_HOME="$FLOX_ENV_CACHE/gem/ruby/$RUBY_LIB_VERSION"
+  export GEM_PATH="$GEM_HOME/gems:${GEM_PATH:-}"
+"""
 # on-activate = '''
 #   # -> Set variables, create files and directories
 #   # -> Perform initialization steps, e.g. create a python venv
@@ -67,7 +74,8 @@ neovim.pkg-path = "neovim"
 ## -------------------------------------------------------------------
 [profile]
 common = """
-  export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
+  typeset -U path PATH
+  path+=("$GEM_HOME/bin")
 """
 ## Shell specific profiles go here:
 # bash = ...

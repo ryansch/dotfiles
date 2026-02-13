@@ -56,9 +56,9 @@
       path: config/kitty
     ~/.config/espanso:
       path: config/espanso
-    ~/.config/nix/nix.conf: config/nix/nix.conf
-    ~/.config/home-manager: config/nix/home-manager
-    ~/.config/nixpkgs/config.nix: config/nix/nixpkgs.nix
+    # ~/.config/nix/nix.conf: config/nix/nix.conf
+    # ~/.config/home-manager: config/nix/home-manager
+    # ~/.config/nixpkgs/config.nix: config/nix/nixpkgs.nix
     ~/.flox: config/flox/default
     ~/.config/flox/flox.toml: config/flox/flox.toml
 

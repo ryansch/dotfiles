@@ -55,6 +55,9 @@ return {
             color = { fg = Snacks.util.color("Special", "fg") },
           },
           {
+            require("opencode").statusline,
+          },
+          {
             "diff",
             symbols = {
               added = icons.git.added,
