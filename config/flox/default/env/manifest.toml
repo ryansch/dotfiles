@@ -1,15 +1,8 @@
-## Flox Environment Manifest -----------------------------------------
-##
-##   _Everything_ you need to know about the _manifest_ is here:
-##
-##               https://flox.dev/docs/concepts/manifest
-##
-## -------------------------------------------------------------------
-# Flox manifest version managed by Flox CLI
-version = 1
+schema-version = "1.10.0"
 
 [include]
-environments = [{ remote = "ryansch/ruby-4-0" }]
+environments = [{ remote = "detaso/ruby-4.0" }]
+# environments = [{ dir = "/Users/ryansch/dev/flox/detaso/ruby-4.0" }]
 
 ## Install Packages --------------------------------------------------
 ##  $ flox install gum  <- puts a package in [install] section below
@@ -52,13 +45,6 @@ neovim.pkg-path = "neovim"
 ##  ... run by _bash_ shell when you run 'flox activate'.
 ## -------------------------------------------------------------------
 [hook]
-on-activate = """
-  # Set up env vars for bundler/rubygems
-  RUBY_LIB_VERSION=4.0.0
-
-  export GEM_HOME="$FLOX_ENV_CACHE/gem/ruby/$RUBY_LIB_VERSION"
-  export GEM_PATH="$GEM_HOME/gems:${GEM_PATH:-}"
-"""
 # on-activate = '''
 #   # -> Set variables, create files and directories
 #   # -> Perform initialization steps, e.g. create a python venv
@@ -73,10 +59,10 @@ on-activate = """
 ## ... sourced by _your shell_ when you run 'flox activate'.
 ## -------------------------------------------------------------------
 [profile]
-common = """
-  typeset -U path PATH
-  path+=("$GEM_HOME/bin")
-"""
+# common = """
+#   typeset -U path PATH
+#   path+=("$GEM_HOME/bin")
+# """
 ## Shell specific profiles go here:
 # bash = ...
 # zsh  = ...
@@ -94,8 +80,7 @@ common = """
 
 ## Other Environment Options -----------------------------------------
 [options]
-# Systems that environment is compatible with
-systems = ["aarch64-darwin", "aarch64-linux", "x86_64-darwin", "x86_64-linux"]
+systems = ["aarch64-darwin", "aarch64-linux", "x86_64-linux"]
 # Uncomment to disable CUDA detection.
 # cuda-detection = false
 activate.mode = "run"

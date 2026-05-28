@@ -74,3 +74,6 @@ if [ -d $HOME/.zsh.after/ ]; then
 fi
 
 zcomet compinit
+
+# opencode
+export PATH=/Users/ryansch/.opencode/bin:$PATH

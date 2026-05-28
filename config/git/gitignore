@@ -1,11 +1,5 @@
-# Devenv
-.devenv*
-devenv.local.nix
-.direnv*
-
 .envrc
 
 .DS_Store
 
-.aider*
 .flox
