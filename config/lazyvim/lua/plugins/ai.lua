@@ -40,6 +40,7 @@ return {
     config = function()
       local Terminal = require("toggleterm.terminal").Terminal
       local opencode = Terminal:new({
+        -- cmd = "safehouse --add-dirs-ro=~/.config/gh/ --add-dirs-ro=~/.gitconfig --add-dirs=~/.plannotator/ --add-dirs-ro=~/dev/kairos-mcp/ --enable=clipboard --enable=keychain -- opencode --port",
         cmd = "opencode --port",
         display_name = "opencode",
         hidden = true,
