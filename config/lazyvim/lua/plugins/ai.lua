@@ -1,3 +1,16 @@
+-- local opencode_cmd = "safehouse --add-dirs-ro=~/.config/gh/ --add-dirs-ro=~/.gitconfig --add-dirs=~/.plannotator/ --add-dirs-ro=~/dev/kairos-mcp/ --enable=clipboard --enable=keychain -- opencode --port",
+local opencode_cmd = "opencode --port"
+
+---@type snacks.terminal.Opts
+-- local snacks_terminal_opts = {
+--   win = {
+--     position = "right",
+--     enter = false,
+--   },
+-- }
+
+local opencode_terminal = nil
+
 return {
   {
     "ravitemer/mcphub.nvim",
@@ -29,107 +42,169 @@ return {
   --   },
   -- },
 
+  -- {
+  --   "nickjvandyke/opencode.nvim",
+  --   dependencies = {
+  --     ---@module "snacks" <- Loads `snacks.nvim` types for configuration intellisense
+  --     "folke/snacks.nvim",
+  --     optional = true,
+  --     opts = {
+  --       input = {}, -- Enhances `ask()`
+  --       picker = { -- Enhances `select()`
+  --         actions = {
+  --           opencode_send = function(...)
+  --             return require("opencode").snacks_picker_send(...)
+  --           end,
+  --         },
+  --         win = {
+  --           input = {
+  --             keys = {
+  --               ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+  --             },
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  --   config = function()
+  --     opencode_terminal = require("toggleterm.terminal").Terminal:new({
+  --       cmd = opencode_cmd,
+  --       display_name = "opencode",
+  --       hidden = true,
+  --       direction = "vertical",
+  --       id = 10,
+  --     })
+  --
+  --     ---@type opencode.Opts
+  --     vim.g.opencode_opts = {
+  --       server = {
+  --         start = function()
+  --           opencode_terminal:open()
+  --         end,
+  --       },
+  --     }
+  --
+  --     ------@type opencode.Opts
+  --     ---vim.g.opencode_opts = {
+  --     ---  server = {
+  --     ---    start = function()
+  --     ---      require("snacks.terminal").open(opencode_cmd, snacks_terminal_opts)
+  --     ---    end,
+  --     ---  },
+  --     ---}
+  --
+  --     -- Required for `opts.events.reload`.
+  --     vim.o.autoread = true
+  --
+  --     -- Recommended/example keymaps.
+  --     -- vim.keymap.set({ "n", "x" }, "<C-a>", function()
+  --     --   require("opencode").ask("@this: ", { submit = true })
+  --     -- end, { desc = "Ask opencode…" })
+  --     -- vim.keymap.set({ "n", "x" }, "<C-x>", function()
+  --     --   require("opencode").select()
+  --     -- end, { desc = "Execute opencode action…" })
+  --     -- vim.keymap.set({ "n", "t" }, "<C-.>", function()
+  --     --   require("opencode").toggle()
+  --     -- end, { desc = "Toggle opencode" })
+  --
+  --     -- vim.keymap.set({ "n", "x" }, "go", function()
+  --     --   return require("opencode").operator("@this ")
+  --     -- end, { desc = "Add range to opencode", expr = true })
+  --     -- vim.keymap.set("n", "goo", function()
+  --     --   return require("opencode").operator("@this ") .. "_"
+  --     -- end, { desc = "Add line to opencode", expr = true })
+  --
+  --     -- vim.keymap.set("n", "<S-C-u>", function()
+  --     --   require("opencode").command("session.half.page.up")
+  --     -- end, { desc = "Scroll opencode up" })
+  --     -- vim.keymap.set("n", "<S-C-d>", function()
+  --     --   require("opencode").command("session.half.page.down")
+  --     -- end, { desc = "Scroll opencode down" })
+  --
+  --     -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap).
+  --     -- vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+  --     -- vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+  --   end,
+  --   keys = {
+  --     { "<leader>a", "", desc = "+ai", mode = { "n", "x" } },
+  --     {
+  --       "<leader>aa",
+  --       function()
+  --         require("opencode").ask("@this: ")
+  --       end,
+  --       desc = "Ask opencode…",
+  --       mode = { "n", "x" },
+  --     },
+  --     -- {
+  --     --   "<leader>as",
+  --     --   function()
+  --     --     require("opencode").stop()
+  --     --   end,
+  --     --   desc = "Stop opencode",
+  --     --   mode = { "n", "x" },
+  --     -- },
+  --     {
+  --       "<leader>at",
+  --       function()
+  --         -- require("snacks.terminal").toggle(opencode_cmd, snacks_terminal_opts)
+  --         opencode_terminal:toggle()
+  --       end,
+  --       desc = "Toggle opencode",
+  --       mode = { "n", "x" },
+  --     },
+  --     {
+  --       "<leader>ax",
+  --       function()
+  --         require("opencode").select()
+  --       end,
+  --       desc = "Execute opencode action…",
+  --       mode = { "n", "x" },
+  --     },
+  --   },
+  -- },
+
   {
-    "nickjvandyke/opencode.nvim",
-    dependencies = {
-      -- Recommended for `ask()` and `select()`.
-      -- Required for `snacks` provider.
-      ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-      { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    -- `cmd` lets lazy.nvim create command stubs that load the plugin on first use,
+    -- so `:ClaudeCode` and friends work on a fresh start. Without it, a keys-only
+    -- spec defers loading until a <leader>a* mapping is pressed and the commands
+    -- would not exist yet.
+    cmd = {
+      "ClaudeCode",
+      "ClaudeCodeFocus",
+      "ClaudeCodeSelectModel",
+      "ClaudeCodeAdd",
+      "ClaudeCodeSend",
+      "ClaudeCodeTreeAdd",
+      "ClaudeCodeStatus",
+      "ClaudeCodeStart",
+      "ClaudeCodeStop",
+      "ClaudeCodeOpen",
+      "ClaudeCodeClose",
+      "ClaudeCodeDiffAccept",
+      "ClaudeCodeDiffDeny",
+      "ClaudeCodeCloseAllDiffs",
     },
-    config = function()
-      local Terminal = require("toggleterm.terminal").Terminal
-      local opencode = Terminal:new({
-        -- cmd = "safehouse --add-dirs-ro=~/.config/gh/ --add-dirs-ro=~/.gitconfig --add-dirs=~/.plannotator/ --add-dirs-ro=~/dev/kairos-mcp/ --enable=clipboard --enable=keychain -- opencode --port",
-        cmd = "opencode --port",
-        display_name = "opencode",
-        hidden = true,
-        direction = "vertical",
-        id = 10,
-      })
-
-      ---@type opencode.Opts
-      vim.g.opencode_opts = {
-        -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
-        server = {
-          toggle = function(self)
-            opencode:toggle()
-          end,
-          start = function(self)
-            opencode:open()
-          end,
-          stop = function(self)
-            opencode:shutdown()
-          end,
-        },
-      }
-
-      -- Required for `opts.events.reload`.
-      vim.o.autoread = true
-
-      -- Recommended/example keymaps.
-      -- vim.keymap.set({ "n", "x" }, "<C-a>", function()
-      --   require("opencode").ask("@this: ", { submit = true })
-      -- end, { desc = "Ask opencode…" })
-      -- vim.keymap.set({ "n", "x" }, "<C-x>", function()
-      --   require("opencode").select()
-      -- end, { desc = "Execute opencode action…" })
-      -- vim.keymap.set({ "n", "t" }, "<C-.>", function()
-      --   require("opencode").toggle()
-      -- end, { desc = "Toggle opencode" })
-
-      -- vim.keymap.set({ "n", "x" }, "go", function()
-      --   return require("opencode").operator("@this ")
-      -- end, { desc = "Add range to opencode", expr = true })
-      -- vim.keymap.set("n", "goo", function()
-      --   return require("opencode").operator("@this ") .. "_"
-      -- end, { desc = "Add line to opencode", expr = true })
-
-      -- vim.keymap.set("n", "<S-C-u>", function()
-      --   require("opencode").command("session.half.page.up")
-      -- end, { desc = "Scroll opencode up" })
-      -- vim.keymap.set("n", "<S-C-d>", function()
-      --   require("opencode").command("session.half.page.down")
-      -- end, { desc = "Scroll opencode down" })
-
-      -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap).
-      -- vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
-      -- vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
-    end,
     keys = {
-      { "<leader>a", "", desc = "+ai", mode = { "n", "x" } },
-      {
-        "<leader>aa",
-        function()
-          require("opencode").ask("@this: ", { submit = true })
-        end,
-        desc = "Ask opencode…",
-        mode = { "n", "x" },
-      },
+      { "<leader>a", nil, desc = "AI/Claude Code" },
+      { "<leader>at", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
       {
         "<leader>as",
-        function()
-          require("opencode").stop()
-        end,
-        desc = "Stop opencode",
-        mode = { "n", "x" },
+        "<cmd>ClaudeCodeTreeAdd<cr>",
+        desc = "Add file",
+        ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw", "snacks_picker_list" },
       },
-      {
-        "<leader>at",
-        function()
-          require("opencode").toggle()
-        end,
-        desc = "Toggle opencode",
-        mode = { "n", "x" },
-      },
-      {
-        "<leader>ax",
-        function()
-          require("opencode").select()
-        end,
-        desc = "Execute opencode action…",
-        mode = { "n", "x" },
-      },
+      -- Diff management
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     },
   },
 

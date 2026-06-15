@@ -54,9 +54,9 @@ return {
             cond = require("lazy.status").has_updates,
             color = { fg = Snacks.util.color("Special", "fg") },
           },
-          {
-            require("opencode").statusline,
-          },
+          -- {
+          --   require("opencode").statusline,
+          -- },
           {
             "diff",
             symbols = {

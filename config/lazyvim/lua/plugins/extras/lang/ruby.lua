@@ -32,8 +32,7 @@ return {
     },
   },
   {
-    "maxenglander/neotest-minitest",
-    branch = "support-spec-dsl",
+    "zidhuss/neotest-minitest",
   },
   {
     "nvim-neotest/neotest",
@@ -43,9 +42,10 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "olimorris/neotest-rspec",
-      "neotest-minitest",
+      "zidhuss/neotest-minitest",
     },
 
+    -- Returning function to delay requiring adapters
     opts = function(_, opts)
       local neotest = require("neotest")
       local function attach_or_output(client)
@@ -69,7 +69,8 @@ return {
       })
 
       opts.adapters = vim.tbl_extend("force", opts.adapters or {}, {
-        ["neotest-minitest"] = {},
+        require("neotest-rspec"),
+        require("neotest-minitest"),
       })
 
       opts.floating = vim.tbl_extend("force", opts.floating or {}, {
