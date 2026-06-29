@@ -120,6 +120,7 @@ local function pick_counterpart()
     Snacks.notify.warn("No file in the current buffer")
     return
   end
+  local cursor = vim.api.nvim_win_get_cursor(0) -- { row, col }, captured before the picker steals focus
   local cur_wt = vim.fs.root(0, ".git")
   if not cur_wt then
     Snacks.notify.warn("Current buffer isn't inside a git worktree")
@@ -148,6 +149,10 @@ local function pick_counterpart()
         return
       end
       vim.cmd("vsplit " .. vim.fn.fnameescape(target))
+      -- jump to the same line/column, clamped to the counterpart's contents
+      local row = math.min(cursor[1], vim.api.nvim_buf_line_count(0))
+      local line = vim.api.nvim_buf_get_lines(0, row - 1, row, true)[1] or ""
+      vim.api.nvim_win_set_cursor(0, { row, math.min(cursor[2], #line) })
     end,
   })
 end
