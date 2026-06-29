@@ -40,8 +40,23 @@ do
 
   local grp = vim.api.nvim_create_augroup("worktree_winbar", { clear = true })
 
+  -- Blend the winbar's empty fill into the code background (Normal.bg) -- it's
+  -- left unset by lunarized, so it defaults to black -- and render the worktree
+  -- badge as a standalone magenta pill on lunarized's chrome bar (bg_tools =
+  -- base02) so it stands proud of the fill.
   local function set_hl()
-    vim.api.nvim_set_hl(0, "WinBarWorktree", { link = "Special", default = true })
+    local ok, lun = pcall(require, "lunarized")
+    local normal_bg = vim.api.nvim_get_hl(0, { name = "Normal", link = false }).bg
+    if ok and lun.palette then
+      vim.api.nvim_set_hl(0, "WinBar", { fg = lun.palette.fg_tools.hex, bg = normal_bg })
+      vim.api.nvim_set_hl(0, "WinBarNC", { fg = lun.palette.fg_tools.hex, bg = normal_bg })
+      vim.api.nvim_set_hl(0, "WinBarWorktree", { fg = lun.colors.magenta.hex, bg = lun.palette.bg_tools.hex, bold = true })
+    else
+      -- graceful fallback for other colorschemes
+      vim.api.nvim_set_hl(0, "WinBar", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "WinBarNC", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "WinBarWorktree", { link = "Todo" })
+    end
   end
   set_hl()
   vim.api.nvim_create_autocmd("ColorScheme", { group = grp, callback = set_hl })
