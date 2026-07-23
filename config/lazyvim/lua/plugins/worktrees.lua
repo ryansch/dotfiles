@@ -1,6 +1,7 @@
 -- Worktree pickers:
 --   <leader>fw  jump into a worktree (open its file picker)
 --   <leader>fW  open the current file's counterpart from another worktree in a vsplit
+--   <leader>bw  wipe buffers left behind by a removed worktree (also automatic)
 --
 -- Why <leader>fw works without spending a tab or changing the global cwd:
 -- LazyVim's root detection is *per-buffer*, not per-cwd (root_spec =
@@ -13,56 +14,18 @@
 -- worktrees coexist happily (distinct absolute paths), which is how "multiple
 -- worktrees open at once" works while tabs stay entirely yours.
 --
--- A per-window winbar badge showing which (linked) worktree each window's buffer
--- lives in is set up in lua/config/autocmds.lua.
+-- Removal resilience (list of worktrees, winbar badge, orphaned-buffer pruning)
+-- lives in lua/util/worktree.lua and lua/config/autocmds.lua -- see the header
+-- comment there for why a removed worktree used to require restarting Neovim.
 
----@class WorktreeItem
----@field dir string
----@field file string
----@field branch? string
----@field text? string
-
--- Parse `git worktree list --porcelain` into picker items.
----@param exclude? string normalized worktree dir to omit (e.g. the current one)
-local function worktrees(exclude)
-  -- Any path inside the repo works: `git worktree list` is repo-global. Use
-  -- LazyVim's *buffer-relative* root so the picker anchors to the repo of the
-  -- buffer you're looking at -- not `.cwd()`, which tracks the global cwd and
-  -- could point at a different repo. `.get()` always returns a path.
-  local root = LazyVim.root.get()
-  local items = {}
-  ---@type WorktreeItem?
-  local cur = nil
-  local function flush()
-    if not cur then
-      return
-    end
-    if not (exclude and vim.fs.normalize(cur.dir) == exclude) then
-      cur.text = vim.fn.fnamemodify(cur.dir, ":t") .. "  " .. (cur.branch or "")
-      table.insert(items, cur)
-    end
-    cur = nil
-  end
-  for _, l in ipairs(vim.fn.systemlist({ "git", "-C", root, "worktree", "list", "--porcelain" })) do
-    if l:match("^worktree ") then
-      flush() -- entries are delimited by the next `worktree ` line
-      cur = { dir = l:sub(10), file = l:sub(10) }
-    elseif l:match("^branch ") and cur then
-      cur.branch = l:gsub("^branch refs/heads/", "")
-    elseif l:match("^detached") and cur then
-      cur.branch = "(detached)"
-    end
-  end
-  flush() -- last entry
-  return items
-end
+local WT = require("util/worktree")
 
 -- <leader>fw: open the file picker scoped to the chosen worktree.
 local function pick()
   Snacks.picker.pick({
     source = "worktrees",
     finder = function()
-      return worktrees()
+      return WT.list()
     end,
     format = "text",
     preview = "none", -- items are directories; nothing useful to preview
@@ -133,7 +96,7 @@ local function pick_counterpart()
   Snacks.picker.pick({
     source = "worktrees",
     finder = function()
-      return worktrees(cur_wt) -- exclude the worktree we're already in
+      return WT.list(cur_wt) -- exclude the worktree we're already in
     end,
     format = "text",
     preview = "none",
@@ -162,5 +125,14 @@ return {
   keys = {
     { "<leader>fw", pick, desc = "Worktrees" },
     { "<leader>fW", pick_counterpart, desc = "Worktree file → vsplit" },
+    {
+      "<leader>bw",
+      function()
+        if WT.prune() == 0 then
+          Snacks.notify.info("No removed-worktree buffers to prune")
+        end
+      end,
+      desc = "Wipe removed-worktree buffers",
+    },
   },
 }
