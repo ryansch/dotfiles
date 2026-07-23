@@ -145,6 +145,8 @@
 [credential "https://github.com"]
 	helper = 
 	helper = !gh auth git-credential
+[url "https://git.ryansch.net/"]
+  insteadOf = "ssh://git@git.ryansch.net/"
 [credential "https://git.ryansch.net"]
 	helper = osxkeychain
 	helper = oauth

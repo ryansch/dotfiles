@@ -5,3 +5,5 @@
 .flox
 
 **/.claude/settings.local.json
+docs/superpowers/
+.superpowers/
