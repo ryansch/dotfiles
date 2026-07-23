@@ -159,6 +159,27 @@ function M.list(exclude)
   return {}
 end
 
+-- Resolve the main checkout for the current context, for scoping things
+-- (e.g. `claude agents --cwd`) to the repo rather than a transient linked
+-- worktree. Every worktree of a repo therefore shares one anchor. Tries the
+-- current buffer's worktree, then cwd, then the durable cache; nil if none.
+---@return string? main absolute path of the owning main checkout
+function M.current_main_checkout()
+  for _, src in ipairs({ vim.api.nvim_get_current_buf(), vim.uv.cwd() }) do
+    local wt = vim.fs.root(src, ".git") -- worktree top (dir OR file named .git)
+    local main = wt and M.main_checkout_of(wt)
+    if main then
+      return main
+    end
+  end
+  for main in pairs(M.main_checkouts) do -- durable fallback (see anchors())
+    if M.is_dir(main) then
+      return main
+    end
+  end
+  return nil
+end
+
 local pruning = false
 
 -- Wipe buffers whose linked worktree has been removed. Only touches buffers

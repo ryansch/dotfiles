@@ -193,7 +193,18 @@ return {
       { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
       { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
       { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-      { "<leader>aA", "<cmd>ClaudeCode agents<cr>", desc = "Claude agents view" },
+      {
+        "<leader>aA",
+        function()
+          -- Scope the agents view to the repo's main checkout, so every
+          -- linked worktree shares one view and `--cwd` never points at a
+          -- worktree that may be `git worktree remove`d out from under us.
+          local main = require("util.worktree").current_main_checkout()
+          local arg = main and (" --cwd " .. vim.fn.fnameescape(main)) or ""
+          vim.cmd("ClaudeCode agents" .. arg)
+        end,
+        desc = "Claude agents view (this repo)",
+      },
       { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
       { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
       { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
