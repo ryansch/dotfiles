@@ -1,0 +1,84 @@
+# Backblaze exclusions, applied with `bz-excludes` (~/.dotfiles/bin/bz-excludes).
+#
+#   /abs/path/  or  ~/path/   exclude that folder
+#   */name/                   exclude any folder with that name, anywhere
+#   *.ext                     exclude a file extension
+#
+# Case-insensitive. End folder patterns with "/" so "code/" doesn't also
+# match "codebase/". A "*/" pattern without a trailing slash matches as a
+# substring (*/.local/share/nvim also catches nvim-LazyVim etc.).
+# Trailing comments need a space before the "#".
+# Already excluded by Backblaze defaults: vmdk, dmg, iso, log, sparseimage.
+# Re-run `bz-excludes` after editing.
+
+# --- System -----------------------------------------------------------------
+/nix/                                    # Nix store, rebuildable
+
+# --- Containers and VMs -----------------------------------------------------
+~/OrbStack/
+~/.orbstack/
+# OrbStack also keeps data in a Group Container; find it with:
+#   ls ~/Library/Group\ Containers | grep -i orb
+# and add it here, e.g. ~/Library/Group Containers/<id>.dev.orbstack/
+~/Library/Group Containers/HUAQ24HBR6.dev.orbstack/
+~/Library/Containers/com.docker.docker/
+~/Library/Containers/com.utmapp.UTM/
+*.qcow2
+
+# --- Local database data dirs (use dumps instead) ---------------------------
+~/Library/Application Support/Postgres/
+
+# --- Apple, Xcode and app caches --------------------------------------------
+~/Library/Caches/
+~/Library/Developer/
+~/Library/.dash_yard/                    # Dash docs cache
+
+# --- Photos (originals live in iCloud Photos) -------------------------------
+~/Pictures/Photos Library.photoslibrary/
+~/Library/Photos/
+
+# --- Package managers and toolchains (home) ---------------------------------
+~/.npm/
+~/.cache/
+~/.cargo/
+~/.rustup/
+~/go/pkg/
+~/.m2/
+~/.bundle/
+~/.gem/
+~/.platformio/
+~/.vscode/extensions/
+~/Library/pnpm/
+
+# --- Package managers and toolchains (~/.local/share) -----------------------
+~/.local/share/mise/
+~/.local/share/pnpm/
+~/.local/share/devbox/
+~/.local/share/uv/
+~/.local/share/yarn/
+~/.local/share/flox/
+~/.local/share/ruby-advisory-db/
+~/.local/share/NuGet/
+*/.local/share/nvim                      # nvim and all nvim-* distros
+
+# --- Tool state ---------------------------------------------------------------
+~/.claude/jobs/                          # Claude Code job state
+~/.dotfiles/config/flox/default/cache/
+~/.dotfiles/config/flox/default/log/
+~/.dotfiles/config/flox/default/run/
+
+# --- Build output and deps, anywhere ----------------------------------------
+*/node_modules/
+*/.venv/
+*/__pycache__/
+*/.terraform/
+*/target/debug/
+*/target/release/
+*/.next/
+*/.gradle/                               # also covers ~/.gradle/
+*/.esphome/                              # ESPHome build output
+
+# --- Media and games ------------------------------------------------------------
+~/Rips/                                  # staging; finished rips live on the NAS
+~/Library/Application Support/Steam/
+/Users/Shared/Battle.net/

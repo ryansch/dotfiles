@@ -1,0 +1,254 @@
+#!/usr/bin/env python3
+"""bz-excludes: sync Backblaze exclusion rules from a plain-text list.
+
+Reads a list file you can keep in git and rewrites a managed block inside
+Backblaze's bzexcluderules_editable.xml. Everything outside the block
+(Backblaze's own default rules) is left untouched.
+
+List file format (one entry per line, '#' starts a comment):
+
+    /abs/path/   or  ~/path/    exclude that folder and everything in it
+    */name/                     exclude any folder with that name, anywhere
+    *.ext                       exclude every file with that extension
+
+Matching is case-insensitive (Backblaze compares lowercased paths).
+
+Usage:
+    bz-excludes [LIST_FILE] [--dry-run] [--yes] [--force]
+
+If the Backblaze menu bar app is running, asks before quitting it, then
+writes the rules. launchd restarts the app on its own. --yes skips the
+question; --force writes without quitting the app.
+
+LIST_FILE defaults to $BZ_EXCLUDES_LIST, then ~/.config/backblaze/excludes.txt.
+Run as your normal user; it calls sudo only to write the Backblaze file.
+"""
+
+import argparse
+import os
+import pwd
+import re
+import subprocess
+import sys
+import tempfile
+import time
+import xml.etree.ElementTree as ET
+from xml.sax.saxutils import quoteattr
+
+RULES_FILE = "/Library/Backblaze.bzpkg/bzdata/bzexcluderules_editable.xml"
+DEFAULT_LIST = "~/.config/backblaze/excludes.txt"
+BEGIN = "<!-- BEGIN bz-excludes managed block: edit your list file, not this -->"
+END = "<!-- END bz-excludes managed block -->"
+MANAGED_RE = re.compile(
+    r"[ \t]*<!-- BEGIN bz-excludes.*?<!-- END bz-excludes managed block -->[ \t]*\n?",
+    re.S,
+)
+CLOSING_TAG_RE = re.compile(r"</[A-Za-z_][\w.:-]*>\s*\Z")
+FIELDS = (
+    "skipFirstCharThenStartsWith",
+    "contains_1",
+    "contains_2",
+    "doesNotContain",
+    "endsWith",
+    "hasFileExtension",
+)
+
+
+def die(msg):
+    print(f"bz-excludes: {msg}", file=sys.stderr)
+    sys.exit(1)
+
+
+def user_home():
+    # If someone runs this under sudo anyway, still expand ~ to *their* home.
+    sudo_user = os.environ.get("SUDO_USER")
+    if os.geteuid() == 0 and sudo_user:
+        return pwd.getpwnam(sudo_user).pw_dir
+    return os.path.expanduser("~")
+
+
+def sudo_prefix():
+    return [] if os.geteuid() == 0 else ["sudo"]
+
+
+def parse_line(raw, home, where):
+    line = raw.strip()
+    if not line or line.startswith("#"):
+        return None
+    # Trailing comments need whitespace before the '#', so paths may contain '#'.
+    line = re.sub(r"\s+#.*$", "", line)
+
+    if line.startswith("~/"):
+        line = home + line[1:]
+
+    if line.startswith("/"):
+        path = line.lower().rstrip("/") + "/"
+        if path == "/":
+            die(f"{where}: refusing to exclude the whole disk")
+        return {"skipFirstCharThenStartsWith": path[1:]}
+
+    if line.startswith("*.") and "/" not in line:
+        ext = line[2:].lower()
+        if not ext:
+            die(f"{where}: empty extension")
+        return {"hasFileExtension": ext}
+
+    if line.startswith("*/"):
+        frag = line[1:].lower()
+        if frag == "/":
+            die(f"{where}: pattern matches everything")
+        return {"contains_1": frag}
+
+    die(f"{where}: can't parse {raw.strip()!r} (expected /path/, ~/path/, */name/ or *.ext)")
+
+
+def load_list(path, home):
+    try:
+        with open(path, encoding="utf-8") as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        die(f"list file not found: {path}")
+
+    rules, seen = [], set()
+    for n, raw in enumerate(lines, 1):
+        fields = parse_line(raw, home, f"{path}:{n}")
+        if fields is None:
+            continue
+        key = tuple(sorted(fields.items()))
+        if key not in seen:
+            seen.add(key)
+            rules.append(fields)
+    return rules
+
+
+def rule_xml(fields):
+    attrs = {"plat": "mac", "osVers": "*", "ruleIsOptional": "t"}
+    for name in FIELDS:
+        attrs[name] = fields.get(name, "*")
+    return "<excludefname_rule " + " ".join(f"{k}={quoteattr(v)}" for k, v in attrs.items()) + " />"
+
+
+def build_block(rules, indent=""):
+    body = "".join(f"{indent}{rule_xml(r)}\n" for r in rules)
+    return f"{indent}{BEGIN}\n{body}{indent}{END}\n"
+
+
+def read_rules_file(path):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return f.read()
+    except PermissionError:
+        out = subprocess.run(sudo_prefix() + ["cat", path], check=True, capture_output=True)
+        return out.stdout.decode("utf-8")
+    except FileNotFoundError:
+        die(f"{path} not found. Is Backblaze installed, and has it run once?")
+
+
+def detect_indent(text):
+    """Match the indentation of Backblaze's own rules (outside our block)."""
+    outside = MANAGED_RE.sub("", text)
+    found = re.findall(r"^([ \t]*)<excludefname_rule\b", outside, re.M)
+    return found[-1] if found else ""
+
+
+def apply_block(text, block):
+    if MANAGED_RE.search(text):
+        return MANAGED_RE.sub(lambda _m: block, text, count=1)
+    m = CLOSING_TAG_RE.search(text)
+    if not m:
+        die("couldn't find the closing root tag in the rules file")
+    head = text[: m.start()]
+    if not head.endswith("\n"):
+        head += "\n"
+    return head + block + text[m.start():]
+
+
+def backblaze_ui_running():
+    try:
+        return subprocess.run(["pgrep", "-x", "bzbmenu"], capture_output=True).returncode == 0
+    except FileNotFoundError:
+        return False
+
+
+def confirm(question):
+    if not sys.stdin.isatty():
+        die("Backblaze menu bar app is running and there's no terminal to confirm; "
+            "pass --yes to quit it, or --force to write anyway.")
+    try:
+        answer = input(f"{question} [y/N] ")
+    except EOFError:
+        answer = ""
+    return answer.strip().lower() in ("y", "yes")
+
+
+def quit_menu_app():
+    subprocess.run(["pkill", "-x", "bzbmenu"], capture_output=True)
+    for _ in range(20):  # wait up to ~2s for it to exit
+        if not backblaze_ui_running():
+            return
+        time.sleep(0.1)
+
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Sync Backblaze exclusions from a text file.")
+    ap.add_argument("list_file", nargs="?", help=f"exclusion list (default: {DEFAULT_LIST})")
+    ap.add_argument("--dry-run", "-n", action="store_true", help="print the generated rules and exit")
+    ap.add_argument("--yes", "-y", action="store_true", help="quit the menu bar app without asking")
+    ap.add_argument("--force", action="store_true", help="write without quitting the menu bar app")
+    ap.add_argument("--rules-file", default=RULES_FILE, help=argparse.SUPPRESS)
+    args = ap.parse_args()
+
+    home = user_home()
+    list_path = args.list_file or os.environ.get("BZ_EXCLUDES_LIST") or DEFAULT_LIST
+    if list_path.startswith("~"):
+        list_path = home + list_path[1:]
+
+    rules = load_list(list_path, home)
+    if args.dry_run:
+        print(build_block(rules, indent=""), end="")
+        print(f"# {len(rules)} rules from {list_path}", file=sys.stderr)
+        return
+
+    old = read_rules_file(args.rules_file)
+    new = apply_block(old, build_block(rules, indent=detect_indent(old)))
+
+    try:
+        ET.fromstring(new.encode("utf-8"))
+    except ET.ParseError as e:
+        die(f"generated XML doesn't parse ({e}); nothing written")
+
+    if new == old:
+        print(f"No changes ({len(rules)} rules already in place).")
+        return
+
+    if backblaze_ui_running() and not args.force:
+        if not (args.yes or confirm("Backblaze menu bar app is running. Quit it and update? (launchd restarts it)")):
+            die("aborted; nothing written")
+        quit_menu_app()
+
+    # Back up the current file to your home dir, outside Backblaze's data folder.
+    backup_dir = os.path.join(home, ".local", "state", "bz-excludes")
+    os.makedirs(backup_dir, exist_ok=True)
+    backup = os.path.join(backup_dir, f"bzexcluderules_editable.{time.strftime('%Y%m%d-%H%M%S')}.xml")
+    with open(backup, "w", encoding="utf-8") as f:
+        f.write(old)
+
+    with tempfile.NamedTemporaryFile("w", encoding="utf-8", suffix=".xml", delete=False) as tmp:
+        tmp.write(new)
+        tmp_path = tmp.name
+    try:
+        # cp over an existing file keeps its owner and mode.
+        subprocess.run(sudo_prefix() + ["cp", tmp_path, args.rules_file], check=True)
+    except subprocess.CalledProcessError:
+        die("copy failed; rules file unchanged")
+    finally:
+        os.unlink(tmp_path)
+
+    print(f"Wrote {len(rules)} rules to {args.rules_file}")
+    print(f"Backup: {backup}")
+    print("The rules apply on Backblaze's next scan.")
+
+
+if __name__ == "__main__":
+    main()
