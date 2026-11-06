@@ -2,7 +2,13 @@
 
 set -euo pipefail
 
+# Apply default flox settings without clobbering the rest of
+# ~/.config/flox/flox.toml (trusted/auto-activate environments, etc).
+
+if ! command -v flox >/dev/null; then
+  echo "flox not installed; skipping flox config"
+  exit 0
+fi
+
 flox config --set 'set_prompt' false
 flox config --set 'hide_default_prompt' true
-flox config --set 'trusted_environments."ryansch/ruby-3.3"' trust
-flox config --set 'trusted_environments."ryansch/ruby-3.4"' trust

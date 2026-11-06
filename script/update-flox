@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+# Install or upgrade flox to the latest stable release.
+#
+# Supports macOS (.pkg) and Linux (.deb on Debian/Ubuntu, .rpm on
+# Fedora/RHEL-likes).
+#
+# Idempotent: does nothing when the installed version matches the latest
+# stable release. Checking costs one HEAD request -- the latest version is
+# read from the package filename in the Content-Disposition header, so the
+# package itself is only downloaded when an install or upgrade is needed.
+#
+# Installing needs sudo, so run it from a real terminal.
+
+set -euo pipefail
+
+if [ -t 1 ]; then
+  C_INFO=$'\033[1;34m' C_WARN=$'\033[1;33m' C_ERR=$'\033[1;31m' C_OFF=$'\033[0m'
+else
+  C_INFO='' C_WARN='' C_ERR='' C_OFF=''
+fi
+
+log() { printf '%s==>%s %s\n' "$C_INFO" "$C_OFF" "$*"; }
+warn() { printf '%s!!%s %s\n' "$C_WARN" "$C_OFF" "$*" >&2; }
+die() {
+  printf '%sxx%s %s\n' "$C_ERR" "$C_OFF" "$*" >&2
+  exit 1
+}
+
+FLOX_DOWNLOADS=https://downloads.flox.dev/by-env/stable
+
+case "$(uname -m)" in
+arm64 | aarch64) CPU=aarch64 ;;
+x86_64 | amd64) CPU=x86_64 ;;
+*) die "unsupported architecture: $(uname -m)" ;;
+esac
+
+case "$(uname -s)" in
+Darwin)
+  FLOX_SYSTEM=${CPU}-darwin
+  PKG_FORMAT=pkg
+  FLOX_URL="$FLOX_DOWNLOADS/osx/flox.${FLOX_SYSTEM}.pkg"
+  ;;
+Linux)
+  FLOX_SYSTEM=${CPU}-linux
+  if command -v dpkg >/dev/null 2>&1; then
+    PKG_FORMAT=deb
+  elif command -v rpm >/dev/null 2>&1; then
+    PKG_FORMAT=rpm
+  else
+    die "no dpkg or rpm found; don't know how to install flox here"
+  fi
+  FLOX_URL="$FLOX_DOWNLOADS/${PKG_FORMAT}/flox.${FLOX_SYSTEM}.${PKG_FORMAT}"
+  ;;
+*) die "unsupported OS: $(uname -s)" ;;
+esac
+
+WORK_DIR=$(mktemp -d)
+trap 'rm -rf "$WORK_DIR"' EXIT
+
+latest_flox_version() {
+  curl -fsSLI "$FLOX_URL" | tr -d '\r' |
+    sed -n "s/^[Cc]ontent-[Dd]isposition:.*filename=\"flox-\(.*\)\.${FLOX_SYSTEM}\.${PKG_FORMAT}\".*/\1/p" |
+    tail -1
+}
+
+# Ask the package manager first; fall back to the binary in case flox got
+# onto this machine some other way.
+installed_flox_version() {
+  local version=""
+  case "$PKG_FORMAT" in
+  pkg)
+    version=$(pkgutil --pkg-info com.floxdev.flox 2>/dev/null |
+      sed -n 's/^version: //p')
+    ;;
+  deb)
+    version=$(dpkg-query -W -f='${Version}' flox 2>/dev/null || true)
+    ;;
+  rpm)
+    version=$(rpm -q --qf '%{VERSION}' flox 2>/dev/null || true)
+    ;;
+  esac
+  if [ -z "$version" ] && command -v flox >/dev/null 2>&1; then
+    version=$(flox --version 2>/dev/null || true)
+  fi
+  printf '%s' "$version"
+}
+
+# The flox .deb postinst registers an apt source, but flox's CDN
+# intermittently serves a Packages.bz2 whose size/hash disagrees with
+# Release, which breaks `apt-get update` for the whole system. Disable the
+# source; this script upgrades flox straight from the .deb instead.
+disable_flox_apt_source() {
+  local f
+  [ "$PKG_FORMAT" = deb ] || return 0
+  for f in /etc/apt/sources.list.d/flox.list \
+    /etc/apt/sources.list.d/flox.sources; do
+    if [ -e "$f" ]; then
+      sudo mv "$f" "${f}.disabled"
+      log "disabled the flox apt source ($f)"
+    fi
+  done
+}
+
+install_package() {
+  local file=$1
+  case "$PKG_FORMAT" in
+  pkg)
+    pkgutil --check-signature "$file" >/dev/null ||
+      die "downloaded flox.pkg failed its signature check"
+    sudo installer -pkg "$file" -target /
+    ;;
+  deb)
+    sudo env DEBIAN_FRONTEND=noninteractive \
+      apt-get -o DPkg::Lock::Timeout=600 install -y "$file"
+    ;;
+  rpm)
+    if command -v dnf >/dev/null 2>&1; then
+      sudo dnf install -y "$file"
+    elif command -v yum >/dev/null 2>&1; then
+      sudo yum install -y "$file"
+    else
+      sudo rpm -U "$file"
+    fi
+    ;;
+  esac
+}
+
+main() {
+  local installed latest file
+  installed=$(installed_flox_version)
+  latest=$(latest_flox_version || true)
+
+  if [ -z "$latest" ]; then
+    if [ -n "$installed" ]; then
+      warn "could not determine the latest flox release; keeping $installed"
+      disable_flox_apt_source
+      return 0
+    fi
+    die "could not determine the latest flox release, and flox is not installed"
+  fi
+
+  if [ "$installed" = "$latest" ]; then
+    log "flox $installed is current"
+    disable_flox_apt_source
+    return 0
+  fi
+
+  if [ -n "$installed" ]; then
+    log "upgrading flox $installed -> $latest"
+  else
+    log "installing flox $latest"
+  fi
+
+  file="$WORK_DIR/flox.${PKG_FORMAT}"
+  curl -fsSL -o "$file" "$FLOX_URL"
+  install_package "$file"
+  disable_flox_apt_source
+
+  log "flox $(installed_flox_version) installed"
+}
+
+main "$@"

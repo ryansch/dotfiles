@@ -57,7 +57,6 @@
     ~/.config/espanso:
       path: config/espanso
     ~/.flox: config/flox/default
-    ~/.config/flox/flox.toml: config/flox/flox.toml
     ~/.config/backblaze: config/backblaze
 
 - ifanylinux:
@@ -120,6 +119,15 @@
       stderr: true
     - command: ~/.dotfiles/script/install-zcomet
       description: "Install manifest-tool"
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/update-flox
+      description: "Install or update flox"
+      stdin: true
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/add-flox-config
+      description: "Apply default flox config"
       stdout: true
       stderr: true
 
