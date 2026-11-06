@@ -51,7 +51,7 @@ for plugin_dir in "${plugin_dirs[@]}"; do
 done
 
 for conf in ${DEFAULT_CONFIG_PREFIX}; do
-  "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" \
+  "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -v \
     "${plugins[@]}" \
     -c "${conf}${CONFIG_SUFFIX}" "${@}"
 done
