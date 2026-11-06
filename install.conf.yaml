@@ -121,7 +121,7 @@
       description: "Install manifest-tool"
       stdout: true
       stderr: true
-    - command: ~/.dotfiles/script/update-flox
+    - command: ~/.dotfiles/bin/update-flox
       description: "Install or update flox"
       stdin: true
       stdout: true
