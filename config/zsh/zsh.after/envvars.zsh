@@ -6,7 +6,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 
 export GITHUB_USER='ryansch'
-export GOSS_PATH=~/bin/goss-linux-amd64
+export GOSS_PATH=~/.local/bin/goss-linux-x86_64
 export GPG_TTY=$(tty)
 
 export SKETCHBOOK_DIR=~/dev/arduino

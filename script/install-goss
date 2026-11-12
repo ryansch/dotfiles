@@ -1,14 +1,41 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
-# Install goss
-curl -L https://github.com/goss-org/goss/releases/latest/download/goss-linux-amd64 -o ~/.local/bin/goss-linux-amd64
-chmod +rx ~/.local/bin/goss-linux-amd64
+# Install linux goss binaries (used by dgoss inside containers) and dgoss.
+# Skips the download when the latest release is already installed.
 
-curl -L https://github.com/goss-org/goss/releases/latest/download/goss-linux-arm64 -o ~/.local/bin/goss-linux-arm64
-chmod +rx ~/.local/bin/goss-linux-arm64
+bin_dir="${HOME}/.local/bin"
+stamp="${HOME}/.local/share/goss/version"
 
-# Install dgoss
-curl -L https://raw.githubusercontent.com/goss-org/goss/master/extras/dgoss/dgoss -o ~/.local/bin/dgoss
-chmod +rx ~/.local/bin/dgoss
+tag=$(gh api /repos/goss-org/goss/releases/latest --jq '.tag_name')
+version="${tag#v}"
+
+if [[ -f "${stamp}" && "$(cat "${stamp}")" == "${tag}" ]] &&
+	[[ -x "${bin_dir}/goss-linux-x86_64" && -x "${bin_dir}/goss-linux-arm64" && -x "${bin_dir}/dgoss" ]]; then
+	echo "goss ${tag} is current"
+	exit 0
+fi
+
+echo "Installing goss ${tag}"
+
+dir=$(mktemp -d -t "install-goss.XXXXXX")
+trap 'rm -rf "${dir}"' EXIT
+
+base_url="https://github.com/goss-org/goss/releases/download/${tag}"
+mkdir -p "${bin_dir}" "$(dirname "${stamp}")"
+
+for arch in x86_64 arm64; do
+	mkdir -p "${dir}/${arch}"
+	curl -fsSL "${base_url}/goss_${version}_linux_${arch}.tar.gz" -o "${dir}/${arch}.tar.gz"
+	tar -xzf "${dir}/${arch}.tar.gz" -C "${dir}/${arch}" goss
+	install -m 0755 "${dir}/${arch}/goss" "${bin_dir}/goss-linux-${arch}"
+done
+
+# Remove the binary installed under the old (pre-tarball) name.
+rm -f "${bin_dir}/goss-linux-amd64"
+
+curl -fsSL "${base_url}/dgoss" -o "${dir}/dgoss"
+install -m 0755 "${dir}/dgoss" "${bin_dir}/dgoss"
+
+echo "${tag}" >"${stamp}"

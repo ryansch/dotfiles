@@ -6,6 +6,4 @@ if [ ! -d ~/.zcomet/bin/ ]; then
   gh repo clone agkozak/zcomet ~/.zcomet/bin
 fi
 
-pushd ~/.zcomet/bin
-gh repo sync
-popd
+(cd ~/.zcomet/bin && gh repo sync)

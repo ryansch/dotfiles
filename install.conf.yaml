@@ -119,7 +119,7 @@
       stdout: true
       stderr: true
     - command: ~/.dotfiles/script/install-zcomet
-      description: "Install manifest-tool"
+      description: "Install zcomet"
       stdout: true
       stderr: true
     - command: ~/.dotfiles/bin/update-flox
