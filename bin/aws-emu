@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# Manage AWS Emulator containers, one Compose project per port (aws-emulator-<port>).
+#
+#   aws-emu up    [port]   start (default 9297), wait for healthy, write ~/.aws/emulator/<port>.env
+#   aws-emu down  [port]   stop and remove (all state is lost)
+#   aws-emu env   [port]   (re)write ~/.aws/emulator/<port>.env only
+#   aws-emu build          rebuild the image from the latest package
+#   aws-emu ls             list running emulators
+#
+# Use an emulator:  ( . ~/.aws/emulator/<port>.env && aws sts get-caller-identity )
+# Compose dir (Dockerfile + compose.yaml): $AWS_EMU_COMPOSE_DIR, default ~/.aws/emulator/docker
+# (linked to ~/.dotfiles/config/aws-emulator by dotbot).
+set -euo pipefail
+
+emu_root="$HOME/.aws/emulator"
+compose_file="${AWS_EMU_COMPOSE_DIR:-$emu_root/docker}/compose.yaml"
+
+usage() { sed -n '2,12p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit "${1:-0}"; }
+
+port_arg() {
+  local port="${1:-9297}"
+  [[ "$port" =~ ^[0-9]+$ ]] && (( port >= 1024 && port <= 65535 )) \
+    || { echo "invalid port: $port (1024-65535)" >&2; exit 2; }
+  echo "$port"
+}
+
+compose() {
+  local port="$1"; shift
+  [[ -f "$compose_file" ]] || { echo "missing $compose_file (run ~/.dotfiles/install?)" >&2; exit 1; }
+  EMU_PORT="$port" docker compose -p "aws-emulator-$port" -f "$compose_file" "$@"
+}
+
+write_env() {
+  local port="$1" file="$emu_root/$1.env"
+  # Literal $HOME so the file reads the same for any user / shell.
+  cat > "$file" <<EOF
+export AWS_ENDPOINT_URL=https://127.0.0.1:$port
+export AWS_SHARED_CREDENTIALS_FILE=\$HOME/.aws/emulator/$port/emulator_credentials
+export AWS_CONFIG_FILE=\$HOME/.aws/emulator/$port/config
+export AWS_EC2_METADATA_DISABLED=true   # never fall back to EC2 instance credentials
+export AWS_REGION=us-east-1
+export AWS_DEFAULT_REGION=us-east-1
+
+# Environment credentials win over the credentials file: real keys would be sent and rejected.
+unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_PROFILE AWS_DEFAULT_PROFILE \\
+  AWS_WEB_IDENTITY_TOKEN_FILE AWS_ROLE_ARN AWS_ROLE_SESSION_NAME AWS_CONTAINER_CREDENTIALS_RELATIVE_URI \\
+  AWS_CONTAINER_CREDENTIALS_FULL_URI AWS_CONTAINER_AUTHORIZATION_TOKEN
+
+# Emulator in Docker: config's ca_bundle is a container path.
+export AWS_CA_BUNDLE=\$HOME/.aws/emulator/$port/ca.pem
+
+export AWS_PAGER=""
+EOF
+  echo "wrote $file"
+}
+
+cmd="${1:-}"; [[ $# -gt 0 ]] && shift
+case "$cmd" in
+  up)
+    port="$(port_arg "${1:-}")"
+    mkdir -p "$emu_root/$port"
+    write_env "$port"
+    compose "$port" up -d --wait
+    echo "emulator on https://127.0.0.1:$port  (use: . $emu_root/$port.env)"
+    ;;
+  down)
+    port="$(port_arg "${1:-}")"
+    compose "$port" down
+    ;;
+  env)
+    port="$(port_arg "${1:-}")"
+    write_env "$port"
+    ;;
+  build)
+    EMU_PORT=9297 docker compose -p aws-emulator-build -f "$compose_file" build --pull --no-cache
+    ;;
+  ls)
+    docker ps --filter "name=^aws-emulator-" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ;;
+  -h|--help|help) usage 0 ;;
+  *) usage 2 ;;
+esac

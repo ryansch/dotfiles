@@ -58,6 +58,7 @@
       path: config/espanso
     ~/.flox: config/flox/default
     ~/.config/backblaze: config/backblaze
+    ~/.aws/emulator/docker: config/aws-emulator
 
 - ifanylinux:
     - link:

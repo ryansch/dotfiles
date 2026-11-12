@@ -1,0 +1,52 @@
+# AWS Emulator, one Compose project per port (default 9297).
+# Prefer the helper:  aws-emu up [port]   (~/.dotfiles/bin/aws-emu)
+# Raw use (create the host folder first; create_host_path: false makes a missing one an error):
+#   mkdir -p ~/.aws/emulator/9300
+#   EMU_PORT=9300 docker compose -p aws-emulator-9300 -f compose.yaml up -d --wait
+name: "aws-emulator-${EMU_PORT:-9297}"
+
+services:
+  emulator:
+    build:
+      context: "."
+      pull: true
+    image: "aws-emulator"
+    container_name: "aws-emulator-${EMU_PORT:-9297}"
+    # The emulator writes its port into its files, so it must listen on the published port.
+    command: ["-p", "${EMU_PORT:-9297}"]
+    # State is in memory only; restarting gives an empty emulator, so don't auto-restart.
+    restart: "no"
+    read_only: true
+    cap_drop:
+      - "ALL"
+    security_opt:
+      - "no-new-privileges:true"
+    ports:
+      # Loopback only. Never "<port>:<port>", which exposes it to the network.
+      - "127.0.0.1:${EMU_PORT:-9297}:${EMU_PORT:-9297}"
+    volumes:
+      - type: "bind"
+        source: "${HOME}/.aws/emulator/${EMU_PORT:-9297}"
+        target: "/home/emulator/.aws/emulator/${EMU_PORT:-9297}"
+        bind:
+          create_host_path: false
+    # environment:
+    #   EMULATOR_TELEMETRY: "off"   # uncomment to turn telemetry off
+    healthcheck:
+      test:
+        - "CMD"
+        - "curl"
+        - "-sf"
+        - "--cacert"
+        - "/home/emulator/.aws/emulator/${EMU_PORT:-9297}/ca.pem"
+        - "https://127.0.0.1:${EMU_PORT:-9297}/__admin/health"
+      interval: "5s"
+      timeout: "3s"
+      retries: 10
+      start_period: "5s"
+    networks:
+      - "emulator"
+
+# Per-project network (aws-emulator-<port>_emulator): each emulator is isolated from the others.
+networks:
+  emulator: {}
