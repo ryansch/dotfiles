@@ -5,3 +5,9 @@ config/hammerspoon/Spoons/*
 !config/hammerspoon/Spoons/EmmyLua.spoon
 !config/hammerspoon/Spoons/ReloadConfiguration.spoon
 config/hammerspoon/Spoons/EmmyLua.spoon/annotations/*
+
+# AI stuff
+docs/superpowers/
+.claude/worktrees/
+.claude/settings.local.json
+CLAUDE.local.md
