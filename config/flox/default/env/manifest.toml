@@ -10,28 +10,10 @@ environments = [{ remote = "detaso/ruby-4.0" }]
 ##  $ flox show gum     <- show all versions of a package
 ## -------------------------------------------------------------------
 [install]
-# gh.pkg-path = "gh"
-# eza.pkg-path = "eza"
-# fd.pkg-path = "fd"
-# ripgrep.pkg-path = "ripgrep"
 neovim.pkg-path = "neovim"
-# zoxide.pkg-path = "zoxide"
-# starship.pkg-path = "starship"
-# tree-sitter.pkg-path = "tree-sitter"
-# fzf.pkg-path = "fzf"
-# lazygit.pkg-path = "lazygit"
 
-# bat.pkg-path = "bat"
-# entr.pkg-path = "entr"
-# delta.pkg-path = "delta"
-# batman.pkg-path = "bat-extras.batman"
-# batdiff.pkg-path = "bat-extras.batdiff"
-# batgrep.pkg-path = "bat-extras.batgrep"
-# batpipe.pkg-path = "bat-extras.batpipe"
-# batwatch.pkg-path = "bat-extras.batwatch"
-# prettybat.pkg-path = "bat-extras.prettybat"
-# diskonaut.pkg-path = "diskonaut"
-
+gcc.pkg-path = "gcc"
+gcc.systems = ["x86_64-linux", "aarch64-linux"]
 
 ## Environment Variables ---------------------------------------------
 ##  ... available for use in the activated environment

@@ -7,6 +7,13 @@
         "pkg-path": "corepack",
         "priority": 1
       },
+      "gcc": {
+        "pkg-path": "gcc",
+        "systems": [
+          "x86_64-linux",
+          "aarch64-linux"
+        ]
+      },
       "git": {
         "pkg-path": "git"
       },
@@ -73,6 +80,102 @@
     }
   },
   "packages": [
+    {
+      "attr_path": "ruby_4_0",
+      "broken": false,
+      "derivation": "/nix/store/34vn4cb545wxbqnbk0h59lx8xhxcn2cr-ruby-4.0.10.drv",
+      "description": "Object-oriented language for quick and easy programming",
+      "install_id": "ruby",
+      "license": "Ruby",
+      "locked_url": "https://github.com/detaso/flox-pkgs.git?rev=38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
+      "name": "ruby-4.0.10",
+      "pname": "ruby",
+      "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
+      "rev_count": 27,
+      "rev_date": "2026-11-19T12:43:25Z",
+      "scrape_date": "2026-11-24T20:51:47.464689Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "4.0.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "devdoc": "/nix/store/s5nljjmpp3mn302h0rchbmxg3iink51l-ruby-4.0.10-devdoc",
+        "out": "/nix/store/37bassqi3m8vgjna5ms6h7vnmxawnqi6-ruby-4.0.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "ruby",
+      "priority": 5
+    },
+    {
+      "attr_path": "ruby_4_0",
+      "broken": false,
+      "derivation": "/nix/store/0d4hg1zk1i823hv5xsc84p8r0dbi3fcp-ruby-4.0.10.drv",
+      "description": "Object-oriented language for quick and easy programming",
+      "install_id": "ruby",
+      "license": "Ruby",
+      "locked_url": "https://github.com/detaso/flox-pkgs.git?rev=38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
+      "name": "ruby-4.0.10",
+      "pname": "ruby",
+      "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
+      "rev_count": 27,
+      "rev_date": "2026-11-19T12:43:25Z",
+      "scrape_date": "2026-11-24T20:51:47.464692Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "4.0.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "devdoc": "/nix/store/98zrmr05qkld6lldysr56yrx9ixrwrf2-ruby-4.0.10-devdoc",
+        "out": "/nix/store/yywqbkv3dqpx0zlxk5cyvdkg8ckzv2ka-ruby-4.0.10"
+      },
+      "system": "aarch64-linux",
+      "group": "ruby",
+      "priority": 5
+    },
+    {
+      "attr_path": "ruby_4_0",
+      "broken": false,
+      "derivation": "/nix/store/pw1alvzbrmgc7ydpdvf72iyg1xxalf0f-ruby-4.0.10.drv",
+      "description": "Object-oriented language for quick and easy programming",
+      "install_id": "ruby",
+      "license": "Ruby",
+      "locked_url": "https://github.com/detaso/flox-pkgs.git?rev=38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
+      "name": "ruby-4.0.10",
+      "pname": "ruby",
+      "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
+      "rev_count": 27,
+      "rev_date": "2026-11-19T12:43:25Z",
+      "scrape_date": "2026-11-24T20:51:47.464693Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "4.0.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "devdoc": "/nix/store/xp8azda3vyk9vrjg433g4kx6zxx6lnnj-ruby-4.0.10-devdoc",
+        "out": "/nix/store/wjmqmqv0k8j1bxfq97rzfcyfwbvjb644-ruby-4.0.10"
+      },
+      "system": "x86_64-linux",
+      "group": "ruby",
+      "priority": 5
+    },
     {
       "attr_path": "corepack",
       "broken": false,
@@ -159,6 +262,74 @@
       "system": "x86_64-linux",
       "group": "toplevel",
       "priority": 1
+    },
+    {
+      "attr_path": "gcc",
+      "broken": false,
+      "derivation": "/nix/store/fhwgr7lr7f5c5vk598zgkh5gqqblkjy8-gcc-wrapper-16.2.0.drv",
+      "description": "GNU Compiler Collection, version 16.2.0 (wrapper script)",
+      "install_id": "gcc",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "gcc-wrapper-16.2.0",
+      "pname": "gcc",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:13:34.311561Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "16.2.0",
+      "outputs_to_install": [
+        "man",
+        "out",
+        "out",
+        "out"
+      ],
+      "outputs": {
+        "info": "/nix/store/hj3agghz1n3mywjhy7821d4l3h7k2qnz-gcc-wrapper-16.2.0-info",
+        "man": "/nix/store/zbz8pf21y0pvkgn3c6i3n6rn383paz52-gcc-wrapper-16.2.0-man",
+        "out": "/nix/store/mqg95s149wr7az0xbn6d6s45m76pzz8n-gcc-wrapper-16.2.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "gcc",
+      "broken": false,
+      "derivation": "/nix/store/5vla1bqz412yx13nj4r2565b7cf9xsw4-gcc-wrapper-16.2.0.drv",
+      "description": "GNU Compiler Collection, version 16.2.0 (wrapper script)",
+      "install_id": "gcc",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "gcc-wrapper-16.2.0",
+      "pname": "gcc",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:41:47.780663Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "16.2.0",
+      "outputs_to_install": [
+        "man",
+        "out",
+        "out",
+        "out"
+      ],
+      "outputs": {
+        "info": "/nix/store/mrxy6g9p9p08lnv74dh269ynsfgyrawg-gcc-wrapper-16.2.0-info",
+        "man": "/nix/store/2m6rwm4jbybjcxzmrhjy7i1wz1lli268-gcc-wrapper-16.2.0-man",
+        "out": "/nix/store/ii6p6kc1brz3vycqg88q4zb4xd2dmqwp-gcc-wrapper-16.2.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
     },
     {
       "attr_path": "git",
@@ -379,6 +550,7 @@
       "unfree": false,
       "version": "115.100.1",
       "outputs_to_install": [
+        "out",
         "out",
         "out",
         "out",
@@ -1331,108 +1503,19 @@
       "system": "x86_64-linux",
       "group": "toplevel",
       "priority": 5
-    },
-    {
-      "attr_path": "ruby_4_0",
-      "broken": false,
-      "derivation": "/nix/store/34vn4cb545wxbqnbk0h59lx8xhxcn2cr-ruby-4.0.10.drv",
-      "description": "Object-oriented language for quick and easy programming",
-      "install_id": "ruby",
-      "license": "Ruby",
-      "locked_url": "https://github.com/detaso/flox-pkgs.git?rev=38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
-      "name": "ruby-4.0.10",
-      "pname": "ruby",
-      "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
-      "rev_count": 27,
-      "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-24T20:51:47.464689Z",
-      "stabilities": [
-        "unstable",
-        "stable",
-        "staging"
-      ],
-      "unfree": false,
-      "version": "4.0.10",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "devdoc": "/nix/store/s5nljjmpp3mn302h0rchbmxg3iink51l-ruby-4.0.10-devdoc",
-        "out": "/nix/store/37bassqi3m8vgjna5ms6h7vnmxawnqi6-ruby-4.0.10"
-      },
-      "system": "aarch64-darwin",
-      "group": "ruby",
-      "priority": 5
-    },
-    {
-      "attr_path": "ruby_4_0",
-      "broken": false,
-      "derivation": "/nix/store/0d4hg1zk1i823hv5xsc84p8r0dbi3fcp-ruby-4.0.10.drv",
-      "description": "Object-oriented language for quick and easy programming",
-      "install_id": "ruby",
-      "license": "Ruby",
-      "locked_url": "https://github.com/detaso/flox-pkgs.git?rev=38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
-      "name": "ruby-4.0.10",
-      "pname": "ruby",
-      "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
-      "rev_count": 27,
-      "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-24T20:51:47.464692Z",
-      "stabilities": [
-        "unstable",
-        "stable",
-        "staging"
-      ],
-      "unfree": false,
-      "version": "4.0.10",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "devdoc": "/nix/store/98zrmr05qkld6lldysr56yrx9ixrwrf2-ruby-4.0.10-devdoc",
-        "out": "/nix/store/yywqbkv3dqpx0zlxk5cyvdkg8ckzv2ka-ruby-4.0.10"
-      },
-      "system": "aarch64-linux",
-      "group": "ruby",
-      "priority": 5
-    },
-    {
-      "attr_path": "ruby_4_0",
-      "broken": false,
-      "derivation": "/nix/store/pw1alvzbrmgc7ydpdvf72iyg1xxalf0f-ruby-4.0.10.drv",
-      "description": "Object-oriented language for quick and easy programming",
-      "install_id": "ruby",
-      "license": "Ruby",
-      "locked_url": "https://github.com/detaso/flox-pkgs.git?rev=38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
-      "name": "ruby-4.0.10",
-      "pname": "ruby",
-      "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
-      "rev_count": 27,
-      "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-24T20:51:47.464693Z",
-      "stabilities": [
-        "unstable",
-        "stable",
-        "staging"
-      ],
-      "unfree": false,
-      "version": "4.0.10",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "devdoc": "/nix/store/xp8azda3vyk9vrjg433g4kx6zxx6lnnj-ruby-4.0.10-devdoc",
-        "out": "/nix/store/wjmqmqv0k8j1bxfq97rzfcyfwbvjb644-ruby-4.0.10"
-      },
-      "system": "x86_64-linux",
-      "group": "ruby",
-      "priority": 5
     }
   ],
   "compose": {
     "composer": {
       "schema-version": "1.10.0",
       "install": {
+        "gcc": {
+          "pkg-path": "gcc",
+          "systems": [
+            "x86_64-linux",
+            "aarch64-linux"
+          ]
+        },
         "neovim": {
           "pkg-path": "neovim"
         }
