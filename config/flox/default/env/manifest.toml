@@ -26,6 +26,8 @@ op.systems = ["x86_64-linux", "aarch64-linux"]
 amazon-ecr-credential-helper.pkg-path = "amazon-ecr-credential-helper"
 amazon-ecr-credential-helper.systems = ["x86_64-linux", "aarch64-linux"]
 
+desk.pkg-path = "detaso/desk"
+
 ## Environment Variables ---------------------------------------------
 ##  ... available for use in the activated environment
 ##      as well as [hook], [profile] scripts and [services] below.
