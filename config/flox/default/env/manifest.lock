@@ -33,6 +33,13 @@
       "nodejs": {
         "pkg-path": "nodejs"
       },
+      "op": {
+        "pkg-path": "_1password-cli",
+        "systems": [
+          "x86_64-linux",
+          "aarch64-linux"
+        ]
+      },
       "pkg-config": {
         "pkg-path": "pkg-config"
       },
@@ -51,6 +58,13 @@
       },
       "stdenv": {
         "pkg-path": "stdenv"
+      },
+      "tea": {
+        "pkg-path": "tea",
+        "systems": [
+          "x86_64-linux",
+          "aarch64-linux"
+        ]
       },
       "vips": {
         "pkg-path": "vips"
@@ -900,6 +914,64 @@
       "priority": 5
     },
     {
+      "attr_path": "_1password-cli",
+      "broken": false,
+      "derivation": "/nix/store/py1w0bz6ac5nnpmnyyddb9kckhzkmp5y-1password-cli-2.42.0.drv",
+      "description": "1Password command-line tool",
+      "install_id": "op",
+      "license": "Unfree",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "1password-cli-2.42.0",
+      "pname": "_1password-cli",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:13:34.263981Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "2.42.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/gmsq9qi2f6jh9kqg4x4wwvb0cq8lvc9x-1password-cli-2.42.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "_1password-cli",
+      "broken": false,
+      "derivation": "/nix/store/sj0h8s6bnk5i6yb52xwd629s46vayr26-1password-cli-2.42.0.drv",
+      "description": "1Password command-line tool",
+      "install_id": "op",
+      "license": "Unfree",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "1password-cli-2.42.0",
+      "pname": "_1password-cli",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:41:47.721936Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": true,
+      "version": "2.42.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/x460imid9yyv32ryslvpfd71pzpfzbd6-1password-cli-2.42.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
       "attr_path": "pkg-config",
       "broken": false,
       "derivation": "/nix/store/njwpqi1mym6jk747r8yhxcrw5j42cmjj-pkg-config-wrapper-0.29.2.drv",
@@ -1189,6 +1261,64 @@
       "outputs_to_install": [],
       "outputs": {
         "out": "/nix/store/z2wyfgcxn7brfklv373fz0l9k8b5pwsg-stdenv-linux"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tea",
+      "broken": false,
+      "derivation": "/nix/store/xh55cm2ls9w20f67hnr1hhdj2yhs5q5q-tea-0.16.0.drv",
+      "description": "Gitea official CLI client",
+      "install_id": "tea",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "tea-0.16.0",
+      "pname": "tea",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:13:34.716912Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.16.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/kqymw7saq10pkkpvdnw3iv7946cv2zvj-tea-0.16.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tea",
+      "broken": false,
+      "derivation": "/nix/store/ib83hqq05iwz4478yg1s4zhwz5s12l5r-tea-0.16.0.drv",
+      "description": "Gitea official CLI client",
+      "install_id": "tea",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "tea-0.16.0",
+      "pname": "tea",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:41:48.084809Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.16.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/d07xgr7cj9mn5kpw20zw4dyxzn38xmni-tea-0.16.0"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -1518,6 +1648,20 @@
         },
         "neovim": {
           "pkg-path": "neovim"
+        },
+        "op": {
+          "pkg-path": "_1password-cli",
+          "systems": [
+            "x86_64-linux",
+            "aarch64-linux"
+          ]
+        },
+        "tea": {
+          "pkg-path": "tea",
+          "systems": [
+            "x86_64-linux",
+            "aarch64-linux"
+          ]
         }
       },
       "hook": {

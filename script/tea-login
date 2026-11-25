@@ -10,18 +10,60 @@ if ! command -v tea >/dev/null 2>&1; then
   exit 0
 fi
 
+has_display() {
+  [[ "$OSTYPE" == darwin* || -n "${DISPLAY:-}" ]]
+}
+
+# Succeeds when the named login's token can make an authenticated API call.
+login_works() {
+  local out
+  out="$(tea api --login "$1" /user 2>/dev/null)" || return 1
+  [[ "$out" == *'"login"'* ]]
+}
+
+# Simple output columns: name url ssh_host user default
 logins="$(tea login list --output simple 2>/dev/null || true)"
-if awk -v url="$url" '$2 == url { found = 1 } END { exit !found }' <<<"$logins"; then
-  echo "tea is already logged in to ${url}"
+existing="$(awk -v url="$url" '$2 == url { print $1; exit }' <<<"$logins")"
+
+if [[ -n "$existing" ]]; then
+  if login_works "$existing"; then
+    echo "tea is already logged in to ${url} as login '${existing}'"
+    exit 0
+  fi
+
+  hint="tea login '${existing}' for ${url} no longer works. Run 'tea login oauth-refresh ${existing}' (or 'tea login delete ${existing}' and re-run ${0}) to fix it."
+  if [[ -t 0 ]] && has_display; then
+    if tea login oauth-refresh "$existing" && login_works "$existing"; then
+      echo "Refreshed tea login '${existing}' for ${url}"
+      exit 0
+    fi
+  fi
+  echo "$hint" >&2
   exit 0
 fi
 
-if [[ "$OSTYPE" == darwin* || -n "${DISPLAY:-}" ]]; then
+collision="$(awk -v name="$name" '$1 == name { print $2; exit }' <<<"$logins")"
+if [[ -n "$collision" ]]; then
+  echo "A tea login named '${name}' already exists for ${collision}, not ${url}. Remove or rename it ('tea login delete ${name}') and re-run ${0}." >&2
+  exit 0
+fi
+
+skip_hint="Skipping Gitea login. Run ${0} interactively to log in to ${url}."
+
+if [[ ! -t 0 ]]; then
+  echo "No TTY. ${skip_hint}" >&2
+  exit 0
+fi
+
+if has_display; then
   tea login add --name "$name" --url "$url" --oauth
-elif [[ ! -t 0 ]]; then
-  echo "No TTY; skipping Gitea login. Run ${0} interactively to log in." >&2
 else
-  read -r -s -p "Gitea access token for ${url}: " token
+  token=""
+  read -r -s -p "Gitea access token for ${url}: " token || true
   echo
+  if [[ -z "$token" ]]; then
+    echo "No token entered. ${skip_hint}" >&2
+    exit 0
+  fi
   tea login add --name "$name" --url "$url" --token "$token"
 fi

@@ -15,6 +15,13 @@ neovim.pkg-path = "neovim"
 gcc.pkg-path = "gcc"
 gcc.systems = ["x86_64-linux", "aarch64-linux"]
 
+# macOS gets tea and op from Homebrew
+tea.pkg-path = "tea"
+tea.systems = ["x86_64-linux", "aarch64-linux"]
+
+op.pkg-path = "_1password-cli"
+op.systems = ["x86_64-linux", "aarch64-linux"]
+
 ## Environment Variables ---------------------------------------------
 ##  ... available for use in the activated environment
 ##      as well as [hook], [profile] scripts and [services] below.
