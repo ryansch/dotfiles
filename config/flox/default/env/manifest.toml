@@ -22,6 +22,10 @@ tea.systems = ["x86_64-linux", "aarch64-linux"]
 op.pkg-path = "_1password-cli"
 op.systems = ["x86_64-linux", "aarch64-linux"]
 
+# macOS gets docker-credential-ecr-login from Homebrew
+amazon-ecr-credential-helper.pkg-path = "amazon-ecr-credential-helper"
+amazon-ecr-credential-helper.systems = ["x86_64-linux", "aarch64-linux"]
+
 ## Environment Variables ---------------------------------------------
 ##  ... available for use in the activated environment
 ##      as well as [hook], [profile] scripts and [services] below.

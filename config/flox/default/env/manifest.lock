@@ -3,6 +3,13 @@
   "manifest": {
     "schema-version": "1.10.0",
     "install": {
+      "amazon-ecr-credential-helper": {
+        "pkg-path": "amazon-ecr-credential-helper",
+        "systems": [
+          "x86_64-linux",
+          "aarch64-linux"
+        ]
+      },
       "corepack": {
         "pkg-path": "corepack",
         "priority": 1
@@ -188,6 +195,64 @@
       },
       "system": "x86_64-linux",
       "group": "ruby",
+      "priority": 5
+    },
+    {
+      "attr_path": "amazon-ecr-credential-helper",
+      "broken": false,
+      "derivation": "/nix/store/qr3vg52aj6pwkwam2y9nwvk3z99m270a-amazon-ecr-credential-helper-0.13.0.drv",
+      "description": "Amazon ECR Docker Credential Helper is a credential helper for the Docker daemon that makes it easier to use Amazon Elastic Container Registry",
+      "install_id": "amazon-ecr-credential-helper",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "amazon-ecr-credential-helper-0.13.0",
+      "pname": "amazon-ecr-credential-helper",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:13:34.266880Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.13.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/x6xbmabmhmxapibc490rlbpm5swdirga-amazon-ecr-credential-helper-0.13.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "amazon-ecr-credential-helper",
+      "broken": false,
+      "derivation": "/nix/store/5f9wzdm5pl3v0xwiixvd6srbglmkiqkz-amazon-ecr-credential-helper-0.13.0.drv",
+      "description": "Amazon ECR Docker Credential Helper is a credential helper for the Docker daemon that makes it easier to use Amazon Elastic Container Registry",
+      "install_id": "amazon-ecr-credential-helper",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "name": "amazon-ecr-credential-helper-0.13.0",
+      "pname": "amazon-ecr-credential-helper",
+      "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+      "rev_count": 1125864,
+      "rev_date": "2026-11-21T04:16:29Z",
+      "scrape_date": "2026-11-22T06:41:47.724932Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.13.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/7pqsgfap13harvisyqkx7nvk82rwngk6-amazon-ecr-credential-helper-0.13.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
       "priority": 5
     },
     {
@@ -1639,6 +1704,13 @@
     "composer": {
       "schema-version": "1.10.0",
       "install": {
+        "amazon-ecr-credential-helper": {
+          "pkg-path": "amazon-ecr-credential-helper",
+          "systems": [
+            "x86_64-linux",
+            "aarch64-linux"
+          ]
+        },
         "gcc": {
           "pkg-path": "gcc",
           "systems": [
