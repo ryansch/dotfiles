@@ -59,3 +59,59 @@ SH
   [ "$status" -eq 0 ]
   [ ! -e "$DOTFILES_PRIVATE_DIR" ]
 }
+
+# Fake flox that records its args and runs the command after `--` with a
+# fake tea on PATH, standing in for `flox activate -d "$HOME" -- ...`.
+setup_fake_flox() {
+  unset DOTFILES_FLOX_REEXEC
+  export FLOX_ARGS="${BATS_TEST_TMPDIR}/flox-args"
+  export FAKE_TEA_DIR="${BATS_TEST_TMPDIR}/tea-bin"
+  local flox_dir="${BATS_TEST_TMPDIR}/flox-bin"
+  mkdir -p "$FAKE_TEA_DIR" "$flox_dir" "${HOME}/.flox"
+  printf '#!/usr/bin/env bash\nexit 0\n' >"${FAKE_TEA_DIR}/tea"
+  cat >"${flox_dir}/flox" <<'SH'
+#!/usr/bin/env bash
+echo "$*" >>"$FLOX_ARGS"
+while [[ $# -gt 0 && "$1" != -- ]]; do shift; done
+shift
+PATH="${FAKE_TEA_DIR}:${PATH}" exec "$@"
+SH
+  chmod +x "${FAKE_TEA_DIR}/tea" "${flox_dir}/flox"
+
+  # PATH without tea: only bash plus the fake flox.
+  local bin="${BATS_TEST_TMPDIR}/restricted-bin"
+  mkdir -p "$bin"
+  ln -sf "$(command -v bash)" "${bin}/bash"
+  RESTRICTED_PATH="${bin}:${flox_dir}"
+}
+
+@test "re-execs under flox activate when tea is missing" {
+  setup_fake_flox
+  PATH="$RESTRICTED_PATH" run "$SCRIPT" </dev/null
+  [ "$status" -eq 0 ]
+  [ "$(cat "$FLOX_ARGS")" = "activate -d ${HOME} -- ${SCRIPT}" ]
+  [[ "$output" == *"skipping private dotfiles"* ]]
+}
+
+@test "does not re-exec again when DOTFILES_FLOX_REEXEC is set" {
+  setup_fake_flox
+  DOTFILES_FLOX_REEXEC=1 PATH="$RESTRICTED_PATH" run "$SCRIPT" </dev/null
+  [ "$status" -eq 0 ]
+  [ ! -e "$FLOX_ARGS" ]
+  [[ "$output" == *"skipping private dotfiles"* ]]
+}
+
+@test "does not re-exec when there is no default flox env" {
+  setup_fake_flox
+  rmdir "${HOME}/.flox"
+  PATH="$RESTRICTED_PATH" run "$SCRIPT" </dev/null
+  [ "$status" -eq 0 ]
+  [ ! -e "$FLOX_ARGS" ]
+}
+
+@test "does not re-exec when tea is already on PATH" {
+  setup_fake_flox
+  PATH="${FAKE_TEA_DIR}:${RESTRICTED_PATH}" run "$SCRIPT" </dev/null
+  [ "$status" -eq 0 ]
+  [ ! -e "$FLOX_ARGS" ]
+}

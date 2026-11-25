@@ -13,4 +13,4 @@ fi
 flox config --set 'set_prompt' false
 flox config --set 'hide_default_prompt' true
 
-flox config --set 'auto_activate_environments."/Users/ryansch/dev/*/.claude/worktrees/*"' allow
+flox config --set "auto_activate_environments.\"${HOME}/dev/*/.claude/worktrees/*\"" allow
