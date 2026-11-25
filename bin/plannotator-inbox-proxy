@@ -1,0 +1,164 @@
+#!/usr/bin/env python3
+"""Expose the loopback-only Plannotator Inbox on the LAN.
+
+The Inbox always binds 127.0.0.1 and picks its own port -- unlike review and
+annotate sessions, it ignores PLANNOTATOR_REMOTE and PLANNOTATOR_PORT. So this
+forwards at the TCP level rather than parsing HTTP: byte pumping keeps SSE
+streams and websocket upgrades working with no per-protocol handling.
+
+Two things to know about the Inbox's guards:
+
+  * It rejects a Host header it does not recognise, so it has to be started with
+    PLANNOTATOR_ALLOWED_HOSTS naming whatever address the browser uses. The
+    systemd unit sets it, and so does ~/.zshenv for agent-started Inboxes.
+  * It treats a non-loopback X-Forwarded-For as tailnet exposure and answers
+    403. Forwarding raw bytes means we never add one.
+
+The upstream port is re-read from the Inbox's record on every connection, so a
+restart that moves the port needs no action here.
+"""
+
+import asyncio
+import json
+import os
+import subprocess
+import time
+from pathlib import Path
+
+DATA_DIR = Path(
+    os.environ.get("PLANNOTATOR_DATA_DIR")
+    or Path.home() / ".local/share/plannotator"
+)
+RECORD = DATA_DIR / "inbox" / "inbox.json"
+PLANNOTATOR = os.environ.get("PLANNOTATOR_BIN") or str(
+    Path.home() / ".local/bin/plannotator"
+)
+
+LISTEN_HOST = os.environ.get("PN_PROXY_HOST", "0.0.0.0")
+LISTEN_PORT = int(os.environ.get("PN_PROXY_PORT", "19500"))
+
+# Starting the Inbox takes a few seconds; don't let a page's worth of parallel
+# requests each try to launch one. Waiters re-check the port instead of each
+# spawning their own start, so this needs no timer -- a timer here would also
+# suppress the legitimate start after the Inbox goes down.
+_start_lock = asyncio.Lock()
+
+# A start that fails is the one case worth rate limiting, so a broken Inbox
+# does not cost every request a subprocess timeout.
+_failed_start_at = 0.0
+FAILED_START_BACKOFF = 15.0
+
+UNAVAILABLE = (
+    b"HTTP/1.1 503 Service Unavailable\r\n"
+    b"Content-Type: text/html; charset=utf-8\r\n"
+    b"Cache-Control: no-store\r\n"
+    b"Connection: close\r\n"
+    b"\r\n"
+    b"<!doctype html><meta name=viewport content='width=device-width'>"
+    b"<style>body{font:16px/1.5 system-ui;margin:3rem auto;max-width:28rem;padding:0 1rem}</style>"
+    b"<h1>Inbox not running</h1>"
+    b"<p>The proxy is up, but the Plannotator Inbox on this machine is not "
+    b"answering and could not be started.</p>"
+    b"<p>On the host, run <code>plannotator inbox --open</code>.</p>"
+)
+
+
+def record_port():
+    try:
+        return int(json.loads(RECORD.read_text())["port"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
+async def try_connect():
+    """Connect to whatever port the Inbox's record currently names."""
+    port = record_port()
+    if port is None:
+        return None
+    try:
+        return await asyncio.open_connection("127.0.0.1", port)
+    except OSError:
+        return None  # stale record, or the Inbox is down
+
+
+async def run_start():
+    """Ask Plannotator to bring the Inbox back up in the background."""
+    global _failed_start_at
+    if time.monotonic() - _failed_start_at < FAILED_START_BACKOFF:
+        return
+    try:
+        done = await asyncio.to_thread(
+            subprocess.run,
+            [PLANNOTATOR, "inbox", "--background"],
+            capture_output=True,
+            timeout=45,
+        )
+        if done.returncode != 0:
+            _failed_start_at = time.monotonic()
+    except (OSError, subprocess.SubprocessError):
+        _failed_start_at = time.monotonic()
+
+
+async def open_upstream():
+    conn = await try_connect()
+    if conn is not None:
+        return conn
+
+    async with _start_lock:
+        # Another connection may have started the Inbox while we queued here.
+        conn = await try_connect()
+        if conn is not None:
+            return conn
+        await run_start()
+        return await try_connect()
+
+
+async def pump(reader, writer):
+    try:
+        while True:
+            chunk = await reader.read(65536)
+            if not chunk:
+                break
+            writer.write(chunk)
+            await writer.drain()
+    except OSError:
+        pass
+    finally:
+        try:
+            writer.close()
+        except OSError:
+            pass
+
+
+async def handle(client_reader, client_writer):
+    upstream = await open_upstream()
+    if upstream is None:
+        try:
+            client_writer.write(UNAVAILABLE)
+            await client_writer.drain()
+        except OSError:
+            pass
+        client_writer.close()
+        return
+
+    up_reader, up_writer = upstream
+    await asyncio.gather(
+        pump(client_reader, up_writer),
+        pump(up_reader, client_writer),
+        return_exceptions=True,
+    )
+
+
+async def main():
+    server = await asyncio.start_server(handle, LISTEN_HOST, LISTEN_PORT)
+    addr = ", ".join(str(s.getsockname()) for s in server.sockets)
+    print(f"plannotator-inbox-proxy listening on {addr}", flush=True)
+    async with server:
+        await server.serve_forever()
+
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        pass

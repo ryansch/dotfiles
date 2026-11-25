@@ -1,0 +1,31 @@
+#!/bin/sh
+# Point Plannotator's `tailscale` calls at the personal tailnet.
+#
+# Plannotator shells out to a bare `tailscale` on PATH and has no way to name a
+# binary or a socket (packages/shared/tailscale.ts, createTailscaleRunner). Under
+# tailmix there is no /var/run/tailscale/tailscaled.sock at all: each tailnet gets
+# its own LocalAPI socket, so the stock CLI has to be told which one.
+#
+# This lives in a directory that is only ever prepended to the Inbox's PATH, never
+# the login shell's, so `tailscale` typed in a terminal still means the work
+# profile the way it always did.
+#
+# The socket is resolved at call time rather than baked in: a profile that is
+# removed and re-added gets a new id, and a stale path would fail as a confusing
+# permission error rather than an obvious one.
+
+set -eu
+
+PROFILE="${PLANNOTATOR_TAILMIX_PROFILE:-home}"
+REAL_TAILSCALE="${PLANNOTATOR_TAILSCALE_BIN:-/usr/bin/tailscale}"
+
+socket=$(tailmix profiles show "$PROFILE" --json 2>/dev/null | jq -re '.localApiSocket // empty' 2>/dev/null || true)
+
+# No socket means tailmix is down, or the profile was renamed or removed. Fall
+# through to the stock CLI so the caller sees Tailscale's own error instead of
+# one invented here.
+if [ -z "$socket" ] || [ ! -S "$socket" ]; then
+	exec "$REAL_TAILSCALE" "$@"
+fi
+
+exec "$REAL_TAILSCALE" --socket="$socket" "$@"

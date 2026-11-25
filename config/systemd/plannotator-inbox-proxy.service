@@ -1,0 +1,37 @@
+[Unit]
+Description=LAN reverse proxy for the loopback-only Plannotator Inbox
+Documentation=https://docs.plannotator.ai/open-source/inbox
+After=network-online.target plannotator-inbox.service
+Wants=plannotator-inbox.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/plannotator-inbox-proxy
+Restart=always
+RestartSec=3
+
+# The Inbox answers 403 on a Host header it does not recognise, which is also
+# what stops DNS rebinding reaching it. %l is systemd's short hostname, so this
+# names the right machine anywhere and keeps no network detail in the file.
+# A literal LAN IP is deliberately absent: .lan resolves over the tailnet from
+# away, so the names cover both home and remote.
+Environment=PLANNOTATOR_ALLOWED_HOSTS=%l.lan,%l,%l.local,localhost,127.0.0.1
+
+# Optional, untracked, per-machine overrides: extra hostnames, a literal IP, or
+# PLANNOTATOR_TAILMIX_PROFILE when the personal tailnet is not in "home". Listed
+# after the defaults so it wins; `-` means the unit still loads without it.
+EnvironmentFile=-%h/.config/plannotator/local.env
+
+Environment=PLANNOTATOR_BROWSER=none
+Environment=PATH=%h/.local/libexec/plannotator:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PLANNOTATOR_INBOX_TAILSCALE=1
+Environment=PN_PROXY_PORT=19500
+
+# Without this the unit's environment resolves the data dir to ~/.plannotator
+# rather than the XDG path the login shell uses, which would silently create a
+# second, empty Inbox. Keep it pointed at what `plannotator data-dir` prints.
+Environment=PLANNOTATOR_DATA_DIR=%h/.local/share/plannotator
+
+[Install]
+WantedBy=default.target

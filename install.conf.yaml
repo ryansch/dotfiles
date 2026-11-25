@@ -59,6 +59,13 @@
     ~/.flox: config/flox/default
     ~/.config/backblaze: config/backblaze
     ~/.aws/emulator/docker: config/aws-emulator
+    # Points Plannotator's bare `tailscale` calls at the tailmix profile holding
+    # the personal tailnet. Not on the login shell's PATH on purpose, so
+    # `tailscale` in a terminal still means whatever profile you chose there.
+    ~/.local/libexec/plannotator/tailscale:
+      path: config/plannotator/tailscale
+      create: true
+      relink: true
 
 - ifanylinux:
     - link:
@@ -66,6 +73,18 @@
           create: true
           glob: true
           path: fonts/*
+          relink: true
+        # systemd user units for the Plannotator Inbox and its LAN proxy. Linux
+        # only; macOS would need launchd equivalents. plannotator-inbox.service
+        # itself is NOT tracked: Plannotator rewrites that file whenever its
+        # start-at-login item is turned on, so only the drop-in is ours.
+        ~/.config/systemd/user/plannotator-inbox-proxy.service:
+          path: config/systemd/plannotator-inbox-proxy.service
+          create: true
+          relink: true
+        ~/.config/systemd/user/plannotator-inbox.service.d/override.conf:
+          path: config/systemd/plannotator-inbox.service.d/override.conf
+          create: true
           relink: true
     - shell:
         - fc-cache -vf ~/.fonts
