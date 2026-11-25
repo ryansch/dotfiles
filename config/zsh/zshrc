@@ -39,14 +39,13 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd "k" history-substring-search-up
 bindkey -M vicmd "j" history-substring-search-down
 
-OS="$(uname)"
-if [[ "$OS" == "Linux" ]]; then
+if [[ "$OSTYPE" == linux* ]]; then
   if [ -d /home/linuxbrew/.linuxbrew/ ]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
 fi
 
-if [[ "$OS" == "Darwin" ]]; then
+if [[ "$OSTYPE" == darwin* ]]; then
   source ${HOME}/.local/share/sh/homebrew.sh
   eval "$($(homebrew_location)/bin/brew shellenv)"
 fi

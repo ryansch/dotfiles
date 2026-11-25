@@ -18,7 +18,9 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
-alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+fi
 
 alias devreset="flox services stop; docker compose down -v && docker compose up -d && bundle && yarn install && sleep 1 && rails dev:prime"
 alias pumareset="puma-dev -stop && puma-dev -install"
