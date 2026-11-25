@@ -81,6 +81,7 @@
         - bat-extras
         - ripgrep
         - gh
+        - tea
     - link:
         ~/.hammerspoon:
           path: config/hammerspoon
@@ -102,6 +103,11 @@
 - shell:
     - command: ~/.dotfiles/script/gh-login
       description: "Log in with gh"
+      stdin: true
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/tea-login
+      description: "Log in with tea"
       stdin: true
       stdout: true
       stderr: true
