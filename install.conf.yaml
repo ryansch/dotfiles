@@ -137,6 +137,11 @@
       description: "Apply default flox config"
       stdout: true
       stderr: true
+    - command: ~/.dotfiles/script/private-bootstrap
+      description: "Clone and install private dotfiles"
+      stdin: true
+      stdout: true
+      stderr: true
 
 - ghe:
     - mislav/gh-branch

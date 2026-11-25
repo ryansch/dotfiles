@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+dir="${DOTFILES_PRIVATE_DIR:-${HOME}/.dotfiles-private}"
+url="${DOTFILES_PRIVATE_URL:-https://git.ryansch.net/ryansch/dotfiles-private}"
+
+if [[ -d "$dir" ]]; then
+  if [[ ! -x "${dir}/install" ]]; then
+    echo "${dir} exists but has no executable install script; skipping private dotfiles" >&2
+    exit 0
+  fi
+  exec "${dir}/install"
+fi
+
+# DOTFILES_PRIVATE_ASSUME_TTY=1 lets tests drive the prompt through a pipe.
+if [[ ! -t 0 && "${DOTFILES_PRIVATE_ASSUME_TTY:-}" != 1 ]]; then
+  echo "skipping private dotfiles (no TTY). Run ${0} interactively to clone ${url}." >&2
+  exit 0
+fi
+
+answer=""
+printf 'Clone private dotfiles from %s? (yN) ' "$url" >&2
+read -r answer || true
+
+case "$answer" in
+  [yY] | [yY][eE][sS]) ;;
+  *)
+    echo "Not cloning; skipping private dotfiles." >&2
+    exit 0
+    ;;
+esac
+
+git clone --recurse-submodules "$url" "$dir"
+exec "${dir}/install"
