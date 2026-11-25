@@ -3,6 +3,13 @@
   "manifest": {
     "schema-version": "1.10.0",
     "install": {
+      "amazon-ecr-credential-helper": {
+        "pkg-path": "amazon-ecr-credential-helper",
+        "systems": [
+          "x86_64-linux",
+          "aarch64-linux"
+        ]
+      },
       "corepack": {
         "pkg-path": "corepack",
         "priority": 1
@@ -36,6 +43,13 @@
       "nodejs": {
         "pkg-path": "nodejs"
       },
+      "op": {
+        "pkg-path": "_1password-cli",
+        "systems": [
+          "x86_64-linux",
+          "aarch64-linux"
+        ]
+      },
       "pkg-config": {
         "pkg-path": "pkg-config"
       },
@@ -54,6 +68,13 @@
       },
       "stdenv": {
         "pkg-path": "stdenv"
+      },
+      "tea": {
+        "pkg-path": "tea",
+        "systems": [
+          "x86_64-linux",
+          "aarch64-linux"
+        ]
       },
       "vips": {
         "pkg-path": "vips"
@@ -180,6 +201,68 @@
       "priority": 5
     },
     {
+      "attr_path": "amazon-ecr-credential-helper",
+      "broken": false,
+      "derivation": "/nix/store/yrbjyra3cpl493xf1p57wd41pbha41fn-amazon-ecr-credential-helper-0.12.0.drv",
+      "description": "Amazon ECR Docker Credential Helper is a credential helper for the Docker daemon that makes it easier to use Amazon Elastic Container Registry",
+      "install_id": "amazon-ecr-credential-helper",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "amazon-ecr-credential-helper-0.12.0",
+      "pname": "amazon-ecr-credential-helper",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:16:32.204760Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "0.12.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/xi4v74r9rffpimwdnqcj0zyxqzl3sk5n-amazon-ecr-credential-helper-0.12.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "amazon-ecr-credential-helper",
+      "broken": false,
+      "derivation": "/nix/store/g511k7r5n12qmsfmzhzp587wjm05jjcm-amazon-ecr-credential-helper-0.12.0.drv",
+      "description": "Amazon ECR Docker Credential Helper is a credential helper for the Docker daemon that makes it easier to use Amazon Elastic Container Registry",
+      "install_id": "amazon-ecr-credential-helper",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "amazon-ecr-credential-helper-0.12.0",
+      "pname": "amazon-ecr-credential-helper",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:48:05.354244Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "0.12.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/lcwnyqcsvsa19rbp6y7wj2bprpdch2j0-amazon-ecr-credential-helper-0.12.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
       "attr_path": "corepack",
       "broken": false,
       "derivation": "/nix/store/g0wljgq023sllzx9dbn3lrznz03vzag6-corepack-0.36.0.drv",
@@ -285,7 +368,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-25T15:58:53.138115461Z",
+      "scrape_date": "2026-11-25T19:34:20.748512Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -316,7 +399,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-25T15:58:53.138116496Z",
+      "scrape_date": "2026-11-25T19:34:20.748513Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -347,7 +430,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-25T15:58:53.138119140Z",
+      "scrape_date": "2026-11-25T19:34:20.748515Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -1072,6 +1155,68 @@
       "priority": 5
     },
     {
+      "attr_path": "_1password-cli",
+      "broken": false,
+      "derivation": "/nix/store/lczl6c5idlx97dl8jdk0b859b2rrrclf-1password-cli-2.41.1.drv",
+      "description": "1Password command-line tool",
+      "install_id": "op",
+      "license": "Unfree",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "1password-cli-2.41.1",
+      "pname": "_1password-cli",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:16:32.201605Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": true,
+      "version": "2.41.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/a75yr7ad9dg6y324hh27pgxlfnm4w2kx-1password-cli-2.41.1"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "_1password-cli",
+      "broken": false,
+      "derivation": "/nix/store/c4fa8lfn9zyvs3n3avqv7zgg3awdgblh-1password-cli-2.41.1.drv",
+      "description": "1Password command-line tool",
+      "install_id": "op",
+      "license": "Unfree",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "1password-cli-2.41.1",
+      "pname": "_1password-cli",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:48:05.351139Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": true,
+      "version": "2.41.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/3ja7c0msi88gcx185hpp13c1y8fzang7-1password-cli-2.41.1"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
       "attr_path": "pkg-config",
       "broken": false,
       "derivation": "/nix/store/1qjf489vb8fd41awn89h3xqgxnykgknr-pkg-config-wrapper-0.29.2.drv",
@@ -1384,6 +1529,68 @@
       "outputs_to_install": [],
       "outputs": {
         "out": "/nix/store/an9g93vg5b02j74y38zfajswa0f10p2z-stdenv-linux"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tea",
+      "broken": false,
+      "derivation": "/nix/store/f1wp2811iqh2cfqwpq59k4sc9ii9c3n5-tea-0.16.0.drv",
+      "description": "Gitea official CLI client",
+      "install_id": "tea",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "tea-0.16.0",
+      "pname": "tea",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:16:32.722749Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "0.16.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/yamn01c1dh7iv4dbrlmzir332kl46c16-tea-0.16.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tea",
+      "broken": false,
+      "derivation": "/nix/store/zpy3pwq07k49wpdgi166gn0rpmqnl8a8-tea-0.16.0.drv",
+      "description": "Gitea official CLI client",
+      "install_id": "tea",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "tea-0.16.0",
+      "pname": "tea",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:48:05.805687Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "0.16.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/g0d6mcdwimr208rkwiz9wa82v56kp4dd-tea-0.16.0"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -1740,6 +1947,13 @@
     "composer": {
       "schema-version": "1.10.0",
       "install": {
+        "amazon-ecr-credential-helper": {
+          "pkg-path": "amazon-ecr-credential-helper",
+          "systems": [
+            "x86_64-linux",
+            "aarch64-linux"
+          ]
+        },
         "desk": {
           "pkg-path": "detaso/desk"
         },
@@ -1752,6 +1966,20 @@
         },
         "neovim": {
           "pkg-path": "neovim"
+        },
+        "op": {
+          "pkg-path": "_1password-cli",
+          "systems": [
+            "x86_64-linux",
+            "aarch64-linux"
+          ]
+        },
+        "tea": {
+          "pkg-path": "tea",
+          "systems": [
+            "x86_64-linux",
+            "aarch64-linux"
+          ]
         }
       },
       "hook": {

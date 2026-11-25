@@ -72,6 +72,11 @@ if [ -d $HOME/.zsh.after/ ]; then
   fi
 fi
 
+# Load private config from ~/.dotfiles-private/zsh
+if [ -d ${DOTFILES_PRIVATE_DIR:-$HOME/.dotfiles-private}/zsh ]; then
+  for config_file (${DOTFILES_PRIVATE_DIR:-$HOME/.dotfiles-private}/zsh/*.zsh(N)) source $config_file
+fi
+
 zcomet compinit
 
 # opencode

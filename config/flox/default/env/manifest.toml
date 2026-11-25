@@ -15,6 +15,17 @@ neovim.pkg-path = "neovim"
 gcc.pkg-path = "gcc"
 gcc.systems = ["x86_64-linux", "aarch64-linux"]
 
+# macOS gets tea and op from Homebrew
+tea.pkg-path = "tea"
+tea.systems = ["x86_64-linux", "aarch64-linux"]
+
+op.pkg-path = "_1password-cli"
+op.systems = ["x86_64-linux", "aarch64-linux"]
+
+# macOS gets docker-credential-ecr-login from Homebrew
+amazon-ecr-credential-helper.pkg-path = "amazon-ecr-credential-helper"
+amazon-ecr-credential-helper.systems = ["x86_64-linux", "aarch64-linux"]
+
 desk.pkg-path = "detaso/desk"
 
 ## Environment Variables ---------------------------------------------

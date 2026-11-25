@@ -73,6 +73,7 @@
 - ifmacos:
     - cask:
         - font-hack-nerd-font
+        - 1password-cli
     - brew:
         - zoxide
         - eza
@@ -81,6 +82,7 @@
         - bat-extras
         - ripgrep
         - gh
+        - tea
     - link:
         ~/.hammerspoon:
           path: config/hammerspoon
@@ -129,6 +131,16 @@
       stderr: true
     - command: ~/.dotfiles/script/add-flox-config
       description: "Apply default flox config"
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/tea-login
+      description: "Log in with tea"
+      stdin: true
+      stdout: true
+      stderr: true
+    - command: ~/.dotfiles/script/private-bootstrap
+      description: "Clone and install private dotfiles"
+      stdin: true
       stdout: true
       stderr: true
 

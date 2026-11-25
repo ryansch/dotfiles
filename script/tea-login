@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+name="git.ryansch.net"
+url="https://git.ryansch.net"
+
+if ! command -v tea >/dev/null 2>&1; then
+  # On Linux tea comes from the Flox default env, which isn't active while
+  # ./install runs. Re-run once inside it; the env var stops a loop.
+  if [[ -z "${DOTFILES_FLOX_REEXEC:-}" && -d "${HOME}/.flox" ]] &&
+    command -v flox >/dev/null 2>&1; then
+    export DOTFILES_FLOX_REEXEC=1
+    exec flox activate -d "$HOME" -- "$0" "$@"
+  fi
+  echo "tea is not installed; skipping Gitea login" >&2
+  exit 0
+fi
+
+# Over SSH there is no local browser for the OAuth flow, even on macOS.
+has_display() {
+  [[ -z "${SSH_CONNECTION:-}" && -z "${SSH_TTY:-}" ]] || return 1
+  [[ "${OSTYPE:-}" == darwin* || -n "${DISPLAY:-}" ]]
+}
+
+# DOTFILES_TEA_ASSUME_TTY=1 lets tests drive the prompts through a pipe.
+interactive() {
+  [[ -t 0 || "${DOTFILES_TEA_ASSUME_TTY:-}" == 1 ]]
+}
+
+# Succeeds when the named login's token can make an authenticated API call.
+login_works() {
+  local out
+  out="$(tea api --login "$1" /user 2>/dev/null)" || return 1
+  [[ "$out" == *'"login"'* ]]
+}
+
+# Simple output columns: name url ssh_host user default
+logins="$(tea login list --output simple 2>/dev/null || true)"
+existing="$(awk -v url="$url" '$2 == url { print $1; exit }' <<<"$logins")"
+
+if [[ -n "$existing" ]]; then
+  if login_works "$existing"; then
+    echo "tea is already logged in to ${url} as login '${existing}'"
+    exit 0
+  fi
+
+  hint="tea login '${existing}' for ${url} no longer works. Run 'tea login oauth-refresh ${existing}' (or 'tea login delete ${existing}' and re-run ${0}) to fix it."
+  if interactive && has_display; then
+    if tea login oauth-refresh "$existing" && login_works "$existing"; then
+      echo "Refreshed tea login '${existing}' for ${url}"
+      exit 0
+    fi
+  fi
+  echo "$hint" >&2
+  exit 0
+fi
+
+collision="$(awk -v name="$name" '$1 == name { print $2; exit }' <<<"$logins")"
+if [[ -n "$collision" ]]; then
+  echo "A tea login named '${name}' already exists for ${collision}, not ${url}. Remove or rename it ('tea login delete ${name}') and re-run ${0}." >&2
+  exit 0
+fi
+
+skip_hint="Skipping Gitea login. Run ${0} interactively to log in to ${url}."
+
+if ! interactive; then
+  echo "No TTY. ${skip_hint}" >&2
+  exit 0
+fi
+
+if has_display; then
+  tea login add --name "$name" --url "$url" --oauth
+elif [[ "${OSTYPE:-}" == darwin* ]]; then
+  echo "No local browser (SSH session). Run 'tea login add --name ${name} --url ${url} --oauth' on this Mac's desktop to log in." >&2
+  exit 0
+else
+  # No browser here, but Gitea has no device flow: run tea's OAuth flow with
+  # a fixed redirect port that the SSH session forwards back to this host.
+  choice=""
+  read -r -p "Log in to ${url} with [b]rowser (default) or paste a [t]oken? " choice || true
+  case "$choice" in
+  t | T | token)
+    ;;
+  *)
+    port=53682
+    host="$(hostname -s 2>/dev/null || hostname)"
+    cat <<EOF
+
+Browser login needs this SSH session to forward port ${port}. Either:
+  - reconnect with:  ssh -L ${port}:127.0.0.1:${port} ${host}
+  - or add it to this session: at the prompt below type ~C, then at ssh>
+    enter  -L ${port}:127.0.0.1:${port}
+    (OpenSSH 9.2+ needs EnableEscapeCommandline yes for ~C)
+tea will print an authorize URL; open it in your local browser.
+EOF
+    read -r -p "Press Enter when port ${port} is forwarded (Ctrl-C to cancel)... " _ || true
+    if tea login add --name "$name" --url "$url" --oauth \
+      --redirect-url "http://127.0.0.1:${port}/"; then
+      exit 0
+    fi
+    echo "Browser login failed; falling back to an access token." >&2
+    ;;
+  esac
+
+  token=""
+  read -r -s -p "Gitea access token for ${url}: " token || true
+  echo
+  if [[ -z "$token" ]]; then
+    echo "No token entered. ${skip_hint}" >&2
+    exit 0
+  fi
+  tea login add --name "$name" --url "$url" --token "$token"
+fi

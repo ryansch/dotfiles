@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+dir="${DOTFILES_PRIVATE_DIR:-${HOME}/.dotfiles-private}"
+url="${DOTFILES_PRIVATE_URL:-https://git.ryansch.net/ryansch/dotfiles-private}"
+
+# On Linux tea (the git credential helper for the clone) and op come from the
+# Flox default env, which isn't active while ./install runs. Re-run once
+# inside it; the env var stops a loop.
+if ! command -v tea >/dev/null 2>&1 &&
+  [[ -z "${DOTFILES_FLOX_REEXEC:-}" && -d "${HOME}/.flox" ]] &&
+  command -v flox >/dev/null 2>&1; then
+  export DOTFILES_FLOX_REEXEC=1
+  exec flox activate -d "$HOME" -- "$0" "$@"
+fi
+
+if [[ -d "$dir" ]]; then
+  if [[ ! -x "${dir}/install" ]]; then
+    echo "${dir} exists but has no executable install script; skipping private dotfiles" >&2
+    exit 0
+  fi
+  exec "${dir}/install"
+fi
+
+# DOTFILES_PRIVATE_ASSUME_TTY=1 lets tests drive the prompt through a pipe.
+if [[ ! -t 0 && "${DOTFILES_PRIVATE_ASSUME_TTY:-}" != 1 ]]; then
+  echo "skipping private dotfiles (no TTY). Run ${0} interactively to clone ${url}." >&2
+  exit 0
+fi
+
+answer=""
+printf 'Clone private dotfiles from %s? (yN) ' "$url" >&2
+read -r answer || true
+
+case "$answer" in
+  [yY] | [yY][eE][sS]) ;;
+  *)
+    echo "Not cloning; skipping private dotfiles." >&2
+    exit 0
+    ;;
+esac
+
+git clone --recurse-submodules "$url" "$dir"
+exec "${dir}/install"
