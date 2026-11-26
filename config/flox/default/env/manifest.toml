@@ -1,7 +1,8 @@
-schema-version = "1.10.0"
+schema-version = "1.19.0"
+minimum-cli-version = "1.19.0"
 
 [include]
-environments = [{ remote = "detaso/ruby-4.0" }]
+environments = [{ remote = "ryansch/ruby-4.0" }]
 # environments = [{ dir = "/Users/ryansch/dev/flox/detaso/ruby-4.0" }]
 
 ## Install Packages --------------------------------------------------
@@ -26,7 +27,7 @@ op.systems = ["x86_64-linux", "aarch64-linux"]
 amazon-ecr-credential-helper.pkg-path = "amazon-ecr-credential-helper"
 amazon-ecr-credential-helper.systems = ["x86_64-linux", "aarch64-linux"]
 
-desk.pkg-path = "detaso/desk"
+desk.pkg-path = "ryansch/desk"
 
 ## Environment Variables ---------------------------------------------
 ##  ... available for use in the activated environment

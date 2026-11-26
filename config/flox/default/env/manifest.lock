@@ -1,7 +1,8 @@
 {
   "lockfile-version": 1,
   "manifest": {
-    "schema-version": "1.10.0",
+    "schema-version": "1.19.0",
+    "minimum-cli-version": "1.19.0",
     "install": {
       "amazon-ecr-credential-helper": {
         "pkg-path": "amazon-ecr-credential-helper",
@@ -15,7 +16,7 @@
         "priority": 1
       },
       "desk": {
-        "pkg-path": "detaso/desk"
+        "pkg-path": "ryansch/desk"
       },
       "gcc": {
         "pkg-path": "gcc",
@@ -62,7 +63,7 @@
         ]
       },
       "ruby": {
-        "pkg-path": "detaso/ruby_4_0",
+        "pkg-path": "ryansch/ruby_4_0",
         "pkg-group": "ruby",
         "version": "4.0.10"
       },
@@ -77,7 +78,9 @@
         ]
       },
       "vips": {
-        "pkg-path": "vips"
+        "pkg-path": "vips",
+        "pkg-group": "ruby",
+        "outputs": "all"
       },
       "zlib": {
         "pkg-path": "zlib"
@@ -87,7 +90,7 @@
       }
     },
     "hook": {
-      "on-activate": "  # Set up env vars for bundler/rubygems\n  RUBY_LIB_VERSION=4.0.0\n\n  export GEM_HOME=\"$FLOX_ENV_CACHE/gem/ruby/$RUBY_LIB_VERSION\"\n  export GEM_PATH=\"$GEM_HOME/gems:${GEM_PATH:-}\"\n\n  export NPM_CONFIG_PREFIX=\"$FLOX_ENV_CACHE/npm\"\n  export PATH=\"$NPM_CONFIG_PREFIX/bin:$PATH\"\n  export NODE_PATH=\"$NPM_CONFIG_PREFIX/lib/node_modules:$NODE_PATH\"\n"
+      "on-activate": "  # Set up env vars for bundler/rubygems\n  RUBY_LIB_VERSION=4.0.0\n\n  export GEM_HOME=\"$FLOX_ENV_CACHE/gem/ruby/$RUBY_LIB_VERSION\"\n  export GEM_PATH=\"$GEM_HOME:$FLOX_ENV/lib/ruby/gems/$RUBY_LIB_VERSION\"\n\n  if [ \"$(uname -s)\" = \"Darwin\" ]; then\n    # FFI hack to load libraries since DYLD_LIBRARY_PATH and DYLD_FALLBACK_LIBRARY_PATH are ignored in SIP\n    export LD_LIBRARY_PATH=\"$FLOX_ENV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\n  fi\n\n  export NPM_CONFIG_PREFIX=\"$FLOX_ENV_CACHE/npm\"\n  export PATH=\"$NPM_CONFIG_PREFIX/bin:$PATH\"\n  export NODE_PATH=\"$NPM_CONFIG_PREFIX/lib/node_modules:$NODE_PATH\"\n"
     },
     "profile": {
       "common": "  case \":$PATH:\" in\n    *\":$FLOX_ENV_PROJECT/bin:\"*) ;;\n    *) export PATH=\"$FLOX_ENV_PROJECT/bin:$PATH\" ;;\n  esac\n  case \":$PATH:\" in\n    *\":$GEM_HOME/bin:\"*) ;;\n    *) export PATH=\"$GEM_HOME/bin:$PATH\" ;;\n  esac\n"
@@ -117,7 +120,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-24T20:51:47.464689Z",
+      "scrape_date": "2026-11-26T14:31:00.739127Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -149,7 +152,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-24T20:51:47.464692Z",
+      "scrape_date": "2026-11-26T14:31:00.739131Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -181,7 +184,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-24T20:51:47.464693Z",
+      "scrape_date": "2026-11-26T14:31:00.739133Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -195,6 +198,113 @@
       "outputs": {
         "devdoc": "/nix/store/xp8azda3vyk9vrjg433g4kx6zxx6lnnj-ruby-4.0.10-devdoc",
         "out": "/nix/store/wjmqmqv0k8j1bxfq97rzfcyfwbvjb644-ruby-4.0.10"
+      },
+      "system": "x86_64-linux",
+      "group": "ruby",
+      "priority": 5
+    },
+    {
+      "attr_path": "vips",
+      "broken": false,
+      "derivation": "/nix/store/zjpb60kzlfnqh6jyhrfsikh3f64zsbx6-vips-8.18.7.drv",
+      "description": "Image processing system for large images",
+      "install_id": "vips",
+      "license": "LGPL-2.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "vips-8.18.7",
+      "pname": "vips",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T05:48:04.231126Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "8.18.7",
+      "outputs_to_install": [
+        "bin",
+        "man"
+      ],
+      "outputs": {
+        "bin": "/nix/store/f7gl06963pc3c7chd32cgnca8rjibzgn-vips-8.18.7-bin",
+        "dev": "/nix/store/z2s0z1chwzqx9k2jm7nisrdccpzha33d-vips-8.18.7-dev",
+        "man": "/nix/store/8lr8zji5km1af7a9803jz18lm33vr9jg-vips-8.18.7-man",
+        "out": "/nix/store/vx6qgcwsrayiczvk97ikyps7xg4d75hq-vips-8.18.7"
+      },
+      "system": "aarch64-darwin",
+      "group": "ruby",
+      "priority": 5
+    },
+    {
+      "attr_path": "vips",
+      "broken": false,
+      "derivation": "/nix/store/lmz9cgxb1z316adb6mjdn9jq9phmyh4d-vips-8.18.7.drv",
+      "description": "Image processing system for large images",
+      "install_id": "vips",
+      "license": "LGPL-2.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "vips-8.18.7",
+      "pname": "vips",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:16:32.789917Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "8.18.7",
+      "outputs_to_install": [
+        "bin",
+        "man"
+      ],
+      "outputs": {
+        "bin": "/nix/store/5na6wnwryxd5qqii0agcnf2ndr8r5pia-vips-8.18.7-bin",
+        "dev": "/nix/store/hzjwhh0h81alz8ql1c2l1gwkinx7ds19-vips-8.18.7-dev",
+        "devdoc": "/nix/store/3wni5xvl619bhxrjps2lp3xpvy3fi3ff-vips-8.18.7-devdoc",
+        "man": "/nix/store/nz5hi6cjrgjirwxh1qka042r2qmckl52-vips-8.18.7-man",
+        "out": "/nix/store/dawk2mydc46yscxpm3p3l4pxkh5vayr2-vips-8.18.7"
+      },
+      "system": "aarch64-linux",
+      "group": "ruby",
+      "priority": 5
+    },
+    {
+      "attr_path": "vips",
+      "broken": false,
+      "derivation": "/nix/store/hr6z588bgim40jx9m5cib0aqxxj2y731-vips-8.18.7.drv",
+      "description": "Image processing system for large images",
+      "install_id": "vips",
+      "license": "LGPL-2.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "name": "vips-8.18.7",
+      "pname": "vips",
+      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+      "rev_count": 1103272,
+      "rev_date": "2026-10-27T14:17:15Z",
+      "scrape_date": "2026-10-29T06:48:05.876353Z",
+      "stabilities": [
+        "unstable",
+        "stable",
+        "staging"
+      ],
+      "unfree": false,
+      "version": "8.18.7",
+      "outputs_to_install": [
+        "bin",
+        "man"
+      ],
+      "outputs": {
+        "bin": "/nix/store/wlkigfrk8xhbaw7692ycb9s8bvr3aj52-vips-8.18.7-bin",
+        "dev": "/nix/store/r0f47ci5j21m7bgfvq5lncbxxsf4mlvi-vips-8.18.7-dev",
+        "devdoc": "/nix/store/2gl6whg02hpm68y20d6pllip3sj6ppdg-vips-8.18.7-devdoc",
+        "man": "/nix/store/vajx3611afnccg5rz0hphbb2g9c7nvdf-vips-8.18.7-man",
+        "out": "/nix/store/hxh7p2w2vlpar26m55m0vxb7xijw8rm0-vips-8.18.7"
       },
       "system": "x86_64-linux",
       "group": "ruby",
@@ -368,7 +478,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-25T19:34:20.748512Z",
+      "scrape_date": "2026-11-26T14:32:58.058118Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -399,7 +509,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-25T19:34:20.748513Z",
+      "scrape_date": "2026-11-26T14:32:58.058119Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -430,7 +540,7 @@
       "rev": "38072260e2a88d7bf0669d7fd8e3f8783f6e929f",
       "rev_count": 27,
       "rev_date": "2026-11-19T12:43:25Z",
-      "scrape_date": "2026-11-25T19:34:20.748515Z",
+      "scrape_date": "2026-11-26T14:32:58.058119Z",
       "stabilities": [
         "unstable",
         "stable",
@@ -773,6 +883,7 @@
         "out",
         "out",
         "out",
+        "out",
         "out"
       ],
       "outputs": {
@@ -871,6 +982,7 @@
         "out",
         "out",
         "out",
+        "out",
         "out"
       ],
       "outputs": {
@@ -908,6 +1020,7 @@
         "out",
         "out",
         "out",
+        "out",
         "out"
       ],
       "outputs": {
@@ -940,6 +1053,7 @@
       "unfree": false,
       "version": "0.2.5",
       "outputs_to_install": [
+        "out",
         "out",
         "out",
         "out",
@@ -1432,6 +1546,7 @@
         "man",
         "out",
         "out",
+        "out",
         "out"
       ],
       "outputs": {
@@ -1597,113 +1712,6 @@
       "priority": 5
     },
     {
-      "attr_path": "vips",
-      "broken": false,
-      "derivation": "/nix/store/zjpb60kzlfnqh6jyhrfsikh3f64zsbx6-vips-8.18.7.drv",
-      "description": "Image processing system for large images",
-      "install_id": "vips",
-      "license": "LGPL-2.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-      "name": "vips-8.18.7",
-      "pname": "vips",
-      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-      "rev_count": 1103272,
-      "rev_date": "2026-10-27T14:17:15Z",
-      "scrape_date": "2026-10-29T05:48:04.231126Z",
-      "stabilities": [
-        "unstable",
-        "stable",
-        "staging"
-      ],
-      "unfree": false,
-      "version": "8.18.7",
-      "outputs_to_install": [
-        "bin",
-        "man"
-      ],
-      "outputs": {
-        "bin": "/nix/store/f7gl06963pc3c7chd32cgnca8rjibzgn-vips-8.18.7-bin",
-        "dev": "/nix/store/z2s0z1chwzqx9k2jm7nisrdccpzha33d-vips-8.18.7-dev",
-        "man": "/nix/store/8lr8zji5km1af7a9803jz18lm33vr9jg-vips-8.18.7-man",
-        "out": "/nix/store/vx6qgcwsrayiczvk97ikyps7xg4d75hq-vips-8.18.7"
-      },
-      "system": "aarch64-darwin",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "attr_path": "vips",
-      "broken": false,
-      "derivation": "/nix/store/lmz9cgxb1z316adb6mjdn9jq9phmyh4d-vips-8.18.7.drv",
-      "description": "Image processing system for large images",
-      "install_id": "vips",
-      "license": "LGPL-2.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-      "name": "vips-8.18.7",
-      "pname": "vips",
-      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-      "rev_count": 1103272,
-      "rev_date": "2026-10-27T14:17:15Z",
-      "scrape_date": "2026-10-29T06:16:32.789917Z",
-      "stabilities": [
-        "unstable",
-        "stable",
-        "staging"
-      ],
-      "unfree": false,
-      "version": "8.18.7",
-      "outputs_to_install": [
-        "bin",
-        "man"
-      ],
-      "outputs": {
-        "bin": "/nix/store/5na6wnwryxd5qqii0agcnf2ndr8r5pia-vips-8.18.7-bin",
-        "dev": "/nix/store/hzjwhh0h81alz8ql1c2l1gwkinx7ds19-vips-8.18.7-dev",
-        "devdoc": "/nix/store/3wni5xvl619bhxrjps2lp3xpvy3fi3ff-vips-8.18.7-devdoc",
-        "man": "/nix/store/nz5hi6cjrgjirwxh1qka042r2qmckl52-vips-8.18.7-man",
-        "out": "/nix/store/dawk2mydc46yscxpm3p3l4pxkh5vayr2-vips-8.18.7"
-      },
-      "system": "aarch64-linux",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "attr_path": "vips",
-      "broken": false,
-      "derivation": "/nix/store/hr6z588bgim40jx9m5cib0aqxxj2y731-vips-8.18.7.drv",
-      "description": "Image processing system for large images",
-      "install_id": "vips",
-      "license": "LGPL-2.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-      "name": "vips-8.18.7",
-      "pname": "vips",
-      "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
-      "rev_count": 1103272,
-      "rev_date": "2026-10-27T14:17:15Z",
-      "scrape_date": "2026-10-29T06:48:05.876353Z",
-      "stabilities": [
-        "unstable",
-        "stable",
-        "staging"
-      ],
-      "unfree": false,
-      "version": "8.18.7",
-      "outputs_to_install": [
-        "bin",
-        "man"
-      ],
-      "outputs": {
-        "bin": "/nix/store/wlkigfrk8xhbaw7692ycb9s8bvr3aj52-vips-8.18.7-bin",
-        "dev": "/nix/store/r0f47ci5j21m7bgfvq5lncbxxsf4mlvi-vips-8.18.7-dev",
-        "devdoc": "/nix/store/2gl6whg02hpm68y20d6pllip3sj6ppdg-vips-8.18.7-devdoc",
-        "man": "/nix/store/vajx3611afnccg5rz0hphbb2g9c7nvdf-vips-8.18.7-man",
-        "out": "/nix/store/hxh7p2w2vlpar26m55m0vxb7xijw8rm0-vips-8.18.7"
-      },
-      "system": "x86_64-linux",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
       "attr_path": "zlib",
       "broken": false,
       "derivation": "/nix/store/7qn0ds0d15cay8qwpkpbkizyq8q3lrgb-zlib-1.3.2.drv",
@@ -1725,6 +1733,7 @@
       "unfree": false,
       "version": "1.3.2",
       "outputs_to_install": [
+        "out",
         "out",
         "out",
         "out",
@@ -1774,6 +1783,7 @@
         "out",
         "out",
         "out",
+        "out",
         "out"
       ],
       "outputs": {
@@ -1807,6 +1817,7 @@
       "unfree": false,
       "version": "1.3.2",
       "outputs_to_install": [
+        "out",
         "out",
         "out",
         "out",
@@ -1945,7 +1956,8 @@
   ],
   "compose": {
     "composer": {
-      "schema-version": "1.10.0",
+      "schema-version": "1.19.0",
+      "minimum-cli-version": "1.19.0",
       "install": {
         "amazon-ecr-credential-helper": {
           "pkg-path": "amazon-ecr-credential-helper",
@@ -1955,7 +1967,7 @@
           ]
         },
         "desk": {
-          "pkg-path": "detaso/desk"
+          "pkg-path": "ryansch/desk"
         },
         "gcc": {
           "pkg-path": "gcc",
@@ -1999,7 +2011,7 @@
       "include": {
         "environments": [
           {
-            "remote": "detaso/ruby-4.0"
+            "remote": "ryansch/ruby-4.0"
           }
         ]
       }
@@ -2007,7 +2019,8 @@
     "include": [
       {
         "manifest": {
-          "schema-version": "1.11.0",
+          "schema-version": "1.19.0",
+          "minimum-cli-version": "1.19.0",
           "install": {
             "corepack": {
               "pkg-path": "corepack",
@@ -2041,7 +2054,7 @@
               ]
             },
             "ruby": {
-              "pkg-path": "detaso/ruby_4_0",
+              "pkg-path": "ryansch/ruby_4_0",
               "pkg-group": "ruby",
               "version": "4.0.10"
             },
@@ -2049,7 +2062,9 @@
               "pkg-path": "stdenv"
             },
             "vips": {
-              "pkg-path": "vips"
+              "pkg-path": "vips",
+              "pkg-group": "ruby",
+              "outputs": "all"
             },
             "zlib": {
               "pkg-path": "zlib"
@@ -2059,7 +2074,7 @@
             }
           },
           "hook": {
-            "on-activate": "  # Set up env vars for bundler/rubygems\n  RUBY_LIB_VERSION=4.0.0\n\n  export GEM_HOME=\"$FLOX_ENV_CACHE/gem/ruby/$RUBY_LIB_VERSION\"\n  export GEM_PATH=\"$GEM_HOME/gems:${GEM_PATH:-}\"\n"
+            "on-activate": "  # Set up env vars for bundler/rubygems\n  RUBY_LIB_VERSION=4.0.0\n\n  export GEM_HOME=\"$FLOX_ENV_CACHE/gem/ruby/$RUBY_LIB_VERSION\"\n  export GEM_PATH=\"$GEM_HOME:$FLOX_ENV/lib/ruby/gems/$RUBY_LIB_VERSION\"\n\n  if [ \"$(uname -s)\" = \"Darwin\" ]; then\n    # FFI hack to load libraries since DYLD_LIBRARY_PATH and DYLD_FALLBACK_LIBRARY_PATH are ignored in SIP\n    export LD_LIBRARY_PATH=\"$FLOX_ENV/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\n  fi\n"
           },
           "profile": {
             "common": "  case \":$PATH:\" in\n    *\":$FLOX_ENV_PROJECT/bin:\"*) ;;\n    *) export PATH=\"$FLOX_ENV_PROJECT/bin:$PATH\" ;;\n  esac\n  case \":$PATH:\" in\n    *\":$GEM_HOME/bin:\"*) ;;\n    *) export PATH=\"$GEM_HOME/bin:$PATH\" ;;\n  esac\n"
@@ -2074,11 +2089,19 @@
         },
         "name": "ruby-4.0",
         "descriptor": {
-          "remote": "detaso/ruby-4.0"
+          "remote": "ryansch/ruby-4.0"
         }
       }
     ],
     "warnings": [
+      {
+        "warning": {
+          "Overriding": [
+            "minimum-cli-version"
+          ]
+        },
+        "higher_priority_name": "Current manifest"
+      },
       {
         "warning": {
           "Overriding": [

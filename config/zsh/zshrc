@@ -51,17 +51,11 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 if command -v flox >/dev/null; then
-  if [ ! -d .flox ]; then
-    eval "$(flox activate -m run -d "$HOME")"
-  else
-    eval "$(flox activate)"
-  fi
+  eval "$(flox activate -d "$HOME" -m run)"
 fi
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-# export DIRENV_LOG_FORMAT=
-# eval "$(direnv hook zsh)"
 
 setopt pushd_ignore_dups
 
