@@ -3,7 +3,6 @@ minimum-cli-version = "1.19.0"
 
 [include]
 environments = [{ remote = "ryansch/ruby-4.0" }]
-# environments = [{ dir = "/Users/ryansch/dev/flox/detaso/ruby-4.0" }]
 
 ## Install Packages --------------------------------------------------
 ##  $ flox install gum  <- puts a package in [install] section below
