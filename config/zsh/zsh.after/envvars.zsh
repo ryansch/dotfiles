@@ -17,6 +17,9 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 
 export GLAMOUR_STYLE=dark
 
+# Bare `bundle` runs `bundle install` (Bundler 4 defaults to showing help)
+export BUNDLE_DEFAULT_CLI_COMMAND=install
+
 export XDG_DATA_HOME=${HOME}/.local/share
 export XDG_CONFIG_HOME=${HOME}/.config
 export XDG_STATE_HOME=${HOME}/.local/state
